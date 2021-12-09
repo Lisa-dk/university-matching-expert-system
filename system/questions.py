@@ -1,6 +1,6 @@
 class Question():
     def __init__(self):
-        self.questions = ["What subjects did you take?"]
+        self.questions = ["What subjects did you take?\n choose from chemistry, physics, and mathematics."]
 
     def getQuestions(self):
         return self.questions

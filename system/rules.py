@@ -1,17 +1,20 @@
+import re
+
 def rules_check(answer, queries, study_kb, user_kb):
 
     if 'subjects' not in user_kb.keys():
         user_kb['subjects'] = []
-        if 'physics' in answer:
-            user_kb['subjects'].append('physics')
-        
-        if 'chemistry' in answer:
+        if re.match('chemistry', answer):
             user_kb['subjects'].append('chemistry')
-        
-        if 'mathematics' in answer:
+
+        if re.match('mathematics', answer):
             user_kb['subjects'].append('mathematics')
             print(user_kb['subjects'])
+
+        if re.match('physics', answer):
+            user_kb['subjects'].append('physics')
     
+
     if 'english test' not in user_kb.keys():
         user_kb['english test'] = None
         queries.addQuestion("What English test did you take?")
@@ -26,7 +29,6 @@ def rules_check(answer, queries, study_kb, user_kb):
     if ((answer in english_tests_specific or answer in ['IB A HL', 'Cambridge B2', 'Cambridge C1', 'Cambridge C2']) and 
                 ((answer + 'overall') not in user_kb.keys())):
         user_kb[answer + 'overall'] = ''
-        print(user_kb)
         queries.addQuestion("What is the overall score of the English test?")
     
 
