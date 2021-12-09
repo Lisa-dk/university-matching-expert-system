@@ -7,7 +7,7 @@ class KnowledgeBase():
             {
                 'label': 'Chemical Engineering and Chemistry',
                 'university': 'Technical University of Eindhoven',
-                'subjects': ['chemistry, mathematics, physics '],
+                'subjects': ['chemistry', 'mathematics', 'physics'],
                 'english test': ['TOEFL', 'IELTS', 'CPE', 'CPA', 'IB English programme', 'IB A HL'],
                 'TOEFL overall': 90,
                 'TOEFL min': 21,
@@ -22,7 +22,7 @@ class KnowledgeBase():
             {
                 'label': 'Electrical Engineering',
                 'university': 'Technical University of Eindhoven',
-                'subjects': ['mathematics, physics'],
+                'subjects': ['mathematics', 'physics'],
                 'english test': ['TOEFL', 'IELTS', 'CPE', 'CPA', 'IB English programme', 'IB A HL'],
                 'TOEFL overall': 90,
                 'TOEFL min': 21,

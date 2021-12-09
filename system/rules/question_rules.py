@@ -4,14 +4,13 @@ def rules_check(answer, queries, study_kb, user_kb):
 
     if 'subjects' not in user_kb.keys():
         user_kb['subjects'] = []
-        if re.match('chemistry', answer):
+        if re.search('chemistry', answer):
             user_kb['subjects'].append('chemistry')
 
-        if re.match('mathematics', answer):
+        if re.search('mathematics', answer):
             user_kb['subjects'].append('mathematics')
-            print(user_kb['subjects'])
 
-        if re.match('physics', answer):
+        if re.search('physics', answer):
             user_kb['subjects'].append('physics')
     
 
