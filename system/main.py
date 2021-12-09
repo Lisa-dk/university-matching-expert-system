@@ -1,24 +1,21 @@
 from knowledge_base import KnowledgeBase
 from questions import QuestionType
+from system.questions import Question
 from system.rules import rules_check
 
-facts = {}
+user_kb = {}
 
 def forward_chaining(kb):
-    questions = [QuestionType.SUBJECT]
-    while len(questions) != 0:
-        question = questions[0]
+    queries = Question()
+    question_list = queries.getQuestions()
+    while len(question_list) != 0:
+        question = question_list[0]
         response = input(question)
-        facts[question] = response
-        
-        for item in kb:
-            match, next_question = rules_check()
-            questions.append(next_question)
-            if match:
-                kb.remove(item)
+        rules_check(response, queries, kb, user_kb)
+        queries.removeQuestion(question)
+        question_list = queries.getQuestions()
 
-            
-    questions.remove(question)
+        
     pass
 
 def main():
