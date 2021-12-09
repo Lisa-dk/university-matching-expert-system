@@ -2,7 +2,7 @@ class KnowledgeBase():
     def __init__(self) -> None:
         self.kb = self.get_kb_dict()
     
-    def get_kb_dict():
+    def get_kb_dict(self):
         kb = [
             {
                 'label': 'Chemical Engineering and Chemistry',
