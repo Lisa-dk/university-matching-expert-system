@@ -16,7 +16,8 @@ def elimination_update(study, studies_kb, user_kb):
         return
 
     
-    if (user_kb['english test'] != None and user_kb[(user_kb['english test'] + 'min')] != '' and
+    if (user_kb['english test'] != None and (user_kb['english test'] + 'min') in user_kb.keys() and
+                user_kb[(user_kb['english test'] + 'min')] != '' and
                 user_kb[(user_kb['english test'] + 'min')] in user_kb.keys() and 
                 user_kb[(user_kb['english test'] + 'min')] in study.keys() and 
                 user_kb[(user_kb['english test'] + 'min')] < study[user_kb[(user_kb['english test'] + 'min')]]):
