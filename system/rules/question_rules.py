@@ -36,21 +36,22 @@ def rules_check(answer, queries, study_kb, user_kb):
         user_kb['subjects'].append('physics')
     
 
-    if 'english level' not in user_kb.keys():
+    if 'english level' not in user_kb.keys() and user_kb['diplomas'] not in ['IB', 'EB']:
         user_kb['english level'] = None
         queries.addQuestion("What is your English level?")
 
     # case for general english level
-    for study in study_kb:
-        if answer in study['english level']:
-            user_kb['english level'] = answer
-        
-        if ('english level' in user_kb.keys() and user_kb['english level'] != None and 
-                (user_kb['english level'] + ' overall') in study.keys() and answer == user_kb['english level'] and
-                (answer + ' overall') not in user_kb.keys()):
-            user_kb[answer + ' overall'] = ''
-            queries.addQuestion("What is the overall score of the english level?")
-            break
+    if 'english level' in user_kb.keys():
+        for study in study_kb:
+            if answer in study['english level']:
+                user_kb['english level'] = answer
+            
+            if (user_kb['english level'] != None and 
+                    (user_kb['english level'] + ' overall') in study.keys() and answer == user_kb['english level'] and
+                    (answer + ' overall') not in user_kb.keys()):
+                user_kb[answer + ' overall'] = ''
+                queries.addQuestion("What is the overall score of the english level?")
+                break
 
     # if a minimum per section is required for an english level for any uni, ask the question and add the field
     if (answer in ['TOEFL', 'IELTS', 'CPE', 'CAE', 'TOEIC']  and 
