@@ -2,34 +2,36 @@ def elimination_update(study, studies_kb, user_kb):
 
     # matching diplomas
     if user_kb['diplomas'] not in study['diplomas']:
+        print(user_kb['diplomas'] + "university  :   " + study['diplomas'])
         studies_kb.remove(study)
         return
     
     # matching subjects
-    for subject in study['subjects']:
-        if subject not in user_kb['subjects']:
-            studies_kb.remove(study)
-            return 
+    if 'subjects' in user_kb.keys() and user_kb['subjects'] != []:
+        for subject in study['subjects']:
+            if subject not in user_kb['subjects']:
+                studies_kb.remove(study)
+                return 
     
-    # matching english test
-    if user_kb['english test'] != None and user_kb['english test'] not in study['english test']:
+    # matching english level
+    if user_kb['english level'] != None and user_kb['english level'] not in study['english level']:
         studies_kb.remove(study)
         return
     
-    # matching english test overall score
-    if (user_kb['english test'] != None and user_kb[(user_kb['english test'] + 'overall')] != '' and
-                user_kb[(user_kb['english test'] + 'overall')] in user_kb.keys() and 
-                user_kb[(user_kb['english test'] + 'overall')] in study.keys() and 
-                user_kb[(user_kb['english test'] + 'overall')] < study[user_kb[(user_kb['english test'] + 'overall')]]):
+    # matching english level overall score
+    if (user_kb['english level'] != None and user_kb[(user_kb['english level'] + ' overall')] != '' and
+                user_kb[(user_kb['english level'] + 'overall')] in user_kb.keys() and 
+                user_kb[(user_kb['english level'] + 'overall')] in study.keys() and 
+                user_kb[(user_kb['english level'] + 'overall')] < study[user_kb[(user_kb['english level'] + 'overall')]]):
         studies_kb.remove(study)
         return
 
-    # matching english test minimum score
-    if (user_kb['english test'] != None and (user_kb['english test'] + 'min') in user_kb.keys() and
-                user_kb[(user_kb['english test'] + 'min')] != '' and
-                user_kb[(user_kb['english test'] + 'min')] in user_kb.keys() and 
-                user_kb[(user_kb['english test'] + 'min')] in study.keys() and 
-                user_kb[(user_kb['english test'] + 'min')] < study[user_kb[(user_kb['english test'] + 'min')]]):
+    # matching english level minimum score
+    if (user_kb['english level'] != None and (user_kb['english level'] + 'min') in user_kb.keys() and
+                user_kb[(user_kb['english level'] + 'min')] != '' and
+                user_kb[(user_kb['english level'] + 'min')] in user_kb.keys() and 
+                user_kb[(user_kb['english level'] + 'min')] in study.keys() and 
+                user_kb[(user_kb['english level'] + 'min')] < study[user_kb[(user_kb['english level'] + 'min')]]):
         studies_kb.remove(study)
         return
     
