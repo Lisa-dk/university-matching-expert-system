@@ -1,5 +1,10 @@
 def elimination_update(study, studies_kb, user_kb):
 
+    # matching diplomas
+    if user_kb['diplomas'] not in study['diplomas']:
+        studies_kb.remove(study)
+        return
+    
     # matching subjects
     for subject in study['subjects']:
         if subject not in user_kb['subjects']:

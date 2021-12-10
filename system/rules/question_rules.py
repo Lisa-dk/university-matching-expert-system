@@ -2,6 +2,25 @@ import re
 
 def rules_check(answer, queries, study_kb, user_kb):
 
+    # Adding diplomas
+    if 'diplomas' not in user_kb.keys(): # first question is about diplomas
+        user_kb['diplomas'] = ''
+        if re.search('Regular Lise Diploma', answer):
+            user_kb['diplomas'] = 'Regular Lise Diploma'
+
+        if re.search('AP', answer):
+            user_kb['diplomas'] = 'AP'
+
+        if re.search('IB', answer):
+            user_kb['diplomas'] = 'IB'
+        
+        if re.search('Label France Education', answer):
+            user_kb['diplomas'] = 'Label France Education'
+
+        if re.search('British GCE A Levels', answer):
+            user_kb['diplomas'] = 'British GCE A Levels'
+        queries.addQuestion("What subjects did you take?\n choose from chemistry, physics, and mathematics?")
+            
     # Adding subjects to user facts
     if 'subjects' not in user_kb.keys():
         user_kb['subjects'] = []

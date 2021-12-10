@@ -7,6 +7,7 @@ class KnowledgeBase():
             {
                 'label': 'Chemical Engineering and Chemistry',
                 'university': 'Technical University of Eindhoven',
+                'diplomas': ['Regular Lise Diploma', 'AP', 'IB', 'Label France Educaiton', 'British GCE A Levels'],
                 'subjects': ['chemistry', 'mathematics', 'physics'],
                 'english test': ['TOEFL', 'IELTS', 'CPE', 'CPA', 'IB English programme', 'IB A HL'],
                 'TOEFL overall': 90,
@@ -22,6 +23,7 @@ class KnowledgeBase():
             {
                 'label': 'Electrical Engineering',
                 'university': 'Technical University of Eindhoven',
+                'diplomas': ['Regular Lise Diploma', 'AP', 'IB', 'Label France Educaiton', 'British GCE A Levels'],
                 'subjects': ['mathematics', 'physics'],
                 'english test': ['TOEFL', 'IELTS', 'CPE', 'CPA', 'IB English programme', 'IB A HL'],
                 'TOEFL overall': 90,
