@@ -8,8 +8,11 @@ user_kb = {}
 def eliminate_studies(kb):
     size_kb = len(kb)
     i = 0
+    # Iterating over all studies in the kb and eliminating those
+    # which do not match
     while i < size_kb:
         elimination_update(kb[i], kb, user_kb)
+        # After removal, the items are moved to a lower index in the list. 
         if len(kb) < size_kb:
             size_kb -= 1
             i -= 1
@@ -19,12 +22,18 @@ def eliminate_studies(kb):
 def forward_chaining(kb):
     queries = Question()
     question_list = queries.getQuestions()
+    
+    # fc while there are questions to ask
     while len(question_list) != 0:
         question = question_list[0]
         response = input(question + "\n")
+
+        # Processing the user information and getting next questions
         rules_check(response, queries, kb, user_kb)
         queries.removeQuestion(question)
         question_list = queries.getQuestions()
+
+        # Removing studies that don't match
         eliminate_studies(kb)
         if len(kb) == 0:
             print("No study requirements met.")
