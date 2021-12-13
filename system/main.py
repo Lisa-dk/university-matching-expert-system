@@ -5,6 +5,7 @@ from rules.elimination_rules import elimination_update
 
 user_kb = {}
 
+
 def eliminate_studies(kb):
     size_kb = len(kb)
     i = 0
