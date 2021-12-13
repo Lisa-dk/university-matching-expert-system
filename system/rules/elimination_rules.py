@@ -12,16 +12,14 @@ def elimination_update(study, studies_kb, user_kb):
                 if subject[0] not in user_kb['subjects']:
                     studies_kb.remove(study)
                     return
-                    # subjects do NOT have grades in study
+        # subjects do NOT have grades in study
         else:
-            print("study has NO grades")
-            print(study[user_kb['diplomas']])
             for subject in study[user_kb['diplomas']]:
                 if subject not in user_kb['subjects']:
                     studies_kb.remove(study)
                     return
 
-                    # matching grades
+    # matching grades
     if 'subjectGrades' in user_kb.keys() and user_kb['subjectGrades'] != []:
         i = 0
         for subject in study[user_kb['diplomas']]:

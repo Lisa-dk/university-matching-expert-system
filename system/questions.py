@@ -1,6 +1,6 @@
 class Question():
     def __init__(self):
-        self.questions = ["What is your highschool diploma?"]
+        self.questions = ["----> What is your highschool diploma?"]
 
     def getQuestions(self):
         return self.questions
