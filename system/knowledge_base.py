@@ -8,7 +8,7 @@ class KnowledgeBase():
                 'label': 'Chemical Engineering and Chemistry',
                 'university': 'Technical University of Eindhoven',
                 'diplomas': ['Lise Diploma', 'AP', 'IB', 'Label France Education', 'British GCE A Levels'],
-                'IB': ['Mathematics HL', 'Physics HL', 'Chemistry HL'], #note: doesn't work when subject and HL/SL written with space
+                'IB': ['Mathematics HL', 'Physics HL', 'Chemistry HL'], 
                 'AP': [['Calculus', 3], ['Physics', 3], ['Chemistry', 3]],
                 'Lise Diploma': [['Mathematics', 75], ['Physics', 75], ['Chemistry', 75]],
                 'english level': ['TOEFL', 'IELTS', 'CPE', 'CAE', 'IB English programme', 'IB A HL'],

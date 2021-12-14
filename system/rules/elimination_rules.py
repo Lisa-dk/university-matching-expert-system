@@ -5,9 +5,10 @@ def elimination_update(study, studies_kb, user_kb):
         return
 
     # matching subjects
-    if 'subjects' in user_kb.keys() and user_kb['subjects'] != []:
+    if 'subjects' in user_kb.keys() and user_kb['subjects'] != [] and 'subjectGrades' not in user_kb.keys():
         # True if nested lists, means subjects have grades
         if any(isinstance(subjGrd, list) for subjGrd in study[user_kb['diplomas']]):
+            #print("\nin elimination, subjects are known to have grades")
             for subject in study[user_kb['diplomas']]:
                 if subject[0] not in user_kb['subjects']:
                     studies_kb.remove(study)
@@ -19,15 +20,14 @@ def elimination_update(study, studies_kb, user_kb):
                     studies_kb.remove(study)
                     return
 
-    # matching grades
     if 'subjectGrades' in user_kb.keys() and user_kb['subjectGrades'] != []:
-        i = 0
-        for subject in study[user_kb['diplomas']]:
-            if int(user_kb['subjectGrades'][i][1]) < subject[1]:
-                studies_kb.remove(study)
-                return
-            i += 1
-
+        #print("\nMatching grades")
+        for subjGrad in study[user_kb['diplomas']]:
+            if subjGrad[0] == user_kb['subjectGrades'][0][0]:
+                if int(user_kb['subjectGrades'][0][1]) < subjGrad[1]:
+                    studies_kb.remove(study)
+                    return
+            
     # matching english level
     if 'english level' in user_kb.keys():
         if user_kb['english level'] is not None and user_kb['english level'] not in study['english level']:
