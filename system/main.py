@@ -33,7 +33,7 @@ def forward_chaining(kb):
         rules_check(response, queries, kb, user_kb)
         queries.removeQuestion(question)
         question_list = queries.getQuestions()
-
+        print("entering elim..")
         # Removing studies that don't match
         eliminate_studies(kb)
         if len(kb) == 0:
