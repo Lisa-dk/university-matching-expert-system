@@ -122,20 +122,29 @@ def rules_check(answer, queries, study_kb, user_kb):
         user_kb['english level'] = None
         queries.addQuestion("What is your English level?")
 
-    # case for general english level
+
     if 'english level' in user_kb.keys():
         for study in study_kb:
             if answer in study['english level']:
                 user_kb['english level'] = answer
-            
-            if (user_kb['english level'] is not None and
-                    (user_kb['english level'] + ' overall') in study.keys() and answer == user_kb['english level'] and
-                    (answer + ' overall') not in user_kb.keys()):
-                user_kb[answer + ' overall'] = ''
-                queries.addQuestion("What is the overall score of the english level?")
+                
+            if user_kb['english level'] is not None and user_kb['english level'] in study.keys() and 'english grades' not in user_kb.keys():
+                user_kb['english grades'] = []
+                for testGrd in study[user_kb['english level']]:
+                    if testGrd[0] != 'overall':
+                        queries.addQuestion("\nEnter grade for {}: ".format(testGrd[0]))
+                    else:
+                        queries.addQuestion("Enter overall score for {}".format(user_kb['english level']))
+                    user_kb['english grades'].append([testGrd[0]])
                 break
 
-    # if a minimum per section is required for an english level for any uni, ask the question and add the field
-    if answer in ['TOEFL', 'IELTS', 'CPE', 'CAE', 'TOEIC'] and (answer + 'min') not in user_kb.keys():
-        user_kb[answer + 'min'] = ''
-        queries.addQuestion("What is the minimum score obtained over all sections?")
+    if 'english grades' in user_kb.keys() and answer.isnumeric():
+        # makes use of the fact that the grades per section are stored in the same order as they are asked
+        for testGrd in user_kb['english grades']:
+            if len(testGrd) == 1:
+                testGrd.append(float(answer))
+                break
+
+
+        
+                        
