@@ -81,7 +81,7 @@ def rules_check(answer, queries, study_kb, user_kb):
             user_kb['subjects'].append(match.group())
         
         # for the rest
-        print(answer)
+        #print(answer)
         if re.search('[Pp]hysics', answer):
             user_kb['subjects'].append('Physics')
 
@@ -90,7 +90,7 @@ def rules_check(answer, queries, study_kb, user_kb):
             match = re.search('[Cc]hemistry(\sSL|\sHL)?', answer)
             user_kb['subjects'].append(match.group())
 
-        print(user_kb['subjects'])
+        #print(user_kb['subjects'])
         #print(user_kb['subjects'])
 
     if 'subjectGrades' not in user_kb.keys() and 'subjects' in user_kb.keys() and user_kb['subjects']!=[]:  
