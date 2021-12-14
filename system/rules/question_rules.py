@@ -81,7 +81,8 @@ def rules_check(answer, queries, study_kb, user_kb):
             user_kb['subjects'].append(match.group())
         
         # for the rest
-        if re.search('[Pp]hysics$', answer):
+        print(answer)
+        if re.search('[Pp]hysics', answer):
             user_kb['subjects'].append('Physics')
 
         # for IB and the rest
