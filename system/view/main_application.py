@@ -3,21 +3,35 @@ from tkinter import *
 from tkinter import ttk
 
 class NavBar():
+    HEIGHT = 10
+    BUTTONS_Y = 5
+
     def __init__(self, master):
         self.master = master
-        self.navFrame = Frame(self.master, bg="gray")
-        self.setNavBar()
-        self.navFrame.pack(side="top", fill='x')
+        self.setTopBar()
 
-        def setNavBar(self):  
-            navLabel = Label(self.navFrame, text="PE", font="Bahnschrift 15", bg="#FF8700", fg="gray17", height=2, padx=20, pady=20)
-            navLabel.pack(side="right", fill='x', ipadx=5, ipady=5)
-
+    def setTopBar(self):
+        self.topFrame = Frame(self.master, bg="#FF8700")
+        self.topFrame.pack(side="top", fill='x', ipady=self.HEIGHT)
+        self.setHomeButton()
+        self.setTestPageButton()
+    
+    def setHomeButton(self):
+        self.homeButton = Button(self.topFrame, text="Home", bg="blue", padx=10)
+        self.homeButton.place(x=0, y=self.BUTTONS_Y)
+        self.homeButton.pack(side="left")
+    
+    def setTestPageButton(self):
+        self.testPageButton = Button(self.topFrame, text="Test", bg='blue', padx=10)
+        self.testPageButton.place(x=0, y=self.BUTTONS_Y)
+        self.testPageButton.pack(side="left")
+      
+        
 class MainApp():
     def __init__(self, master):
         print("hello")
         self.master = master
-        self.frame = Frame(self.master, bg="green")
+        self.frame = Frame(self.master, bg="white")
         self.navbar = NavBar(self.master)
 
         self.frame.pack(side="top", fill='x', ipadx=10, ipady=10)
