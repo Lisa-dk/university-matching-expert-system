@@ -1,3 +1,9 @@
+from enum import Enum
+
+class QuestionType(Enum):
+    SELECT = 1
+    MULTI_SELECT = 2
+
 class Question():
     def __init__(self):
         self.questions = ["----> What is your highschool diploma?"]

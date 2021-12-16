@@ -1,7 +1,10 @@
-from knowledge_base import KnowledgeBase
-from questions import Question
-from rules.question_rules import rules_check
-from rules.elimination_rules import elimination_update
+from model.knowledge_base import KnowledgeBase
+from model.questions import Question
+from model.rules.question_rules import rules_check
+from model.rules.elimination_rules import elimination_update
+from tkinter import *
+from tkinter import ttk
+from view.main_application import MainApp
 
 user_kb = {}
 
@@ -47,6 +50,11 @@ def forward_chaining(kb):
 
 
 def main():
+    root = Tk()
+    root.title("Study Program Test")
+    root.geometry('400x200')
+    root.mainloop()
+    
     kb = KnowledgeBase().kb
     forward_chaining(kb)
 
