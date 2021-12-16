@@ -52,8 +52,10 @@ def forward_chaining(kb):
 def main():
     root = Tk()
     root.title("Study Program Test")
-    root.geometry('400x200')
+    root.minsize(500,500)
+    MainApp(root)
     root.mainloop()
+    
     
     kb = KnowledgeBase().kb
     forward_chaining(kb)
