@@ -62,7 +62,6 @@ def rules_check(answer, queries, study_kb, user_kb):
         if re.search('[Aa]nalytics\&[Aa]pproaches(\sSL|\sHL)?', answer):
             user_kb['subjects'].append('Mathematics HL')
 
-        # for IB and the rest
         if re.search('[Mm]athematics(\sSL|\sHL)?', answer):
             match = re.search('[Mm]athematics(\sSL|\sHL)?', answer)
             user_kb['subjects'].append(match.group())

@@ -1,43 +1,61 @@
-
 from tkinter import *
 from tkinter import ttk
+from view.nagivation_bar import NavBar
 
-class NavBar():
-    HEIGHT = 10
-    BUTTONS_Y = 5
-
-    def __init__(self, master):
+class QuestionField():
+    def __init__(self, master, inference_engine):
         self.master = master
-        self.setTopBar()
+        self.inference_engine = inference_engine
+        self.addTextField(self.master)
+        self.setText(self.inference_engine.getCurrentQuestion())
+        self.inputField = InputFields(self.master, self.inference_engine)
+        self.addSaveButton(self.master)
+    
+    def addTextField(self, frame):
+        self.textField = Text(frame, height=5, width=100)
+        self.textField.pack()
 
-    def setTopBar(self):
-        self.topFrame = Frame(self.master, bg="#FF8700")
-        self.topFrame.pack(side="top", fill='x', ipady=self.HEIGHT)
-        self.setHomeButton()
-        self.setTestPageButton()
+    def setText(self, text):
+        self.textField.insert(END, text)
     
-    def setHomeButton(self):
-        self.homeButton = Button(self.topFrame, text="Home", bg="blue", padx=10)
-        self.homeButton.place(x=0, y=self.BUTTONS_Y)
-        self.homeButton.pack(side="left")
+    def addSaveButton(self, frame):
+        self.button = Button(frame, height=1, width=10, text="Next", 
+                            command=lambda: self.setInput())
+        self.button.pack()
     
-    def setTestPageButton(self):
-        self.testPageButton = Button(self.topFrame, text="Test", bg='blue', padx=10)
-        self.testPageButton.place(x=0, y=self.BUTTONS_Y)
-        self.testPageButton.pack(side="left")
-      
+    def setInput(self):
+        inputTextField = self.inputField.inputText
+        input = inputTextField.get("1.0", "end-1c")
+        self.inference_engine.setRespone(input)
+    
+    def getInput(self):
+        return self.input
+
+
+class InputFields():
+    def __init__(self, master, inference_engine):
+        self.master = master
+        self.inference_engine = inference_engine
+        self.addInputTextField(self.master)
+    
+    def addInputTextField(self, frame):
+        self.inputText = Text(frame, height=3, width=10)
+        self.inputText.pack()
+
         
 class MainApp():
-    def __init__(self, master):
+    def __init__(self, master, inference_engine):
         print("hello")
         self.master = master
+        self.inerence_engine = inference_engine
         self.frame = Frame(self.master, bg="white")
         self.navbar = NavBar(self.master)
-
+        
         self.frame.pack(side="top", fill='x', ipadx=10, ipady=10)
         intro_lbl = Label(self.frame, text="Welcome to the Study Program test for Turkish students \n"
                                         "who are interested in studying in The Netherlands.", font=("Arial", 12))
         intro_lbl.grid(column=0, row=0)
+        self.questionField = QuestionField(self.master, self.inerence_engine)
 
 
     def onExit(self):
