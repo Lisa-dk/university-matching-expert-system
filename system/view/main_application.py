@@ -1,36 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from view.nagivation_bar import NavBar
-
-class QuestionField():
-    def __init__(self, master, inference_engine):
-        self.master = master
-        self.inference_engine = inference_engine
-        self.addTextField(self.master)
-        self.setText(self.inference_engine.getCurrentQuestion())
-        self.inputField = InputFields(self.master, self.inference_engine)
-        self.addSaveButton(self.master)
-    
-    def addTextField(self, frame):
-        self.textField = Text(frame, height=5, width=100)
-        self.textField.pack()
-
-    def setText(self, text):
-        self.textField.insert(END, text)
-    
-    def addSaveButton(self, frame):
-        self.button = Button(frame, height=1, width=10, text="Next", 
-                            command=lambda: self.setInput())
-        self.button.pack()
-    
-    def setInput(self):
-        inputTextField = self.inputField.inputText
-        input = inputTextField.get("1.0", "end-1c")
-        self.inference_engine.setRespone(input)
-    
-    def getInput(self):
-        return self.input
-
+from view.question_field import QuestionField
 
 class InputFields():
     def __init__(self, master, inference_engine):
