@@ -3,16 +3,6 @@ from tkinter import ttk
 from view.nagivation_bar import NavBar
 from view.question_field import QuestionField
 
-class InputFields():
-    def __init__(self, master, inference_engine):
-        self.master = master
-        self.inference_engine = inference_engine
-        self.addInputTextField(self.master)
-    
-    def addInputTextField(self, frame):
-        self.inputText = Text(frame, height=3, width=10)
-        self.inputText.pack()
-
         
 class MainApp():
     def __init__(self, master, inference_engine):
