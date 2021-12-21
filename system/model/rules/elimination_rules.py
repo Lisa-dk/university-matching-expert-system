@@ -2,17 +2,21 @@ def elimination_update(study, studies_kb, user_kb):
     # matching diplomas
     if user_kb['diplomas'] not in study['diplomas']:
         studies_kb.remove(study)
-        print("removed: " + study)
+        #print("removed: " + study)
         return
 
     # matching subjects
     if 'subjects' in user_kb.keys() and user_kb['subjects'] != [] and 'subjectGrades' in user_kb.keys() and user_kb['subjectGrades'] == []:
         # True if nested lists, means subjects have grades
         if any(isinstance(subjGrd, list) for subjGrd in study[user_kb['diplomas']]):
-            #print("\nin elimination, subjects are known to have grades")s
+            #print("\nIn elimination, subjects are known to have grades")
             for subject in study[user_kb['diplomas']]:
+                #print("\nnow in study {}".format(study['label']))
+                #print("?will check if subjectGrade {} in study is in student's subject {}?".format(subject, user_kb['subjects']))
                 if subject[0] not in user_kb['subjects']:
+                    #print("  subjectGrade {} in study is NOT in student's subject {}".format(subject, user_kb['subjects']))
                     studies_kb.remove(study)
+                    #print("{} studies left\n".format(len(studies_kb)))
                     return
         # subjects do NOT have grades in study
         else:

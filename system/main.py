@@ -12,11 +12,13 @@ def main():
     kb = KnowledgeBase().kb
     fc = InferenceEngine(kb)
 
+    '''
     root = Tk()
     root.title("Study Program Test")
     root.minsize(500, 500)
     MainApp(root, fc)
     root.mainloop()
+    '''
 
     fc.forward_chaining()
 

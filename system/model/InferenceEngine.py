@@ -39,19 +39,26 @@ class InferenceEngine:
 
         # fc while there are questions to ask
         while len(self.question_list) != 0:
-            print(self.response)
+            question = self.getCurrentQuestion()
+            response = input(question + "\n")
+            
             # Processing the user information and getting next questions
-            rules_check(self.response, self.question, self.kb, self.user_kb)
+            rules_check(response, self.question, self.kb, self.user_kb)
             self.question.removeQuestion(self.currentQuestion)
-            self.setQuestion()
-            print("entering elim..")
+            if len(self.question_list) != 0:
+                self.setQuestion()
+            #print("\n**** NEXT QUESTION:" )
+            #print(self.question_list) 
+            #print("\n")
+            
+            #print("entering elim..")
             # Removing studies that don't match
             self.eliminate_studies()
             if len(self.kb) == 0:
                 print("No study requirements met.")
                 break
 
-        if len(self.kb) > 0:
+        if len(self.kb) > 0 or len(self.question_list) == 0:
             print("Requirements met for the following studies:")
             for study in self.kb:
                 print(study['label'] + " at " + study['university'])
