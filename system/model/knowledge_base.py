@@ -1,6 +1,7 @@
 class KnowledgeBase():
     def __init__(self) -> None:
         self.kb = self.get_kb_dict()
+        self.user_kb = {}
     
     def get_kb_dict(self):
         kb = [
