@@ -5,10 +5,10 @@ from view.question_field import QuestionField
 
         
 class MainApp():
-    def __init__(self, master, inference_engine):
+    def __init__(self, master, kb):
         print("hello")
         self.master = master
-        self.inerence_engine = inference_engine
+        self.kb = kb
         self.frame = Frame(self.master, bg="white")
         self.navbar = NavBar(self.master)
         
@@ -16,7 +16,7 @@ class MainApp():
         intro_lbl = Label(self.frame, text="Welcome to the Study Program test for Turkish students \n"
                                         "who are interested in studying in The Netherlands.", font=("Arial", 12))
         intro_lbl.grid(column=0, row=0)
-        self.questionField = QuestionField(self.master, self.inerence_engine)
+        self.questionField = QuestionField(self.master, self.kb)
 
 
     def onExit(self):
