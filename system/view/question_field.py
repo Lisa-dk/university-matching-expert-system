@@ -25,7 +25,7 @@ class QuestionField():
         self.text_field.pack()
 
     def add_text(self, text):
-        self.text_field.insert(END, "\n" + text)
+        self.text_field.insert(END, "\n"+ text)
         self.text_field.config(state=DISABLED)
 
     def add_save_button(self, frame):
@@ -36,18 +36,16 @@ class QuestionField():
 
     # updates the question and input text fields
     def update(self, empty):
+        self.text_field.config(state=NORMAL)
         self.text_field.delete("1.0", "end-1c")
         self.input_field.input_text.delete("1.0", "end-1c")
-
-        if len(self.kb_class.kb) == 0:
-            self.add_text("No requirements are met. No appropriate study programmes available.")
 
         if not empty and len(self.kb_class.kb) > 0:
             self.question = self.question_class.get_questions()[0]
             self.add_text(self.question)
         else:
-            self.input_field.input_text.destroy()
             self.button.destroy()
+            self.input_field.input_text.destroy()
             self.give_results()
 
     # prints the studies for which the requirements are met.
@@ -56,6 +54,9 @@ class QuestionField():
         if len(self.kb_class.kb) > 0:
             for study in self.kb_class.kb:
                 results += study['label'] + " at " + study['university'] + "\n"
+            self.text_field.configure(height=5+len(results))
+        else:
+            results = "No requirements are met. No appropriate study programmes available."
         self.add_text(results)
 
 
