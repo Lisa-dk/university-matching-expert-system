@@ -5,22 +5,25 @@ class NavBar():
     BUTTONS_Y = 5
 
     def __init__(self, master):
+        self.test_page_button = None
+        self.home_button = None
+        self.top_frame = None
         self.master = master
-        self.setTopBar()
+        self.set_top_bar()
 
-    def setTopBar(self):
-        self.topFrame = Frame(self.master, bg="#FF8700")
-        self.topFrame.pack(side="top", fill='x', ipady=self.HEIGHT)
-        self.setHomeButton()
-        self.setTestPageButton()
+    def set_top_bar(self):
+        self.top_frame = Frame(self.master, bg="#FF8700")
+        self.top_frame.pack(side="top", fill='x', ipady=self.HEIGHT)
+        self.set_home_button()
+        self.set_test_page_button()
     
-    def setHomeButton(self):
-        self.homeButton = Button(self.topFrame, text="Home", bg="blue", padx=10)
-        self.homeButton.place(x=0, y=self.BUTTONS_Y)
-        self.homeButton.pack(side="left")
+    def set_home_button(self):
+        self.home_button = Button(self.top_frame, text="Home", bg="blue", padx=10)
+        self.home_button.place(x=0, y=self.BUTTONS_Y)
+        self.home_button.pack(side="left")
     
-    def setTestPageButton(self):
-        self.testPageButton = Button(self.topFrame, text="Test", bg='blue', padx=10)
-        self.testPageButton.place(x=0, y=self.BUTTONS_Y)
-        self.testPageButton.pack(side="left")
+    def set_test_page_button(self):
+        self.test_page_button = Button(self.top_frame, text="Test", bg='blue', padx=10)
+        self.test_page_button.place(x=0, y=self.BUTTONS_Y)
+        self.test_page_button.pack(side="left")
       
