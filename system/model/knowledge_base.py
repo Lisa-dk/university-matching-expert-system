@@ -1,15 +1,15 @@
-class KnowledgeBase():
+class KnowledgeBase:
     def __init__(self) -> None:
         self.kb = self.get_kb_dict()
         self.user_kb = {}
-    
+
     def get_kb_dict(self):
         kb = [
             {
                 'label': 'Chemical Engineering and Chemistry',
                 'university': 'Technical University of Eindhoven',
                 'diplomas': ['Lise Diploma', 'AP', 'IB', 'Label France Education', 'British GCE A Levels'],
-                'IB': ['Mathematics HL', 'Physics HL', 'Chemistry HL'], 
+                'IB': ['Mathematics HL', 'Physics HL', 'Chemistry HL'],
                 'AP': [['Calculus', 3], ['Physics', 3], ['Chemistry', 3]],
                 'Lise Diploma': [['Mathematics', 75], ['Physics', 75], ['Chemistry', 75]],
                 'english level': ['TOEFL iBT', 'IELTS (academic)', 'CPE', 'CAE', 'IB English programme', 'IB A HL'],
@@ -52,7 +52,7 @@ class KnowledgeBase():
                 'university': 'Technical University of Eindhoven',
                 'diplomas': ['Lise Diploma', 'AP', 'IB', 'Label France Education', 'British GCE A Levels'],
                 'IB': ['Mathematics HL'],
-                'AP': [['Calculus', 3]], 
+                'AP': [['Calculus', 3]],
                 'Lise Diploma': [['Mathematics', 75]],
                 'english level': ['TOEFL iBT', 'IELTS (academic)', 'CPE', 'CAE', 'IB English programme', 'IB A HL'],
                 'TOEFL iBT': [['overall', 90], ['Reading', 21], ['Listening', 21], ['Speaking', 21], ['Writing', 21]],
@@ -66,7 +66,7 @@ class KnowledgeBase():
                 'university': 'Technical University of Eindhoven',
                 'diplomas': ['Lise Diploma', 'AP', 'IB', 'Label France Education', 'British GCE A Levels'],
                 'IB': ['Mathematics HL'],
-                'AP': [['Calculus', 3]], 
+                'AP': [['Calculus', 3]],
                 'Lise Diploma': [['Mathematics', 75]],
                 'english level': ['TOEFL iBT', 'IELTS (academic)', 'CPE', 'CAE', 'IB English programme', 'IB A HL'],
                 'TOEFL iBT': [['overall', 90], ['Reading', 21], ['Listening', 21], ['Speaking', 21], ['Writing', 21]],
@@ -108,7 +108,7 @@ class KnowledgeBase():
                 'university': 'Technical University of Eindhoven',
                 'diplomas': ['Lise Diploma', 'AP', 'IB', 'Label France Education', 'British GCE A Levels'],
                 'IB': ['Mathematics HL'],
-                'AP': [['Calculus', 3]], 
+                'AP': [['Calculus', 3]],
                 'Lise Diploma': [['Mathematics', 75]],
                 'english level': ['TOEFL iBT', 'IELTS (academic)', 'CPE', 'CAE', 'IB English programme', 'IB A HL'],
                 'TOEFL iBT': [['overall', 90], ['Reading', 21], ['Listening', 21], ['Speaking', 21], ['Writing', 21]],
