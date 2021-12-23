@@ -10,7 +10,8 @@ from view.main_application import MainApp
 def main():
     root = Tk()
     root.title("Study Program Test")
-    root.minsize(500, 500)
+    root.geometry("500x500")
+    root.configure(bg="#1c4046")
     MainApp(root, KnowledgeBase())
     root.mainloop()
 
