@@ -1,5 +1,6 @@
 from model.rules.question_rules import rules_check
 from model.rules.elimination_rules import elimination_update
+from tkinter import messagebox
 
 
 # Updates the question list by iterating over all rules and updating the question textfield.
@@ -7,10 +8,10 @@ def load_new_question(question_field, kb_class, question_class, question, input_
     # obtaining the input
     # qInput = input_field.input_text.get("1.0", "end-1c")
     q_input = input_field.get_chosen_option()
+    print(q_input)
     if q_input == "":
-        # TODO: add pop-up asking for question input
         # Stay with current question
-        pass
+        messagebox.showwarning("Warning", "Please select an option to continue")
     else:
         # checking over the rules and removing the question
         rules_check(q_input, question_class, kb_class.kb, kb_class.user_kb)
