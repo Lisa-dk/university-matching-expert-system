@@ -1,6 +1,6 @@
 from model.knowledge_base import KnowledgeBase
 from tkinter import *
-from tkinter import ttk
+# from tkinter import ttk
 from view.main_application import MainApp
 
 
@@ -12,7 +12,8 @@ def main():
     root.title("Study Program Test")
     root.geometry("500x500")
     root.configure(bg="#1c4046")
-    MainApp(root, KnowledgeBase())
+    # MainApp(root, KnowledgeBase())
+    MainApp(root)
     root.mainloop()
 
 

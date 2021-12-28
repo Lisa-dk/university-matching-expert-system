@@ -5,15 +5,20 @@ from model.rules.elimination_rules import elimination_update
 # Updates the question list by iterating over all rules and updating the question textfield.
 def load_new_question(question_field, kb_class, question_class, question, input_field):
     # obtaining the input
-    input = input_field.input_text.get("1.0", "end-1c")
-
-    # checking over the rules and removing the question
-    rules_check(input, question_class, kb_class.kb, kb_class.user_kb)
-    question_class.remove_question(question)
-    eliminate_studies(kb_class)
-    # noting whether there are questions left.
-    empty = 0 if len(question_class.get_questions()) > 0 else 1
-    question_field.update(empty)
+    # qInput = input_field.input_text.get("1.0", "end-1c")
+    q_input = input_field.get_chosen_option()
+    if q_input == "":
+        # TODO: add pop-up asking for question input
+        # Stay with current question
+        pass
+    else:
+        # checking over the rules and removing the question
+        rules_check(q_input, question_class, kb_class.kb, kb_class.user_kb)
+        question_class.remove_question(question)
+        eliminate_studies(kb_class)
+        # noting whether there are questions left.
+        empty = 0 if len(question_class.get_questions()) > 0 else 1
+        question_field.update(empty)
 
 
 # Eliminate studies from the kb
