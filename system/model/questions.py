@@ -8,7 +8,7 @@ class QuestionType(Enum):
 
 class Question:
     def __init__(self):
-        self.questions = ["----> What is your highschool diploma?"]
+        self.questions = ["----> What is your high school diploma?"]
 
     def get_questions(self):
         return self.questions
