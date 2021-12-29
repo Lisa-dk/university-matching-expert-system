@@ -1,0 +1,83 @@
+1. 
+--MAIN--
+Ask Highschool Diploma
+
+--USER---
+Create Diploma in user
+Add diploma for user
+
+--ElIMINATION--
+check if user diploma in study[i] --> if not, return
+once all the studies are checked, mark diplomas as complete (not erase)
+
+--QUESTION--
+Add next question, Subjects
+
+2. 
+-- MAIN ---
+get response to Subjects
+
+--USER--
+Match Subjects & Read Regex
+
+--ELIMINATION--
+
+Possibilities:
+- Just Subjects with/out options...
+
+    - Subjects with grades
+        --QUESTION--
+        Add next question, grades
+
+        --ElIMINATION--
+        Eliminate if < min grade
+
+
+--QUESTION---
+Ask English question
+
+--ElIMINATION--
+check if user subjects in study-subjects or are equal...
+
+
+if 'subjects' not in visited:
+        print("2. Eliminating Subjects")
+        for study in studies_kb:
+            # if nested lists, means study offer multiple subject combination
+            if 'IB option' in study.keys():
+                match = 0
+                for subjOptionN in study[user_kb['diplomas']]:
+                    print("\nstudy: "+study['label'])
+                    print(subjOptionN)
+                    print("in user: ")
+                    print(user_kb['subjects'])
+                    if set(subjOptionN) == set(user_kb['subjects']) or subjOptionN in user_kb['subjects']: 
+                        # if match, don't check rest and return for next study
+                        match = 1
+                        print("*** found match")
+                        #break
+                if match == 0: # if no match found when loop is complete, remove study
+                    studies_kb.remove(study)
+                    print("xxx removed: ")
+                    print(study['label'])
+                    #print("{} studies left\n".format(len(studies_kb)))
+            else:
+                for studySubjs in study[user_kb['diplomas']]:
+                    print("\nstudy: "+study['label'])
+                    print(studySubjs)
+                    print("in user: ")
+                    print(user_kb['subjects'])
+                    if studySubjs not in user_kb['subjects']:
+                        print("{} not in user_kb['subjects']".format(studySubjs))
+                        studies_kb.remove(study)
+                    else:
+                        print("keep")
+
+        visited.append('subjects')
+        print('-> Subjects Visited')
+        return
+
+
+
+
+

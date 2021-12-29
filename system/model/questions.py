@@ -10,10 +10,22 @@ class Question():
 
     def getQuestions(self):
         return self.questions
+    
+    def getCurrentQuestion(self):
+        return self.questions[0]
 
     def addQuestion(self, question):
         self.questions.append(question)
 
-    def removeQuestion(self, question):
-        self.questions.remove(question)
+    def removeQuestion(self):
+        self.questions.pop(0)
 
+    def clearQuestion(self):
+        self.questions.clear()
+
+    def getQuestionListLen(self):
+        return len(self.questions)
+
+    def endProgram(self):
+        return 'end'
+    
