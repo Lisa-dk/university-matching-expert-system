@@ -5,8 +5,11 @@ from model.questions import Question
 from .inputs.single_option import RadioButtonField
 from .inputs.multiple_options import CheckButtonField
 from .inputs.text_input import TextFields
+from view.theme import Theme
+
 
 class QuestionField:
+
     def __init__(self, master, kb_class):
         self.master = master
         self.button = None
@@ -26,7 +29,8 @@ class QuestionField:
         self.add_save_button(self.master)
 
     def add_question_field(self, frame):
-        self.question_field = Label(frame, textvariable=self.question_text, height=3, width=100, wraplength=500, justify=LEFT, font=Font(family="Arial"), fg="white", bg="#1c4046", bd=0)
+        self.question_field = Label(frame, textvariable=self.question_text, height=3, width=100, wraplength=500,
+                                    justify=LEFT, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0)
         self.question_field.pack()
 
     def add_text(self, text):
@@ -35,7 +39,8 @@ class QuestionField:
     def add_save_button(self, frame):
         self.button = Button(frame, height=1, width=10, text="Next",
                              command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
-                                                               self.input_field), bg="#768c90", bd=1)
+                                                               self.input_field), bg=Theme.BUTTON_COLOUR, bd=1,
+                             activebackground="#768c90")
         self.button.pack()
 
     def add_input_field(self):
@@ -45,7 +50,8 @@ class QuestionField:
             self.input_field = RadioButtonField(self.master, self.options)
 
         elif 'subject' in self.question:
-            self.options = ['Analytics & Approaches SL', 'Analytics & Approaches HL', 'Mathematics SL', 'Mathematics HL',
+            self.options = ['Analytics & Approaches SL', 'Analytics & Approaches HL', 'Mathematics SL',
+                            'Mathematics HL',
                             'Calculus', 'Physics SL', 'Physics HL', 'Chemistry SL', 'Chemistry HL']
             self.input_field = CheckButtonField(self.master, self.options)
 
@@ -95,8 +101,3 @@ class QuestionField:
         else:
             results = "No requirements are met. No appropriate study programmes available."
         self.add_text(results)
-
-
-
-
-

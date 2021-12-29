@@ -1,17 +1,14 @@
 from tkinter import *
 from tkinter.font import Font
-
+from view.theme import Theme
 
 class CheckButtonField:
     def __init__(self, master, options):
         self.master = master
         self.options = options
-        self.frame = Frame(self.master, bg="#1c4046")
-        # self.frame.grid(column=0, row=1)
+        self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
         self.frame.pack()
-        # self.buttons = [None] * len(options)
         self.buttons = []
-        # self.chosen = [IntVar(self.frame)] * len(options)
         self.check_var = []
         self.add_check_button(self.frame)
 
@@ -20,8 +17,8 @@ class CheckButtonField:
             idx = self.options.index(option)
             self.check_var.append(IntVar(frame))
             self.buttons.append(Checkbutton(frame, text=option, variable=self.check_var[idx], onvalue=1, offvalue=0,
-                                            font=Font(family="Arial"), fg="#e5e5e5", bg="#1c4046", bd=0,
-                                            selectcolor="#768c90"))
+                                            font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0,
+                                            selectcolor=Theme.BUTTON_COLOUR))
             self.buttons[idx].pack(anchor=W)
 
     def get_chosen_option(self):

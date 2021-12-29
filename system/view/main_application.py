@@ -10,7 +10,6 @@ class MainApp:
         self.master = master
         self.start_page = None
         self.question_field = None
-        # self.kb = kb
         self.kb = None
 
         self.navbar = NavBar(self.master, self)
