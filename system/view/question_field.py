@@ -41,7 +41,17 @@ class QuestionField:
                              command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
                                                                self.input_field), bg=Theme.BUTTON_COLOUR, bd=1,
                              activebackground="#768c90")
+
         self.button.pack()
+
+        distance = 10
+        # Input frame height + y coor frame in screen - y coor window + distance button to input frame
+        input_frame = self.input_field.frame
+        input_frame.update()
+        centralise_var = self.master.winfo_rooty()
+        button_x = self.master.winfo_width() / 2 - self.button.winfo_width() / 2
+        button_y = input_frame.winfo_height() + input_frame.winfo_rooty() - centralise_var + distance
+        self.button.place(y=button_y, x=button_x)
 
     def add_input_field(self):
         # TODO: change with questiontypes
