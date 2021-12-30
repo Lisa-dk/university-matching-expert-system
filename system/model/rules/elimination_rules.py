@@ -103,7 +103,18 @@ def elimination_update(study, studies_kb, user_kb, visited):
                 studies_kb.remove(study)
                 print("xxx removing study "+study['label'])
                 return
+
+
+    if 'city' in visited:
+        print("Eliminating Cities")
     
+        if not any(city in study['city'] for city in user_kb['city']):  # if it is not the case that any city in user_kb is equal to the city of study
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        return
+
+
+
     print("return")
     return
 

@@ -24,32 +24,42 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         visited.remove('start')
 
         print("\nSaving study preference")
+        # !!!! NOTE: did not add all descriptions in kb to here
         if re.search('Chemical Engineering', answer):
-            user_kb['study preference'].append(answer)
+            user_kb['study preference'].append('Chemical Engineering')
+        
+        if re.search('Technology', answer):
+            user_kb['study preference'].append('Technology')    
+
+        if re.search('Design', answer):
+            user_kb['study preference'].append('Design')   
+
+        if re.search('Society', answer):
+            user_kb['study preference'].append('Society')  
         
         if re.search('Electrical Engineering', answer):
-            user_kb['study preference'].append(answer)
+            user_kb['study preference'].append('Electrical Engineering')
 
         if re.search('Architecture', answer):
-            user_kb['study preference'].append(answer)
+            user_kb['study preference'].append('Architecture')
 
         if re.search('Automative Engineering', answer):
-            user_kb['study preference'].append(answer)
+            user_kb['study preference'].append('Automative Engineering')
 
         if re.search('Mechanical Engineering', answer):
-            user_kb['study preference'].append(answer)
+            user_kb['study preference'].append('Mechanical Engineering')
 
         if re.search('Innovation', answer):
-            user_kb['study preference'].append(answer)
+            user_kb['study preference'].append('Innovation')
         
         if re.search('Industrial Engineering', answer):
-            user_kb['study preference'].append(answer)
+            user_kb['study preference'].append('Industrial Engineering')
         
         if re.search('Computer Science', answer):
-            user_kb['study preference'].append(answer)
+            user_kb['study preference'].append('Computer Science')
         
         if re.search('Psychology', answer):
-            user_kb['study preference'].append(answer)
+            user_kb['study preference'].append('Psychology')
 
         queries.addQuestion("----> What is your highschool diploma?") # add diploma question
         visited.append('study preference') # done with study-preference in user_rules
@@ -179,7 +189,12 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             if user_kb['diplomas'] in 'IB': # exception for IB
                 notes.addDisclaimer("You don't need an English test, since you've studied the IB programme.")
                 queries.addQuestion("Which city do you prefer? Select from the list below.") # move onto general preferences
-            
+                print(str(visited))
+                visited.pop(1)
+                visited.remove('subject grades') # reset visited
+                visited.append('check city')
+                print(str(visited))
+
             else: # rest of the diplomas require English tests
                 queries.addQuestion("Have you taken an English test?(y/n)") #next question- English test?
                 visited.pop(1) # remove subject-saved
@@ -267,7 +282,22 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if queries.getQuestionListLen() == 1: #OR if queries.getCurrentQuestion() == "Enter Writing score: ":
             visited.pop() # empty queries
             visited.append('check english grades')
-            print("add next question") # add next question
+            queries.addQuestion("---> Which cities do you prefer?")
 
         return
         
+    if ('check english grades' in visited or 'check city' in visited) and 'city' not in user_kb.keys():
+        
+        print("\nSaving City Preference")
+        visited.pop(0)    # reset visited
+
+        # possible regex answers
+        user_kb['city'] = []
+        if re.search('Eindhoven', answer):
+            user_kb['city'].append('Eindhoven')
+        
+        elif re.search('No preference', answer): # pass on city elimination
+            return # no elimination
+
+        visited.append('city')
+        return
