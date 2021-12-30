@@ -6,7 +6,7 @@ class QuestionType(Enum):
 
 class Question():
     def __init__(self):
-        self.questions = ["----> What is your highschool diploma?"]
+        self.questions = ["---> Do you know what you want to study?"]
 
     def getQuestions(self):
         return self.questions
@@ -25,7 +25,4 @@ class Question():
 
     def getQuestionListLen(self):
         return len(self.questions)
-
-    def endProgram(self):
-        return 'end'
     

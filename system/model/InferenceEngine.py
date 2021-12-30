@@ -13,7 +13,7 @@ class InferenceEngine:
         self.disclaimer = Disclaimer()
         self.setQuestion()
         self.response = None
-        self.visited = []
+        self.visited = ['start']
 
     def setQuestion(self):
         self.question_list = self.question.getQuestions()
@@ -71,7 +71,7 @@ class InferenceEngine:
                 print("No study requirements met.")
                 break
 
-        if len(self.kb) > 0 or self.question.endProgram() == 'end': #len(self.question_list) == 0 or len(self.visited) == 0:
+        if len(self.kb) > 0: #len(self.question_list) == 0 or len(self.visited) == 0:
             print("Requirements met for the following studies:")
             for study in self.kb:
                 print(study['label'] + " at " + study['university'])
