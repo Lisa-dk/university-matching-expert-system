@@ -23,15 +23,12 @@ class NavBar:
         self.set_test_page_button()
 
     def set_home_button(self):
-        self.home_button = Button(self.top_frame, text="Home", command=self.restart, fg=Theme.BUTTON_TEXT,
-                                  bg=Theme.NAV_BAR_BG, activeforeground="white", activebackground=Theme.NAV_BAR_BG,
-                                  bd=0, padx=10)
+        self.home_button = Button(self.top_frame, text="Home", command=self.restart, fg=Theme.BUTTON_TEXT, bg=Theme.NAV_BAR_BG, activeforeground="white", activebackground=Theme.NAV_BAR_BG,bd=0, padx=10)
         self.home_button.place(x=0, y=self.BUTTONS_Y)
         self.home_button.pack(side="left")
 
     def set_test_page_button(self):
-        self.test_page_button = Button(self.top_frame, text="Test", fg=Theme.BUTTON_TEXT, bg=Theme.NAV_BAR_BG,
-                                       activeforeground="white", activebackground=Theme.NAV_BAR_BG, bd=0, padx=10)
+        self.test_page_button = Button(self.top_frame, text="Test", fg=Theme.BUTTON_TEXT, bg=Theme.NAV_BAR_BG, activeforeground="white", activebackground=Theme.NAV_BAR_BG, bd=0, padx=10)
         self.test_page_button.place(x=0, y=self.BUTTONS_Y)
         self.test_page_button.pack(side="left")
 

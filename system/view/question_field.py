@@ -42,8 +42,7 @@ class QuestionField:
     def add_save_button(self, frame):
         self.button = Button(frame, height=1, width=10, text="Next",
                              command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
-                                                               self.input_field), bg=Theme.BUTTON_COLOUR, bd=1,
-                             activebackground="#768c90")
+                             self.input_field), bg=Theme.BUTTON_COLOUR, bd=1, activebackground="#768c90")
 
         self.button.pack()
 
@@ -54,8 +53,7 @@ class QuestionField:
             self.input_field = RadioButtonField(self.master, self.options)
 
         elif 'subject' in self.question:
-            self.options = ['Analytics & Approaches SL', 'Analytics & Approaches HL', 'Mathematics SL',
-                            'Mathematics HL',
+            self.options = ['Analytics & Approaches SL', 'Analytics & Approaches HL', 'Mathematics SL', 'Mathematics HL',
                             'Calculus', 'Physics SL', 'Physics HL', 'Chemistry SL', 'Chemistry HL']
             self.input_field = CheckButtonField(self.master, self.options)
 

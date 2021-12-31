@@ -8,7 +8,6 @@ class TextFields:
         self.input_text = None
         self.master = master
         self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
-        self.frame.pack(pady=(0, 10))
         self.frame.pack()
         self.add_text_field(self.frame)
 
