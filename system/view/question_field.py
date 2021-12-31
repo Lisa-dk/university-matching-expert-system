@@ -5,9 +5,14 @@ from model.questions import Question
 from .inputs.single_option import RadioButtonField
 from .inputs.multiple_options import CheckButtonField
 from .inputs.text_input import TextFields
+from view.theme import Theme
+import os
+
 
 class QuestionField:
-    def __init__(self, master, kb_class):
+
+    def __init__(self, master, kb_class, main_app):
+        self.main_app = main_app
         self.master = master
         self.button = None
         self.question_field = None
@@ -26,7 +31,9 @@ class QuestionField:
         self.add_save_button(self.master)
 
     def add_question_field(self, frame):
-        self.question_field = Label(frame, textvariable=self.question_text, height=3, width=100, wraplength=500, justify=LEFT, font=Font(family="Arial"), fg="white", bg="#1c4046", bd=0)
+        self.question_field = Label(frame, textvariable=self.question_text, height=3, width=100, wraplength=500,
+                                    justify=LEFT, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR,
+                                    bd=0)
         self.question_field.pack()
 
     def add_text(self, text):
@@ -35,7 +42,9 @@ class QuestionField:
     def add_save_button(self, frame):
         self.button = Button(frame, height=1, width=10, text="Next",
                              command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
-                                                               self.input_field), bg="#768c90", bd=1)
+                                                               self.input_field), bg=Theme.BUTTON_COLOUR, bd=1,
+                             activebackground="#768c90")
+
         self.button.pack()
 
     def add_input_field(self):
@@ -45,7 +54,8 @@ class QuestionField:
             self.input_field = RadioButtonField(self.master, self.options)
 
         elif 'subject' in self.question:
-            self.options = ['Analytics & Approaches SL', 'Analytics & Approaches HL', 'Mathematics SL', 'Mathematics HL',
+            self.options = ['Analytics & Approaches SL', 'Analytics & Approaches HL', 'Mathematics SL',
+                            'Mathematics HL',
                             'Calculus', 'Physics SL', 'Physics HL', 'Chemistry SL', 'Chemistry HL']
             self.input_field = CheckButtonField(self.master, self.options)
 
@@ -83,20 +93,21 @@ class QuestionField:
             self.add_input_field()
             self.add_save_button(self.master)
         else:
-            self.give_results()
+            self.question_field.destroy()
+            self.save_results()
+            self.main_app.add_test_page_button()
+            self.main_app.show_results()
 
-    # prints the studies for which the requirements are met.
-    def give_results(self):
-        results = "Requirements met for the following studies:\n"
+    def make_file(self):
+        path = './model/results.txt'
+        if os.path.exists(path):
+            os.remove(path)
+
+        file = open(path, 'x')
+        return file
+
+    def save_results(self):
+        file = self.make_file()
         if len(self.kb_class.kb) > 0:
             for study in self.kb_class.kb:
-                results += study['label'] + " at " + study['university'] + "\n"
-            self.question_field.configure(height=5 + len(results), anchor=N)
-        else:
-            results = "No requirements are met. No appropriate study programmes available."
-        self.add_text(results)
-
-
-
-
-
+                file.write(study['label'] + ", " + study['university'] + "\n")
