@@ -16,19 +16,21 @@ class QuestionField:
         self.master = master
         self.button = None
         self.question_field = None
+        self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
+        self.frame.pack()
         self.question_text = StringVar()
         self.question_class = Question()
         self.question = self.question_class.get_questions()[0]
         self.kb_class = kb_class
 
-        self.add_question_field(self.master)
+        self.add_question_field(self.frame)
         self.add_text(self.question)
 
         self.input_field = None
         self.options = None
         self.add_input_field()
 
-        self.add_save_button(self.master)
+        self.add_save_button(self.frame)
 
     def add_question_field(self, frame):
         self.question_field = Label(frame, textvariable=self.question_text, height=3, width=100, wraplength=500,
@@ -42,7 +44,8 @@ class QuestionField:
     def add_save_button(self, frame):
         self.button = Button(frame, height=1, width=10, text="Next",
                              command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
-                             self.input_field), bg=Theme.BUTTON_COLOUR, bd=1, activebackground="#768c90")
+                                                               self.input_field), bg=Theme.BUTTON_COLOUR, bd=1,
+                             activebackground="#768c90")
 
         self.button.pack()
 
@@ -50,28 +53,27 @@ class QuestionField:
         # TODO: change with questiontypes
         if 'diploma' in self.question:
             self.options = ['Lise Diploma', 'AP', 'IB', 'Label France Education', 'British GCE A Levels']
-            self.input_field = RadioButtonField(self.master, self.options)
+            self.input_field = RadioButtonField(self.frame, self.options)
 
         elif 'subject' in self.question:
-            self.options = ['Analytics & Approaches SL', 'Analytics & Approaches HL', 'Mathematics SL', 'Mathematics HL',
+            self.options = ['Analytics & Approaches SL', 'Analytics & Approaches HL', 'Mathematics SL',
+                            'Mathematics HL',
                             'Calculus', 'Physics SL', 'Physics HL', 'Chemistry SL', 'Chemistry HL']
-            self.input_field = CheckButtonField(self.master, self.options)
+            self.input_field = CheckButtonField(self.frame, self.options)
 
         else:
-            self.input_field = TextFields(self.master)
+            self.input_field = TextFields(self.frame)
 
     def destroy(self):
         self.question_field.destroy()
         # self.question_frame = None
         self.question_field = None
-        if 'diploma' in self.question:
-            self.input_field.frame.destroy()
-            self.options = None
-        elif 'subject' in self.question:
+        if 'diploma' or 'subject' in self.question:
             self.input_field.frame.destroy()
             self.options = None
         else:
             self.input_field.input_text.destroy()
+
         self.input_field = None
         self.button.destroy()
         self.button = None
@@ -89,13 +91,15 @@ class QuestionField:
             self.question = self.question_class.get_questions()[0]
             self.add_text(self.question)
             self.add_input_field()
-            self.add_save_button(self.master)
+            self.add_save_button(self.frame)
         else:
             self.question_field.destroy()
+            print(self.frame)
+            self.frame.destroy()
+            print(self.frame)
             self.save_results()
             self.main_app.add_test_page_button()
             self.main_app.show_results()
-
 
     def make_file(self):
         path = './model/results.txt'

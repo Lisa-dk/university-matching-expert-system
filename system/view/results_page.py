@@ -10,11 +10,11 @@ class ResultsPage:
         self.number_results = None
         self.results_field = None
         self.master = master
-        self.frame = Frame(self.master, bg="white", height=200, width=200)
+        self.frame = Frame(self.master, bg="red", height=200, width=200)
         self.results = None
         self.load_results()
         self.display_results()
-        self.frame.pack()
+        self.frame.pack(fill='both', ipady=50, pady=50)
 
     def load_results(self):
         path = './model/results.txt'
@@ -33,7 +33,8 @@ class ResultsPage:
 
     def display_results(self):
         self.results_field = Label(self.frame, textvariable=self.results, height=self.number_results, width=100,
-                                   wraplength=500,
-                                   justify=LEFT, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR,
+                                   wraplength=500, justify=LEFT, font=Font(family="Arial"), fg="white", bg=Theme.BG_COLOUR,
                                    bd=0)
         self.results_field.pack()
+        self.frame.update()
+        self.results_field.place(x=150, y=200)

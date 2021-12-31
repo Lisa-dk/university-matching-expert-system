@@ -16,24 +16,33 @@ class MainApp:
         self.start_page = None
         self.question_field = None
         self.kb = None
+        self.currentFrame = None
 
         self.navbar = NavBar(self.master, self)
-        self.initialise()
+        self.initialise_kb()
+        self.initialise_home()
 
-    def initialise(self):
+    def initialise_kb(self):
         self.kb = KnowledgeBase()
-        self.start_page = InformationPage(self, self.master)
+
+    def initialise_home(self):
+        if not type(self.currentFrame) == InformationPage:
+            self.start_page = InformationPage(self, self.master)
+            self.currentFrame = self.start_page
 
     def start_test(self):
-        self.start_page = None
-        self.question_field = QuestionField(self.master, self.kb, self)
+        if not type(self.currentFrame) == QuestionField:
+            self.start_page = None
+            self.question_field = QuestionField(self.master, self.kb, self)
+            self.currentFrame = self.question_field
 
-    # not sure where to do this
     def add_test_page_button(self):
         if self.navbar.results_page_button is None:
             self.navbar.set_results_page_button()
 
     def show_results(self):
-        print('reached main show reuslts')
-        self.results_page = ResultsPage(self.master)
+        if not type(self.currentFrame) == ResultsPage:
+            print('reached main show reuslts')
+            self.results_page = ResultsPage(self.master)
+            self.currentFrame = self.results_page
 
