@@ -1,23 +1,20 @@
 from tkinter import *
-from tkinter.font import Font
+from view.theme import Theme
 
 
 class RadioButtonField:
     def __init__(self, master, options):
         self.master = master
         self.options = options
-        self.frame = Frame(self.master, bg="#1c4046")
-        # self.frame.grid(column=0, row=1)
+        self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
         self.frame.pack()
-        # self.buttons = [None] * len(options)
         self.chosen = StringVar(self.frame, options[0])
         self.add_radio_button(self.frame)
 
     def add_radio_button(self, frame):
-        i = 0
         for option in self.options:
-            radio_button = Radiobutton(frame, text=option, variable=self.chosen, value=option, fg="#e5e5e5",
-                                       bg="#1c4046", bd=0, selectcolor="#768c90").pack(anchor=W)
+            Radiobutton(frame, text=option, variable=self.chosen, value=option, fg=Theme.TEXT_COLOUR,
+                                       bg=Theme.BG_COLOUR, bd=0, selectcolor=Theme.BUTTON_COLOUR).pack(anchor=W)
 
     def get_chosen_option(self):
         print(self.chosen.get())

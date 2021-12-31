@@ -5,12 +5,10 @@ from view.question_field import QuestionField
 
 
 class MainApp:
-    # def __init__(self, master, kb):
     def __init__(self, master):
         self.master = master
         self.start_page = None
         self.question_field = None
-        # self.kb = kb
         self.kb = None
 
         self.navbar = NavBar(self.master, self)
