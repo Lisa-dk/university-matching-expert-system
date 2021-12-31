@@ -96,6 +96,7 @@ class QuestionField:
             self.main_app.add_test_page_button()
             self.main_app.show_results()
 
+
     def make_file(self):
         path = './model/results.txt'
         if os.path.exists(path):
