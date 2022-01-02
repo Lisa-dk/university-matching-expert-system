@@ -8,11 +8,11 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         print("\nSaving Study-preference question:")
 
         if answer == 'yes': # knows what to study
-            queries.addQuestion("--> What are your study preferences?")
+            queries.addQuestion("What are your study preferences? (Technology/Design/Innovation/Society etc.)")
             user_kb['study preference'] = [] # initialise study preference
         
         elif answer == 'no': # doesn't know what to study
-            queries.addQuestion("---> What is you highschool diploma?")
+            queries.addQuestion("What is your highschool diploma? (IB, Lise Diploma, Abitur, Label France Education)")
             visited.remove('start')
             visited.append('study preference') # done with study preference in user_rules
         
@@ -25,9 +25,6 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         print("\nSaving study preference")
         # !!!! NOTE: did not add all descriptions in kb to here
-        if re.search('Chemical Engineering', answer):
-            user_kb['study preference'].append('Chemical Engineering')
-        
         if re.search('Technology', answer):
             user_kb['study preference'].append('Technology')    
 
@@ -36,32 +33,13 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if re.search('Society', answer):
             user_kb['study preference'].append('Society')  
-        
-        if re.search('Electrical Engineering', answer):
-            user_kb['study preference'].append('Electrical Engineering')
-
-        if re.search('Architecture', answer):
-            user_kb['study preference'].append('Architecture')
-
-        if re.search('Automative Engineering', answer):
-            user_kb['study preference'].append('Automative Engineering')
-
-        if re.search('Mechanical Engineering', answer):
-            user_kb['study preference'].append('Mechanical Engineering')
 
         if re.search('Innovation', answer):
             user_kb['study preference'].append('Innovation')
         
-        if re.search('Industrial Engineering', answer):
-            user_kb['study preference'].append('Industrial Engineering')
-        
-        if re.search('Computer Science', answer):
-            user_kb['study preference'].append('Computer Science')
-        
-        if re.search('Psychology', answer):
-            user_kb['study preference'].append('Psychology')
 
-        queries.addQuestion("----> What is your highschool diploma?") # add diploma question
+
+        queries.addQuestion("What is your highschool diploma? (IB, Lise Diploma, Abitur, Label France Education)") # add diploma question
         visited.append('study preference') # done with study-preference in user_rules
         return
 
@@ -78,13 +56,13 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             user_kb['diplomas'] = answer # save IB
             visited.append('diplomas') # done with diplomas
             print('diploma saved: ' + user_kb['diplomas'])
-            queries.addQuestion("----> What subjects did you take?\n choose from chemistry, physics, and mathematics?") #next question - subjects?
+            queries.addQuestion("Did you take any of the following subjects from IB? (Mathematics, Physics, Chemistry, Biology (HL/SL))") #next question - subjects?
         
         # no IB diploma
         elif re.search('Lise Diploma', answer) or re.search('Label France Education', answer) or re.search('Abitur', answer):
             user_kb['diplomas'] = answer # save answer-diploma
             print('no-IB diploma saved: ' + user_kb['diplomas'])
-            queries.addQuestion("1b. ----> Have you also taken any AP courses?(yes/no)") #next question - AP courses?
+            queries.addQuestion("Have you also taken any AP courses? (yes/no)") #next question - AP courses?
             
         return
     
@@ -96,12 +74,12 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         
         if answer == 'no': # no AP courses
             user_kb['AP courses'] = 'no'
-            notes.addDisclaimer("Check university websites for further info.")
+            notes.addDisclaimer("Check university websites for further information for application with these diplomas.")
             visited.append('no AP') # mark as/done with no AP
 
         elif answer == 'yes':   
             user_kb['AP courses'] = 'yes'    #save answer (user took extra AP courses)
-            queries.addQuestion("----> What subjects did you take?\n choose from chemistry, physics, and mathematics?") #next question - AP subjects?
+            queries.addQuestion("Did you take any of the following subjects from AP? (Calculus A/B or B/C, Physics 1 or 2 or C, Chemistry)") #next question - AP subjects?
             visited.append('diplomas')  # done with diplomas
         
         return
@@ -144,7 +122,7 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             user_kb['subjects'].append(match.group())
 
         visited.append('subjects')  # done with subjects
-        queries.addQuestion("Enter grade for {}".format(user_kb['subjects'][0]))  #next question - grade for 1st subject in user_kb['subjects']
+        queries.addQuestion("Enter grade for {}: ".format(user_kb['subjects'][0]))  #next question - grade for 1st subject in user_kb['subjects']
         
         return
 
@@ -174,10 +152,10 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         
         # invalid grade input above fixed max limit
         if 'AP courses' in user_kb.keys() and grade > 5:
-            queries.addQuestion("The max grade is 5. Enter grade for {}: ".format(user_kb['subjects'][0]))  
+            queries.addQuestion("The max grade is 5 for AP courses. Enter grade for {}: ".format(user_kb['subjects'][0]))  
             return
         elif user_kb['diplomas'] == 'IB' and grade > 7:
-            queries.addQuestion("The max grade is 7. Enter grade for {}: ".format(user_kb['subjects'][0]))  
+            queries.addQuestion("The max grade is 7 for IB subjects. Enter grade for {}: ".format(user_kb['subjects'][0]))  
             return
             
         # valid grade input
@@ -192,8 +170,8 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             #user_kb['english level'] = []  #hmmmm
 
             if user_kb['diplomas'] in 'IB': # exception for IB
-                notes.addDisclaimer("You don't need an English test, since you've studied the IB programme.")
-                queries.addQuestion("Which city do you prefer? Select from the list below.") # move onto general preferences
+                notes.addDisclaimer("You don't need an English test, since you've studied the IB programme according to the English-level requirements of the study programs in our system.")
+                queries.addQuestion("Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, I don't mind)") # move onto general preferences
                 print(str(visited))
                 visited.pop(1)
                 visited.remove('subject grades') # reset visited
@@ -201,7 +179,7 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
                 print(str(visited))
 
             else: # rest of the diplomas require English tests
-                queries.addQuestion("Have you taken an English test?(y/n)") #next question- English test?
+                queries.addQuestion("Have you taken an English test? (yes/no)") #next question- English test?
                 visited.pop(1) # remove subject-saved
                 visited.remove('subject grades') # reset visited
                 visited.append('english proof')
@@ -223,7 +201,7 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             visited.append('abroad')
 
         elif answer == 'yes':   # move onto 'english tests' checking
-            queries.addQuestion("Which English test did you take? Choose from list below.")
+            queries.addQuestion("Which English test did you take? (TOEFL iBT, IELTS (academic), CPE, CAE)")
             visited.append('english level') # done with (checking) english level (whether it exists or not)
         
         return # no elimination
@@ -287,7 +265,7 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if queries.getQuestionListLen() == 1: #OR if queries.getCurrentQuestion() == "Enter Writing score: ":
             visited.pop() # empty queries
             visited.append('check english grades')
-            queries.addQuestion("---> Which cities do you prefer?")
+            queries.addQuestion("Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, I don't mind)")
 
         return
 
@@ -368,7 +346,7 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             visited.append('pass study choice check')
             # no elimination, do nothing
 
-        queries.addQuestion("Would you like to do research in university? (yes/I don't mind")
+        queries.addQuestion("Would you like to do research in university? (yes/I don't mind)")
         
         return
 

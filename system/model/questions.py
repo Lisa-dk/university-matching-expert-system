@@ -6,7 +6,7 @@ class QuestionType(Enum):
 
 class Question():
     def __init__(self):
-        self.questions = ["---> Do you know what you want to study?"]
+        self.questions = ["Do you know what you want to study? (yes/no)"]
 
     def getQuestions(self):
         return self.questions
