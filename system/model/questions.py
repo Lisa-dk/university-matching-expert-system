@@ -9,7 +9,7 @@ class QuestionType(Enum):
 
 class Question:
     def __init__(self):
-        self.questions = ["---> Do you know what you want to study?"]
+        self.questions = ["Do you know what you want to study? (yes/no)"]
         # self.questions = [("Do you know what you want to study?", QuestionType.SELECT, ['yes', 'no'])]
         # self.questions = ["----> What is your high school diploma?"]
 

@@ -1,4 +1,5 @@
 def elimination_update(study, studies_kb, user_kb, visited):
+    
     # study preference selection
     if 'study preference' in user_kb.keys() and 'study preference' in visited:
         print("\nEliminate study preference")
@@ -8,6 +9,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
         return
 
+
     # match diplomas
     if 'diplomas' in visited:
         print("\n1. Eliminate diplomas")
@@ -16,6 +18,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
             print("xxx removed: " + str(study['label']))
         return
+
 
     # eliminate all if no AP
     if 'no AP' in visited:
@@ -63,6 +66,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
                 print("xxx removed: " + str(study['label']))
         return
 
+
     # match subject-grade
     if 'subject grades' in visited and len(visited) == 2 and user_kb[
         'subject grades'] != []:  # check if subject is in study
@@ -81,6 +85,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
 
         return
 
+
     # match english test
     if 'english tests' in visited and user_kb['english tests'] != []:
         print("Eliminating English level")
@@ -90,6 +95,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             print("xxx removing study " + study['label'])
 
         return
+
 
     # match english level grades
     if 'english grades' in visited:
@@ -106,6 +112,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
                 print("xxx removing study " + study['label'])
                 return
 
+
     if 'city' in visited:
         print("Eliminating Cities")
 
@@ -115,6 +122,90 @@ def elimination_update(study, studies_kb, user_kb, visited):
             print("xxx removing study " + study['label'])
         return
 
+    
+    # matching multidisciplinary
+    if 'multidisciplinary' in visited:
+        print("\nEliminating Multidisciplinary")
+    
+        if study['multidisciplinary'] != 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+
+    # matching enterance exam
+    if 'enterance exam' in visited:
+        print("\nEliminating Enterance Exam")
+    
+        # remove studies that have enterance exam
+        if study['enterance exam'] == 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+
+    # matching study choice check
+    if 'study choice check' in visited:
+        print("\nEliminating Study Choice Check")
+
+        # remove if the study does not offer study choice check
+        if study['study choice check'] != 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+
+    # matching research
+    if 'research' in visited:
+        print("\nEliminating Research")
+
+        # remove if the study does not offer research
+        if study['research'] != 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+
+    # matching practical-oriented approach
+    if 'practical oriented' in visited:
+        print("\nEliminating Practical Oriented")
+
+        # remove if the study does not offer research
+        if study['practical oriented'] != 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+    
+    # matching project oriented approach
+    if 'project oriented' in visited:
+        print("\nEliminating Project Oriented")
+
+        # remove if the study does not offer research
+        if study['project oriented'] != 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+    
+    # matching numerus fixus
+    if 'numerus fixus' in visited:
+        print("\nEliminating Numerus Fixus")
+    
+        # remove studies that are numerus fixus
+        if study['numerus fixus'] == 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+
     print("return")
     return
 
@@ -123,6 +214,4 @@ def elimination_update(study, studies_kb, user_kb, visited):
 GPA?
 Preferences:
     Does the client want to have to get the Bachelor's diploma approved in Turkey? (This filters based on the top 600 universities ranking).
-    Does the client want to take an entrance exam (numerus fixus)?
-
 '''

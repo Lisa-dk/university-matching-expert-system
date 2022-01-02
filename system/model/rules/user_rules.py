@@ -8,11 +8,11 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         print("\nSaving Study-preference question:")
 
         if answer == 'yes':  # knows what to study
-            queries.add_question("--> What are your study preferences?")
+            queries.add_question("What are your study preferences? (Technology/Design/Innovation/Society etc.)")
             user_kb['study preference'] = []  # initialise study preference
 
         elif answer == 'no':  # doesn't know what to study
-            queries.add_question("---> What is you highschool diploma?")
+            queries.add_question("What is your highschool diploma? (IB, Lise Diploma, Abitur, Label France Education)")
             visited.remove('start')
             visited.append('study preference')  # done with study preference in user_rules
 
@@ -32,6 +32,10 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if re.search('Design', answer):
             user_kb['study preference'].append('Design')
+        
+        if re.search('Innovation', answer):
+            user_kb['study preference'].append('Innovation')
+
 
         if re.search('Society', answer):
             user_kb['study preference'].append('Society')
@@ -60,7 +64,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if re.search('Psychology', answer):
             user_kb['study preference'].append('Psychology')
 
-        queries.add_question("----> What is your highschool diploma?")  # add diploma question
+        queries.add_question("What is your highschool diploma? (IB, Lise Diploma, Abitur, Label France Education)")  # add diploma question
         visited.append('study preference')  # done with study-preference in user_rules
         return
 
@@ -76,15 +80,14 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             user_kb['diplomas'] = answer  # save IB
             visited.append('diplomas')  # done with diplomas
             print('diploma saved: ' + user_kb['diplomas'])
-            queries.add_question(
-                "----> What subjects did you take?\n choose from chemistry, physics, and mathematics?")  # next question - subjects?
+            queries.add_question("Did you take any of the following subjects from IB? (Mathematics, Physics, Chemistry, Biology (HL/SL))")  # next question - subjects?
 
         # no IB diploma
         elif re.search('Lise Diploma', answer) or re.search('Label France Education', answer) or re.search('Abitur',
                                                                                                            answer):
             user_kb['diplomas'] = answer  # save answer-diploma
             print('no-IB diploma saved: ' + user_kb['diplomas'])
-            queries.add_question("1b. ----> Have you also taken any AP courses?(yes/no)")  # next question - AP courses?
+            queries.add_question("Have you also taken any AP courses? (yes/no)")  # next question - AP courses?
 
         return
 
@@ -96,13 +99,12 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if answer == 'no':  # no AP courses
             user_kb['AP courses'] = 'no'
-            notes.addDisclaimer("Check university websites for further info.")
+            notes.addDisclaimer("Check university websites for further information for application with these diplomas.")
             visited.append('no AP')  # mark as/done with no AP
 
         elif answer == 'yes':
             user_kb['AP courses'] = 'yes'  # save answer (user took extra AP courses)
-            queries.add_question(
-                "----> What subjects did you take?\n choose from chemistry, physics, and mathematics?")  # next question - AP subjects?
+            queries.add_question("Did you take any of the following subjects from AP? (Calculus A/B or B/C, Physics 1 or 2 or C, Chemistry)")  # next question - AP subjects?
             visited.append('diplomas')  # done with diplomas
 
         return
@@ -143,7 +145,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             user_kb['subjects'].append(match.group())
 
         visited.append('subjects')  # done with subjects
-        queries.add_question("Enter grade for {}".format(
+        queries.add_question("Enter grade for {}:".format(
             user_kb['subjects'][0]))  # next question - grade for 1st subject in user_kb['subjects']
 
         return
@@ -173,10 +175,10 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         # invalid grade input above fixed max limit
         if 'AP courses' in user_kb.keys() and grade > 5:
-            queries.add_question("The max grade is 5. Enter grade for {}: ".format(user_kb['subjects'][0]))
+            queries.add_question("The max grade is 5 for AP courses. Enter grade for {}: ".format(user_kb['subjects'][0]))
             return
         elif user_kb['diplomas'] == 'IB' and grade > 7:
-            queries.add_question("The max grade is 7. Enter grade for {}: ".format(user_kb['subjects'][0]))
+            queries.add_question("The max grade is 7 for IB subjects. Enter grade for {}: ".format(user_kb['subjects'][0]))
             return
 
         # valid grade input
@@ -191,9 +193,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             # user_kb['english level'] = []  #hmmmm
 
             if user_kb['diplomas'] in 'IB':  # exception for IB
-                notes.addDisclaimer("You don't need an English test, since you've studied the IB programme.")
-                queries.add_question(
-                    "Which city do you prefer? Select from the list below.")  # move onto general preferences
+                notes.addDisclaimer("You don't need an English test, since you've studied the IB programme according to the English-level requirements of the study programs in our system.")
+                queries.add_question("Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, I don't mind)")  # move onto general preferences
                 print(str(visited))
                 visited.pop(1)
                 visited.remove('subject grades')  # reset visited
@@ -201,7 +202,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
                 print(str(visited))
 
             else:  # rest of the diplomas require English tests
-                queries.add_question("Have you taken an English test?(y/n)")  # next question- English test?
+                queries.add_question("Have you taken an English test? (yes/no)")  # next question- English test?
                 visited.pop(1)  # remove subject-saved
                 visited.remove('subject grades')  # reset visited
                 visited.append('english proof')
@@ -223,7 +224,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             visited.append('abroad')
 
         elif answer == 'yes':  # move onto 'english tests' checking
-            queries.add_question("Which English test did you take? Choose from list below.")
+            queries.add_question("Which English test did you take? (TOEFL iBT, IELTS (academic), CPE, CAE)")
             visited.append('english level')  # done with (checking) english level (whether it exists or not)
 
         return  # no elimination
@@ -282,31 +283,146 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if queries.getQuestionListLen() == 1:  # OR if queries.getCurrentQuestion() == "Enter Writing score: ":
             visited.pop()  # empty queries
             visited.append('check english grades')
-            queries.add_question("---> Which cities do you prefer?")
-
+            queries.add_question("Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, I don't mind)")
         return
 
+
+    # Checking City 
     if ('check english grades' in visited or 'check city' in visited) and 'city' not in user_kb.keys():
-
+        
         print("\nSaving City Preference")
-        visited.pop(0)  # reset visited
+        visited.pop(0)    # reset visited
 
-        # possible regex answers
-        user_kb['city'] = []
-        if re.search('Eindhoven', answer):
-            user_kb['city'].append('Eindhoven')
+        if re.search("I don't mind", answer): # pass on city elimination
+            visited.append("pass city")
+            # no elimination, do nothing
+        else: 
+            # else, possible regex answers
+            user_kb['city'] = []
+            if re.search('Eindhoven', answer):
+                user_kb['city'].append('Eindhoven')
+            
+            if re.search('Groningen', answer):
+                user_kb['city'].append('Groningen')
 
-        if re.search('Groningen', answer):
-            user_kb['city'].append('Groningen')
+            if re.search('Maastricht', answer):
+                user_kb['city'].append('Maastricht')
+            
+            if re.search('Delft', answer):
+                user_kb['city'].append('Delft')
+            visited.append('city')
+        
+        queries.add_question("Do you prefer a multidisciplinary study? (yes/I don't mind)")
+        return
 
-        if re.search('Maastricht', answer):
-            user_kb['city'].append('Maastricht')
 
-        if re.search('Delft', answer):
-            user_kb['city'].append('Delft')
+    # Multidisciplinary 
+    if ('city' in visited or 'pass city' in visited) and 'multidisciplinary' not in user_kb.keys():
+        
+        print("\nSaving Multidisciplinary Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'yes': # those that are not will be eliminated
+            visited.append('multidisciplinary')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass multidisciplinary')    
+            # no elimination, do nothing
 
-        elif re.search('No Preference', answer):  # pass on city elimination
-            return  # no elimination
+        queries.add_question("Would you like to take an enterance test? (no/I don't mind)")
+        return
+        
+    
+    # Enterance Exam
+    if ('multidisciplinary' in visited or 'pass multidisciplinary' in visited) and 'enterance exam' not in user_kb.keys():
+        
+        print("\nSaving Enterance Exam Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'no':  # no, the user doesn't want the studies with enterance exam, those that have will be eliminated
+            visited.append('enterance exam')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass enterance exam')
+            # no elimination, do nothing
 
-        visited.append('city')
+        queries.add_question("Would you like to take a study choice check? Note that, sometimes this is part of the selection procedure. (yes/I don't mind)")
+        return
+
+
+    # Study Choice Check
+    if ('enterance exam' in visited or 'pass enterance exam' in visited) and 'study choice check' not in user_kb.keys():
+        
+        print("\nSaving Study Choice Check Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'yes': # studies not offering study choice check will be eliminated
+            visited.append('study choice check')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass study choice check')
+            # no elimination, do nothing
+
+        queries.add_question("Would you like to do research in university? (yes/I don't mind")
+        return
+
+
+    # Research
+    if ('study choice check' in visited or 'pass study choice check' in visited) and 'research' not in user_kb.keys():
+        
+        print("\nSaving Research Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'yes': # studies not offering research will be eliminated
+            visited.append('research')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass research')
+            # no elimination, do nothing
+
+        queries.add_question("Do you prefer a study with practical/tutorial oriented approach, perhaps with hands-on/lab experience? (yes/I don't mind)")
+        return
+
+
+    # Practical-oriented
+    if ('research' in visited or 'pass research' in visited) and 'practical oriented' not in user_kb.keys():
+        
+        print("\nSaving Practical-Oriented Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'yes': # studies not offering practical-oriented approach will be eliminated
+            visited.append('practical oriented')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass practical oriented')
+            # no elimination, do nothing
+
+        queries.add_question("Do you prefer a study with project approach? (yes/I don't mind)")
+        return
+
+    
+    # Project-oriented
+    if ('practical oriented' in visited or 'pass practical oriented' in visited) and 'project oriented' not in user_kb.keys():
+        
+        print("\nSaving Project-Oriented Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'yes': # studies not offering project oriented approach will be eliminated
+            visited.append('project oriented')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass project oriented')
+            # no elimination, do nothing
+
+        queries.add_question("Do you mind applying to a numerus fixus study? Note that, numerus fixus study programs have a limited capacity and therefore, may have further requirements such as enterance exam, or portfolio.(yes/I don't mind)")
+        return
+
+
+    # Numerus Fixus
+    if ('project oriented' in visited or 'pass project oriented' in visited) and 'numerus fixus' not in user_kb.keys():
+        
+        print("\nSaving Numerus Fixus Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'no': # studies that are numerus fixus will be eliminated
+            visited.append('project oriented')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass project oriented')
+            # no elimination, do nothing
+
+        notes.addDisclaimer("You have reached the end of questionnaire.")  
         return
