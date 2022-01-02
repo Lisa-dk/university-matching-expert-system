@@ -24,9 +24,16 @@ class NavBar:
         self.home_button = Button(self.top_frame, text="Home", command=self.restart, fg=Theme.BUTTON_TEXT, bg=Theme.NAV_BAR_BG, activeforeground="white", activebackground=Theme.NAV_BAR_BG,bd=0, padx=10)
         self.home_button.place(x=0, y=self.BUTTONS_Y)
         self.home_button.pack(side="left")
+    
+    def set_results_page_button(self):
+        self.results_page_button = Button(self.top_frame, text="Results",
+                                          fg=Theme.BUTTON_TEXT, bg=Theme.NAV_BAR_BG,
+                                          activeforeground="white", activebackground=Theme.NAV_BAR_BG, bd=0, padx=10)
+        self.results_page_button.place(x=0, y=self.BUTTONS_Y)
+        self.results_page_button.pack(side="left")
 
     def restart(self):
         if self.MainApp.question_field is not None:
             self.MainApp.question_field.destroy()
             self.MainApp.question_field = None
-            self.MainApp.initialise()
+            self.MainApp.initialise_home()

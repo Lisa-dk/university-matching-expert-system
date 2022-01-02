@@ -8,6 +8,8 @@ from .inputs.text_input import TextFields
 from view.theme import Theme
 from model.disclaimer import Disclaimer
 
+import os
+
 
 class QuestionField:
 
@@ -102,6 +104,7 @@ class QuestionField:
             self.add_input_field()
             self.add_save_button(self.master)
         else:
+            self.save_results()
             self.give_results()
 
     # prints the studies for which the requirements are met.
@@ -114,3 +117,18 @@ class QuestionField:
         else:
             results = "No requirements are met. No appropriate study programmes available."
         self.add_text(results)
+    
+    def make_file(self):
+        path = './model/results.txt'
+        if os.path.exists(path):
+            os.remove(path)
+
+        file = open(path, 'x')
+        return file
+
+    def save_results(self):
+        file = self.make_file()
+        if len(self.kb_class.kb) > 0:
+            for study in self.kb_class.kb:
+                file.write(study['label'] + ", " + study['university'] + "\n")
+        print('saved')
