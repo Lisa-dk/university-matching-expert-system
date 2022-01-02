@@ -42,13 +42,18 @@ def elimination_update(study, studies_kb, user_kb, visited):
     if 'subjects' in visited :
         print("\nEliminate subjects")
 
-        if 'AP courses' in user_kb.keys(): # meaning multiple combinations exists
+        if 'AP courses' in user_kb.keys() and user_kb['AP courses'] == 'yes': # meaning multiple combinations exists
+            if 'AP courses' in study.keys() and study['AP courses'] == 'no':
+                studies_kb.remove(study)
+                print("xxx removed: " + str(study['label']))    
+                return
             subjects_from = 'AP'
         elif user_kb['diplomas'] == 'IB':
             subjects_from = 'IB'
 
         if any(isinstance(subjComb, list) for subjComb in study[subjects_from]): # if subjComb exists, they are found as nested-list structure
             print("NESTED subject combinations")
+            print(str(study['label']))
             if not any( ( set(subjOptionN) == set(user_kb['subjects']) or set(subjOptionN).issubset(set(user_kb['subjects'])) ) for subjOptionN in study[subjects_from]):
                 studies_kb.remove(study)
                 print("xxx removed: " + str(study['label']))    

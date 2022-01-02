@@ -84,7 +84,7 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         elif re.search('Lise Diploma', answer) or re.search('Label France Education', answer) or re.search('Abitur', answer):
             user_kb['diplomas'] = answer # save answer-diploma
             print('no-IB diploma saved: ' + user_kb['diplomas'])
-            queries.addQuestion("1b. ----> Have you also taken at least 4 AP courses?(yes/no)") #next question - AP courses?
+            queries.addQuestion("1b. ----> Have you also taken any AP courses?(yes/no)") #next question - AP courses?
             
         return
     
@@ -95,6 +95,7 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         print("\nNo-IB") 
         
         if answer == 'no': # no AP courses
+            user_kb['AP courses'] = 'no'
             notes.addDisclaimer("Check university websites for further info.")
             visited.append('no AP') # mark as/done with no AP
 
@@ -117,7 +118,7 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         print("Reading Subjects with Regex")
         
     # IB subjects
-        if re.search('[Aa]nalytics\&[Aa]pproaches(\sSL|\sHL)?', answer):
+        if re.search('[Aa]nalysis\&[Aa]pproaches(\sSL|\sHL)?', answer):
             user_kb['subjects'].append('Mathematics HL')
 
         if re.search('[Mm]athematics(\sSL|\sHL)?', answer):
@@ -136,6 +137,10 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         
         if re.search('[Cc]hemistry(\sSL|\sHL)?', answer):
             match = re.search('[Cc]hemistry(\sSL|\sHL)?', answer)
+            user_kb['subjects'].append(match.group())
+        
+        if re.search('[Bb]iology(\sSL|\sHL)?', answer):
+            match = re.search('[Bb]iology(\sSL|\sHL)?', answer)
             user_kb['subjects'].append(match.group())
 
         visited.append('subjects')  # done with subjects
@@ -296,7 +301,16 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if re.search('Eindhoven', answer):
             user_kb['city'].append('Eindhoven')
         
-        elif re.search('No preference', answer): # pass on city elimination
+        if re.search('Groningen', answer):
+            user_kb['city'].append('Groningen')
+
+        if re.search('Maastricht', answer):
+            user_kb['city'].append('Maastricht')
+        
+        if re.search('Delft', answer):
+            user_kb['city'].append('Delft')
+
+        elif re.search('No Preference', answer): # pass on city elimination
             return # no elimination
 
         visited.append('city')
