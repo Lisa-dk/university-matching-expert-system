@@ -6,6 +6,7 @@ from .inputs.single_option import RadioButtonField
 from .inputs.multiple_options import CheckButtonField
 from .inputs.text_input import TextFields
 from view.theme import Theme
+from model.disclaimer import Disclaimer
 
 
 class QuestionField:
@@ -16,6 +17,8 @@ class QuestionField:
         self.question_field = None
         self.question_text = StringVar()
         self.question_class = Question()
+        self.disclaimer = Disclaimer()
+        self.visited = ['start']
         self.question = self.question_class.get_questions()[0]
         self.kb_class = kb_class
 
