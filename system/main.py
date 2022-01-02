@@ -5,9 +5,9 @@ from view.theme import Theme
 
 
 # TODO: consistent sizing of window
-# TODO: making window appear in center -> DONE
-# TODO: fix button placements input -> DONE
-# TODO: make buttons change colour when going over them with the cursor -> DONE
+# DONE: making window appear in center -> DONE
+# DONE: fix button placements input -> DONE
+# DONE: make buttons change colour when going over them with the cursor -> DONE
 # TODO: when input is number, make sure it is a number, and have the text field boxed.
 # TODO: put the test in center, but results show at the top
 # TODO: Separate pages for test results and home button and trace s.t. no information is lost unless new test is started
