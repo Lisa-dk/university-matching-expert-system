@@ -110,12 +110,97 @@ def elimination_update(study, studies_kb, user_kb, visited):
                 return
 
 
+    # matching city
     if 'city' in visited:
-        print("Eliminating Cities")
+        print("\nEliminating Cities")
     
         if not any(city in study['city'] for city in user_kb['city']):  # if it is not the case that any city in user_kb is equal to the city of study
             studies_kb.remove(study)
             print("xxx removing study "+study['label'])
+        
+        return
+
+
+    # matching multidisciplinary
+    if 'multidisciplinary' in visited:
+        print("\nEliminating Multidisciplinary")
+    
+        if study['multidisciplinary'] != 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+
+    # matching enterance exam
+    if 'enterance exam' in visited:
+        print("\nEliminating Enterance Exam")
+    
+        # remove studies that have enterance exam
+        if study['enterance exam'] == 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+
+    # matching study choice check
+    if 'study choice check' in visited:
+        print("\nEliminating Study Choice Check")
+
+        # remove if the study does not offer study choice check
+        if study['study choice check'] != 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+
+    # matching research
+    if 'research' in visited:
+        print("\nEliminating Research")
+
+        # remove if the study does not offer research
+        if study['research'] != 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+
+    # matching practical-oriented approach
+    if 'practical oriented' in visited:
+        print("\nEliminating Practical Oriented")
+
+        # remove if the study does not offer research
+        if study['practical oriented'] != 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+    
+    # matching project oriented approach
+    if 'project oriented' in visited:
+        print("\nEliminating Project Oriented")
+
+        # remove if the study does not offer research
+        if study['project oriented'] != 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
+        return
+
+    
+    # matching numerus fixus
+    if 'numerus fixus' in visited:
+        print("\nEliminating Numerus Fixus")
+    
+        # remove studies that are numerus fixus
+        if study['numerus fixus'] == 'yes':  
+            studies_kb.remove(study)
+            print("xxx removing study "+study['label'])
+        
         return
 
 

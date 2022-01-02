@@ -290,28 +290,152 @@ def make_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             queries.addQuestion("---> Which cities do you prefer?")
 
         return
-        
+
+
+    # Checking City 
     if ('check english grades' in visited or 'check city' in visited) and 'city' not in user_kb.keys():
         
         print("\nSaving City Preference")
         visited.pop(0)    # reset visited
 
-        # possible regex answers
-        user_kb['city'] = []
-        if re.search('Eindhoven', answer):
-            user_kb['city'].append('Eindhoven')
+        if re.search("I don't mind", answer): # pass on city elimination
+            visited.append("pass city")
+            # no elimination, do nothing
+        else: 
+            # else, possible regex answers
+            user_kb['city'] = []
+            if re.search('Eindhoven', answer):
+                user_kb['city'].append('Eindhoven')
+            
+            if re.search('Groningen', answer):
+                user_kb['city'].append('Groningen')
+
+            if re.search('Maastricht', answer):
+                user_kb['city'].append('Maastricht')
+            
+            if re.search('Delft', answer):
+                user_kb['city'].append('Delft')
+            visited.append('city')
         
-        if re.search('Groningen', answer):
-            user_kb['city'].append('Groningen')
+        queries.addQuestion("Do you prefer a multidisciplinary study? (yes/I don't mind)")
 
-        if re.search('Maastricht', answer):
-            user_kb['city'].append('Maastricht')
+        return
+
+
+    # Multidisciplinary 
+    if ('city' in visited or 'pass city' in visited) and 'multidisciplinary' not in user_kb.keys():
         
-        if re.search('Delft', answer):
-            user_kb['city'].append('Delft')
+        print("\nSaving Multidisciplinary Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'yes': # those that are not will be eliminated
+            visited.append('multidisciplinary')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass multidisciplinary')    
+            # no elimination, do nothing
 
-        elif re.search('No Preference', answer): # pass on city elimination
-            return # no elimination
+        queries.addQuestion("Would you like to take an enterance test? (no/I don't mind)")
+        
+        return
+        
+    
+    # Enterance Exam
+    if ('multidisciplinary' in visited or 'pass multidisciplinary' in visited) and 'enterance exam' not in user_kb.keys():
+        
+        print("\nSaving Enterance Exam Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'no':  # no, the user doesn't want the studies with enterance exam, those that have will be eliminated
+            visited.append('enterance exam')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass enterance exam')
+            # no elimination, do nothing
 
-        visited.append('city')
+        queries.addQuestion("Would you like to take a study choice check? Note that, sometimes this is part of the selection procedure. (yes/I don't mind)")
+        
+        return
+
+
+    # Study Choice Check
+    if ('enterance exam' in visited or 'pass enterance exam' in visited) and 'study choice check' not in user_kb.keys():
+        
+        print("\nSaving Study Choice Check Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'yes': # studies not offering study choice check will be eliminated
+            visited.append('study choice check')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass study choice check')
+            # no elimination, do nothing
+
+        queries.addQuestion("Would you like to do research in university? (yes/I don't mind")
+        
+        return
+
+
+    # Research
+    if ('study choice check' in visited or 'pass study choice check' in visited) and 'research' not in user_kb.keys():
+        
+        print("\nSaving Research Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'yes': # studies not offering research will be eliminated
+            visited.append('research')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass research')
+            # no elimination, do nothing
+
+        queries.addQuestion("Do you prefer a study with practical/tutorial oriented approach, perhaps with hands-on/lab experience? (yes/I don't mind)")
+        
+        return
+
+
+    # Practical-oriented
+    if ('research' in visited or 'pass research' in visited) and 'practical oriented' not in user_kb.keys():
+        
+        print("\nSaving Practical-Oriented Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'yes': # studies not offering practical-oriented approach will be eliminated
+            visited.append('practical oriented')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass practical oriented')
+            # no elimination, do nothing
+
+        queries.addQuestion("Do you prefer a study with project approach? (yes/I don't mind)")
+        
+        return
+
+    
+    # Project-oriented
+    if ('practical oriented' in visited or 'pass practical oriented' in visited) and 'project oriented' not in user_kb.keys():
+        
+        print("\nSaving Project-Oriented Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'yes': # studies not offering project oriented approach will be eliminated
+            visited.append('project oriented')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass project oriented')
+            # no elimination, do nothing
+
+        queries.addQuestion("Do you mind applying to a numerus fixus study? Note that, numerus fixus study programs have a limited capacity and therefore, may have further requirements such as enterance exam, or portfolio.(yes/I don't mind)")
+        
+        return
+
+
+    # Numerus Fixus
+    if ('project oriented' in visited or 'pass project oriented' in visited) and 'numerus fixus' not in user_kb.keys():
+        
+        print("\nSaving Numerus Fixus Preference")
+        visited.pop(0)    # reset visited
+        
+        if answer == 'no': # studies that are numerus fixus will be eliminated
+            visited.append('project oriented')
+        elif answer == "I don't mind": # pass 
+            visited.append('pass project oriented')
+            # no elimination, do nothing
+
+        notes.addDisclaimer("You have reached the end of questionnaire.")
+        
         return
