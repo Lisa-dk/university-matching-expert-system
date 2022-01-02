@@ -40,7 +40,7 @@ class QuestionField:
         self.button = Button(frame, height=1, width=10, text="Next",
                              command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
                                                                self.input_field), bg=Theme.BUTTON_COLOUR, bd=1,
-                             activebackground="#768c90")
+                             activebackground=Theme.BUTTON_CLICK)
 
         self.button.pack()
 

@@ -14,7 +14,8 @@ class RadioButtonField:
     def add_radio_button(self, frame):
         for option in self.options:
             Radiobutton(frame, text=option, variable=self.chosen, value=option, fg=Theme.TEXT_COLOUR,
-                                       bg=Theme.BG_COLOUR, bd=0, selectcolor=Theme.BUTTON_COLOUR).pack(anchor=W)
+                        bg=Theme.BG_COLOUR, bd=0, selectcolor=Theme.BUTTON_COLOUR, activebackground=Theme.BG_COLOUR,
+                        activeforeground=Theme.TEXT_COLOUR).pack(anchor=W)
 
     def get_chosen_option(self):
         print(self.chosen.get())

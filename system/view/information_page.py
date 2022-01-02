@@ -15,7 +15,7 @@ class InformationPage:
                "requirements of the recommended universities as well."
         self.text_field.insert(END, info)
         self.text_field.configure(state='disabled', width=53, height=8)
-        self.button = Button(self.frame, text="Start Test", bg=Theme.BUTTON_COLOUR, bd=1, command=self.start_test)
+        self.button = Button(self.frame, text="Start Test", bg=Theme.BUTTON_COLOUR, bd=1, command=self.start_test, activebackground=Theme.BUTTON_CLICK)
 
         self.text_field.pack()
         self.button.pack()
