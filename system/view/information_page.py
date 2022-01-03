@@ -7,6 +7,7 @@ import os
 
 class InformationPage:
     def __init__(self, main_app, master):
+        self.button = None
         self.main_app = main_app
         self.master = master
         self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
@@ -40,7 +41,10 @@ class InformationPage:
         self.start_test()
 
     def start_test(self):
+        self.destroy()
+        self.main_app.start_test()
+
+    def destroy(self):
         self.button.destroy()
         self.text_field.destroy()
         self.frame.destroy()
-        self.main_app.start_test()
