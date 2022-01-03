@@ -80,7 +80,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             user_kb['diplomas'] = answer  # save IB
             visited.append('diplomas')  # done with diplomas
             #print('diploma saved: ' + user_kb['diplomas'])
-            queries.add_question("Did you take any of the following subjects from IB? (Mathematics, Physics, Chemistry, Biology (HL/SL))")  # next question - subjects?
+            queries.add_question("Did you take any of the following subjects from IB? (Analysis & Approaches, Mathematics, Physics, Chemistry, Biology, English (HL/SL))")  # next question - subjects?
 
         # no IB diploma
         elif re.search('Lise Diploma', answer) or re.search('Label France Education', answer) or re.search('Abitur',
@@ -104,7 +104,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         elif answer == 'yes':
             user_kb['AP courses'] = 'yes'  # save answer (user took extra AP courses)
-            queries.add_question("Did you take any of the following subjects from AP? (Calculus A/B or B/C, Physics 1 or 2 or C, Chemistry)")  # next question - AP subjects?
+            queries.add_question("Did you take any of the following subjects from AP? (Calculus A/B or B/C, Physics 1 or 2 or C Mechanics or C Electricty and Magnetism, Chemistry)")  # next question - AP subjects?
             visited.append('diplomas')  # done with diplomas
 
         return
@@ -132,7 +132,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             user_kb['subjects'].append(match.group())
 
         # IB & AP
-        if re.search('[Pp]hysics(\sSL|\sHL|\s1|\s2|\sC)?', answer):
+        if re.search('[Pp]hysics(\sSL|\sHL|\s1|\s2|\sC\sMechanics|\sC\sElectricity\sand\sMagnetism)?', answer):
             match = re.search('[Pp]hysics(\sSL|\sHL|\s1|\s2|\sC)?', answer)
             user_kb['subjects'].append(match.group())
 
@@ -194,7 +194,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
             if user_kb['diplomas'] in 'IB':  # exception for IB
                 notes.addDisclaimer("You don't need an English test, since you've studied the IB programme according to the English-level requirements of the study programs in our system.")
-                queries.add_question("Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, I don't mind)")  # move onto general preferences
+                queries.add_question("Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, Enschede, I don't mind)")  # move onto general preferences
                 #print(str(visited))
                 visited.pop(1)
                 visited.remove('subject grades')  # reset visited
@@ -312,6 +312,10 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
                 user_kb['city'].append('Delft')
             visited.append('city')
         
+            if re.search('Enschede', answer):
+                user_kb['city'].append('Delft')
+            visited.append('city')
+
         queries.add_question("Do you prefer a multidisciplinary study? (yes/I don't mind)")
         return
 
