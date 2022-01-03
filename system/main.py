@@ -8,13 +8,15 @@ from view.theme import Theme
 # DONE: making window appear in center -> DONE
 # DONE: fix button placements input -> DONE
 # DONE: make buttons change colour when going over them with the cursor -> DONE
-# TODO: when input is number, make sure it is a number, and have the text field boxed.
-# TODO: put the test in center, but results show at the top
-# TODO: Separate pages for test results and home button and trace s.t. no information is lost unless new test is started
-# TODO: add option to retake the test when results are shown or to show more information about the studies.
-# TODO: if there are results, change 'take test' button at home page to 'retake test' button.
+# TODO: when input is number, make sure it is a number
+# DONE:have the text field boxed.
+# DONE: Results page
+# TODO: trace page
+# DONE: retake/take test in home page
+# TODO: add option to show more information about the studies.
 # TODO: Question types and input need to match + any possible error handling.
-# TODO: save questions and answers to text file and results in separate text file
+# TODO: save questions and answers to text file
+# Done: put results in separate text file
 
 
 def main():
