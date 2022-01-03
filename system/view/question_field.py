@@ -101,8 +101,9 @@ class QuestionField:
             self.add_save_button(self.frame)
         else:
             self.save_results()
+            self.destroy()
             self.main_app.add_results_page_button()
-            self.give_results()
+            self.main_app.initialise_results()
 
     # prints the studies for which the requirements are met.
     def give_results(self):

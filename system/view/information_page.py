@@ -24,19 +24,24 @@ class InformationPage:
             self.make_retake_button()
         else:
             self.make_start_button()
-            
+
         self.text_field.pack()
         self.button.pack()
         self.frame.pack()
 
     def make_start_button(self):
-        self.button = Button(self.frame, text="Start Test", bg=Theme.BUTTON_COLOUR, bd=1, command=self.start_test)
+        self.button = Button(self.frame, text="Start Test", activeforeground=Theme.TEXT_COLOUR,
+                             activebackground=Theme.BUTTON_CLICK,
+                             bg=Theme.BUTTON_COLOUR, bd=1, command=self.start_test)
 
-    def make_retake_button(self,):
-        self.button = Button(self.frame, text="Retake Test", bg=Theme.BUTTON_COLOUR, bd=1, command=self.retake_test)
+    def make_retake_button(self, ):
+        self.button = Button(self.frame, text="Retake Test", activeforeground=Theme.TEXT_COLOUR,
+                             activebackground=Theme.BUTTON_CLICK,
+                             bg=Theme.BUTTON_COLOUR, bd=1, command=self.retake_test)
 
     def retake_test(self):
         os.remove(self.path)
+        self.main_app.remove_results_button()
         self.main_app.initialise_kb()
         self.start_test()
 
