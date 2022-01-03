@@ -12,8 +12,8 @@ class TextFields:
         self.add_text_field(self.frame)
 
     def add_text_field(self, frame):
-        self.input_text = Text(frame, height=3, width=10, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0)
-        self.input_text.pack()
+        self.input_text = Text(frame, height=3, width=10, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=1)
+        self.input_text.pack(pady=10)
 
     def get_chosen_option(self):
         print(self.input_text.get("1.0", "end-1c"))

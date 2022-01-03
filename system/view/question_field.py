@@ -13,10 +13,13 @@ import os
 
 class QuestionField:
 
-    def __init__(self, master, kb_class):
+    def __init__(self, master, kb_class, main_app):
         self.master = master
+        self.main_app = main_app
         self.button = None
         self.question_field = None
+        self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
+        self.frame.pack()
         self.question_text = StringVar()
         self.question_class = Question()
         self.disclaimer = Disclaimer()
@@ -24,14 +27,14 @@ class QuestionField:
         self.question = self.question_class.get_questions()[0]
         self.kb_class = kb_class
 
-        self.add_question_field(self.master)
+        self.add_question_field(self.frame)
         self.add_text(self.question)
 
         self.input_field = None
         self.options = None
         self.add_input_field()
 
-        self.add_save_button(self.master)
+        self.add_save_button(self.frame)
 
     def add_question_field(self, frame):
         self.question_field = Label(frame, textvariable=self.question_text, height=3, width=100, wraplength=500,
@@ -49,29 +52,20 @@ class QuestionField:
 
         self.button.pack()
 
-        distance = 10
-        # Input frame height + y coor frame in screen - y coor window + distance button to input frame
-        input_frame = self.input_field.frame
-        input_frame.update()
-        centralise_var = self.master.winfo_rooty()
-        button_x = self.master.winfo_width() / 2 - self.button.winfo_width() / 2
-        button_y = input_frame.winfo_height() + input_frame.winfo_rooty() - centralise_var + distance
-        self.button.place(y=button_y, x=button_x)
-
     def add_input_field(self):
         # TODO: change with questiontypes
         if 'diploma' in self.question:
             self.options = ['Lise Diploma', 'AP', 'IB', 'Label France Education', 'British GCE A Levels']
-            self.input_field = RadioButtonField(self.master, self.options)
+            self.input_field = RadioButtonField(self.frame, self.options)
 
         elif 'subject' in self.question:
             self.options = ['Analytics & Approaches SL', 'Analytics & Approaches HL', 'Mathematics SL',
                             'Mathematics HL',
                             'Calculus', 'Physics SL', 'Physics HL', 'Chemistry SL', 'Chemistry HL']
-            self.input_field = CheckButtonField(self.master, self.options)
+            self.input_field = CheckButtonField(self.frame, self.options)
 
         else:
-            self.input_field = TextFields(self.master)
+            self.input_field = TextFields(self.frame)
 
     def destroy(self):
         self.question_field.destroy()
@@ -88,6 +82,8 @@ class QuestionField:
         self.input_field = None
         self.button.destroy()
         self.button = None
+        self.frame.destroy()
+        self.frame = None
 
     # updates the question and input fields
     def update(self, empty):
@@ -102,10 +98,12 @@ class QuestionField:
             self.question = self.question_class.get_questions()[0]
             self.add_text(self.question)
             self.add_input_field()
-            self.add_save_button(self.master)
+            self.add_save_button(self.frame)
         else:
             self.save_results()
-            self.give_results()
+            self.destroy()
+            self.main_app.add_results_page_button()
+            self.main_app.initialise_results()
 
     # prints the studies for which the requirements are met.
     def give_results(self):
