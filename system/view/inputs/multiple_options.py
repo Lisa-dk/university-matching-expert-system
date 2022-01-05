@@ -18,7 +18,7 @@ class CheckButtonField:
             idx = self.options.index(option)
             self.check_var.append(IntVar(frame))
             self.buttons.append(Checkbutton(frame, text=option, variable=self.check_var[idx], onvalue=1, offvalue=0,
-                                            font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0,
+                                            fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0,
                                             selectcolor=Theme.BUTTON_COLOUR, activebackground=Theme.BG_COLOUR,
                                             activeforeground=Theme.TEXT_COLOUR))
             self.buttons[idx].pack(anchor=W, pady=10)

@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter.font import Font
 from control.next_button import load_new_question
-from model.questions import Question
+from model.questions import Question, QuestionType
 from .inputs.single_option import RadioButtonField
 from .inputs.multiple_options import CheckButtonField
 from .inputs.text_input import TextFields
@@ -28,7 +28,7 @@ class QuestionField:
         self.kb_class = kb_class
 
         self.add_question_field(self.frame)
-        self.add_text(self.question)
+        self.add_text(self.question[0])
 
         self.input_field = None
         self.options = None
@@ -38,7 +38,8 @@ class QuestionField:
 
     def add_question_field(self, frame):
         self.question_field = Label(frame, textvariable=self.question_text, height=3, width=100, wraplength=500,
-                                    justify=LEFT, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0)
+                                    justify=LEFT, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR,
+                                    bd=0)
         self.question_field.pack()
 
     def add_text(self, text):
@@ -54,29 +55,29 @@ class QuestionField:
 
     def add_input_field(self):
         # TODO: change with questiontypes
-        if 'diploma' in self.question:
-            self.options = ['Lise Diploma', 'AP', 'IB', 'Label France Education', 'British GCE A Levels']
-            self.input_field = RadioButtonField(self.frame, self.options)
+        # if 'diploma' in self.question:
+        if self.question[1] == QuestionType.SELECT:
+            # self.options = ['Lise Diploma', 'AP', 'IB', 'Label France Education', 'British GCE A Levels']
+            # self.input_field = RadioButtonField(self.frame, self.options)
+            self.input_field = RadioButtonField(self.frame, self.question[2])
 
-        elif 'subject' in self.question:
-            self.options = ['Analytics & Approaches SL', 'Analytics & Approaches HL', 'Mathematics SL',
-                            'Mathematics HL',
-                            'Calculus', 'Physics SL', 'Physics HL', 'Chemistry SL', 'Chemistry HL']
-            self.input_field = CheckButtonField(self.frame, self.options)
+        # elif 'subject' in self.question:
+        elif self.question[1] == QuestionType.MULTI_SELECT:
+            # self.options = ['Analytics & Approaches SL', 'Analytics & Approaches HL', 'Mathematics SL', 'Mathematics HL', 'Calculus', 'Physics SL', 'Physics HL', 'Chemistry SL', 'Chemistry HL']
+            # self.input_field = CheckButtonField(self.frame, self.options)
+            self.input_field = CheckButtonField(self.frame, self.question[2])
 
-        else:
+        else:  # if self.question[1] == QuestionType.TEXT_FIELD:
             self.input_field = TextFields(self.frame)
 
     def destroy(self):
         self.question_field.destroy()
         # self.question_frame = None
         self.question_field = None
-        if 'diploma' in self.question:
+        # if 'diploma' or 'subject' in self.question:
+        if self.question[1] == QuestionType.SELECT or self.question[1] == QuestionType.MULTI_SELECT:
             self.input_field.frame.destroy()
-            self.options = None
-        elif 'subject' in self.question:
-            self.input_field.frame.destroy()
-            self.options = None
+            # self.options = None
         else:
             self.input_field.input_text.destroy()
         self.input_field = None
@@ -87,7 +88,8 @@ class QuestionField:
 
     # updates the question and input fields
     def update(self, empty):
-        if 'diploma' or 'subject' in self.question:
+        # if 'diploma' or 'subject' in self.question:
+        if self.question[1] == QuestionType.SELECT or self.question[1] == QuestionType.MULTI_SELECT:
             self.input_field.frame.destroy()
         else:
             self.input_field.input_text.destroy()
@@ -96,7 +98,7 @@ class QuestionField:
 
         if not empty and len(self.kb_class.kb) > 0:
             self.question = self.question_class.get_questions()[0]
-            self.add_text(self.question)
+            self.add_text(self.question[0])
             self.add_input_field()
             self.add_save_button(self.frame)
         else:
@@ -115,7 +117,7 @@ class QuestionField:
         else:
             results = "No requirements are met. No appropriate study programmes available."
         self.add_text(results)
-    
+
     def make_file(self):
         path = './model/results.txt'
         if os.path.exists(path):

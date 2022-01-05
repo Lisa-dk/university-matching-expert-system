@@ -9,12 +9,13 @@ from view.theme import Theme
 # DONE: fix button placements input -> DONE
 # DONE: make buttons change colour when going over them with the cursor -> DONE
 # TODO: when input is number, make sure it is a number
-# DONE:have the text field boxed.
+# DONE: have the text field boxed.
 # DONE: Results page
 # TODO: trace page
 # DONE: retake/take test in home page
 # TODO: add option to show more information about the studies.
-# TODO: Question types and input need to match + any possible error handling.
+# DONE: Code different Question types using tuples
+# TODO: Question Types and input need to match + any possible error handling.
 # TODO: save questions and answers to text file
 # Done: put results in separate text file
 

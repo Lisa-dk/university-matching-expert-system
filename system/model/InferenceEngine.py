@@ -2,7 +2,7 @@ from model.questions import Question
 from model.disclaimer import Disclaimer
 from model.rules.user_rules import make_user_kb
 from model.rules.elimination_rules import elimination_update
-from model.rules.user_rules import make_user_kb
+from model.rules.user_rules import edit_user_kb
 
 
 class InferenceEngine:
