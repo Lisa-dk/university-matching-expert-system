@@ -10,15 +10,13 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         # print("\nSaving Study-preference question:")
 
         if answer == 'yes':  # knows what to study
-            # queries.add_question("What are your study preferences? (Technology/Design/Innovation/Society etc.)")
-            queries.add_question(["What are your study preferences? (Technology/Design/Innovation/Society etc.)",
+            queries.add_question(["What are your study preferences?",
                                   QuestionType.MULTI_SELECT, queries.get_question_options('preferences')])
             user_kb['study preference'] = []  # initialise study preference
 
         elif answer == 'no':  # doesn't know what to study
-            # queries.add_question("What is your high school diploma? (IB, Lise Diploma, Abitur, Label France Education)")
             queries.add_question(
-                ["What is your high school diploma? (IB, Lise Diploma, Abitur, Label France Education)",
+                ["What is your high school diploma?",
                  QuestionType.SELECT, queries.get_question_options('diploma')])
             visited.remove('start')
             visited.append('study preference')  # done with study preference in user_rules
@@ -70,8 +68,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if re.search('Psychology', answer):
             user_kb['study preference'].append('Psychology')
 
-        # queries.add_question("What is your high school diploma? (IB, Lise Diploma, Abitur, Label France Education)")  # add diploma question
-        queries.add_question(["What is your high school diploma? (IB, Lise Diploma, Abitur, Label France Education)",
+       # add diploma
+        queries.add_question(["What is your high school diploma?",
                               QuestionType.SELECT, queries.get_question_options('diploma')])  # add diploma question
         visited.append('study preference')  # done with study-preference in user_rules
         return
@@ -88,9 +86,9 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             user_kb['diplomas'] = answer  # save IB
             visited.append('diplomas')  # done with diplomas
             # print('diploma saved: ' + user_kb['diplomas'])
-            # queries.add_question("Did you take any of the following subjects from IB? (Analysis & Approaches, Mathematics, Physics, Chemistry, Biology, English (HL/SL))")  # next question - subjects?
+            # next question - subjects?
             queries.add_question([
-                                     "Did you take any of the following subjects from IB? (Analysis & Approaches, Mathematics, Physics, Chemistry, Biology, English (HL/SL))",
+                                     "Did you take any of the following subjects from IB?",
                                      QuestionType.MULTI_SELECT,
                                      queries.get_question_options('subjects IB')])  # next question - subjects?
 
@@ -99,8 +97,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
                                                                                                            answer):
             user_kb['diplomas'] = answer  # save answer-diploma
             # print('no-IB diploma saved: ' + user_kb['diplomas'])
-            # queries.add_question("Have you also taken any AP courses? (yes/no)")  # next question - AP courses?
-            queries.add_question(["Have you also taken any AP courses? (yes/no)", QuestionType.SELECT,
+            # next question - AP courses?
+            queries.add_question(["Have you also taken any AP courses?", QuestionType.SELECT,
                                   queries.get_question_options('yes-no question')])  # next question - AP courses?
 
         return
@@ -114,13 +112,12 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             user_kb['AP courses'] = 'no'
             notes.addDisclaimer(
                 "Check university websites for further information for application with these diplomas.")
-            visited.append('no AP')  # mark as/done with no AP
+            visited.append('None')  # mark as/done with no AP
 
         elif answer == 'yes':
             user_kb['AP courses'] = 'yes'  # save answer (user took extra AP courses)
-            # queries.add_question("Did you take any of the following subjects from AP? (Calculus A/B or B/C, Physics 1 or 2 or C Mechanics or C Electricity and Magnetism, Chemistry)")  # next question - AP subjects?
             queries.add_question([
-                                     "Did you take any of the following subjects from AP? (Calculus A/B or B/C, Physics 1 or 2 or C Mechanics or C Electricity and Magnetism, Chemistry)",
+                                     "Did you take any of the following subjects from AP?",
                                      QuestionType.MULTI_SELECT,
                                      queries.get_question_options('subjects AP')])  # next question - AP subjects?
             visited.append('diplomas')  # done with diplomas
@@ -161,6 +158,12 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if re.search('[Bb]iology(\sSL|\sHL)?', answer):
             match = re.search('[Bb]iology(\sSL|\sHL)?', answer)
             user_kb['subjects'].append(match.group())
+        
+        if re.search('[Nn]one of the above', answer):
+            notes.addDisclaimer(
+                "You have not met the subject requirements of any university in the Netherlands for studying engineering. You are useless. ")
+            visited.append('None')  # mark as/done with no AP
+            return
 
         visited.append('subjects')  # done with subjects
         # queries.add_question("Enter grade for {}:".format(user_kb['subjects'][0]))  # next question - grade for 1st subject in user_kb['subjects']
@@ -222,7 +225,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
                     "You don't need an English test, since you've studied the IB programme according to the English-level requirements of the study programs in our system.")
                 # queries.add_question("Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, Enschede, I don't mind)")  # move onto general preferences
                 queries.add_question([
-                                         "Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, Enschede, I don't mind)",
+                                         "Which cities do you prefer? You may select multiple cities.",
                                          QuestionType.MULTI_SELECT,
                                          queries.get_question_options('cities')])  # move onto general preferences
                 # print(str(visited))
@@ -232,8 +235,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
                 # print(str(visited))
 
             else:  # rest of the diplomas require English tests
-                # queries.add_question("Have you taken an English test? (yes/no)")  # next question- English test?
-                queries.add_question(["Have you taken an English test? (yes/no)", QuestionType.SELECT,
+                queries.add_question(["Have you taken an English test?", 
+                                      QuestionType.SELECT,
                                       queries.get_question_options('yes-no question')])  # next question- English test?
                 visited.pop(1)  # remove subject-saved
                 visited.remove('subject grades')  # reset visited
@@ -253,33 +256,20 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         # *********** NOTE to self: not finished
         if answer == 'no':  # no english test
-            # queries.add_question("Have you followed at least your entire Bachelor’s degree or the last years of your High School from the following countries?\nAustralia, Canada, Ireland, New Zealand, UK and USA.")
-            queries.add_question([
-                                     "Have you followed at least your entire Bachelor’s degree or the last years of your High School from the following countries?\nAustralia, Canada, Ireland, New Zealand, UK and USA.",
-                                     QuestionType.SELECT, queries.get_question_options('yes-no question')])
-            visited.append('abroad')
+            notes.addDisclaimer(
+                                    "You need an English Test with diploma {}.  You are useless.".format(user_kb['diplomas']))
+            visited.append('None')  # mark as/done with no AP
 
         elif answer == 'yes':  # move onto 'english tests' checking
             # queries.add_question("Which English test did you take? (TOEFL iBT, IELTS (academic), CPE, CAE)")
             queries.add_question(
-                ["Which English test did you take? (TOEFL iBT, IELTS (academic), CPE, CAE)", QuestionType.SELECT,
+                ["Which English test did you take?", 
+                 QuestionType.SELECT,
                  queries.get_question_options('English test')])
             visited.append('english level')  # done with (checking) english level (whether it exists or not)
 
         return  # no elimination
 
-    '''    
-    if 'abroad' in visited:
-        if answer == 'no':  # no test and no abroad years, and diploma not IB
-            studies_kb.clear()
-            visited.clear()
-            return
-        elif answer == 'yes':  # no test but yes abroad years, study req. may be met
-            notes.addDisclaimer("English level may be approved. Check website for further info")
-            queries.clearQuestion() # esasında buraya preference ile ilgili sorular gelicek...
-            visited.clear()
-        return
-    '''
 
     # add english test
     if 'english level' in visited and 'english tests' not in user_kb.keys():
@@ -293,6 +283,11 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         # queries.add_question("Enter overall score: ")  # next question
         queries.add_question(["Enter overall score: ", QuestionType.TEXT_FIELD, None])  # next question
+
+        if re.search('[Nn]one of the above', answer):
+            notes.addDisclaimer(
+                "You need an English test from the list provided. You are useless.")
+            visited.append('None')  # mark as/done with no AP
 
         return
 
@@ -327,9 +322,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if queries.getQuestionListLen() == 1:  # OR if queries.getCurrentQuestion() == "Enter Writing score: ":
             visited.pop()  # empty queries
             visited.append('check english grades')
-            # queries.add_question("Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, I don't mind)")
             queries.add_question([
-                                     "Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, I don't mind)",
+                                     "Which cities do you prefer? You may select multiple cities.",
                                      QuestionType.MULTI_SELECT, queries.get_question_options('cities 2')])
         return
 
@@ -362,8 +356,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
                 user_kb['city'].append('Delft')
             visited.append('city')
 
-        # queries.add_question("Do you prefer a multidisciplinary study? (yes/I don't mind)")
-        queries.add_question(["Do you prefer a multidisciplinary study? (yes/I don't mind)", QuestionType.SELECT,
+        queries.add_question(["Do you prefer a multidisciplinary study?", QuestionType.SELECT,
                               queries.get_question_options('yes-no_preference question')])
         return
 
@@ -379,8 +372,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             visited.append('pass multidisciplinary')
             # no elimination, do nothing
 
-        # queries.add_question("Would you like to take an entrance test? (no/I don't mind)")
-        queries.add_question(["Would you like to take an entrance test? (no/I don't mind)", QuestionType.SELECT,
+        queries.add_question(["Would you like to take an entrance test?", QuestionType.SELECT,
                               queries.get_question_options('yes-no_preference question')])
         return
 
@@ -397,9 +389,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             visited.append('pass entrance exam')
             # no elimination, do nothing
 
-        # queries.add_question("Would you like to take a study choice check? Note that, sometimes this is part of the selection procedure. (yes/I don't mind)")
         queries.add_question([
-                                 "Would you like to take a study choice check? Note that, sometimes this is part of the selection procedure. (yes/I don't mind)",
+                                 "Would you like to take a study choice check? Note that, sometimes this is part of the selection procedure.",
                                  QuestionType.SELECT, queries.get_question_options('yes-no_preference question')])
         return
 
@@ -415,8 +406,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             visited.append('pass study choice check')
             # no elimination, do nothing
 
-        # queries.add_question("Would you like to do research in university? (yes/I don't mind")
-        queries.add_question(["Would you like to do research in university? (yes/I don't mind", QuestionType.SELECT,
+        queries.add_question(["Would you like to do research in university?", QuestionType.SELECT,
                               queries.get_question_options('yes-no_preference question')])
         return
 
@@ -432,9 +422,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             visited.append('pass research')
             # no elimination, do nothing
 
-        # queries.add_question("Do you prefer a study with practical/tutorial oriented approach, perhaps with hands-on/lab experience? (yes/I don't mind)")
         queries.add_question([
-                                 "Do you prefer a study with practical/tutorial oriented approach, perhaps with hands-on/lab experience? (yes/I don't mind)",
+                                 "Do you prefer a study with practical/tutorial oriented approach, perhaps with hands-on/lab experience?",
                                  QuestionType.SELECT, queries.get_question_options('yes-no_preference question')])
         return
 
@@ -450,8 +439,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             visited.append('pass practical oriented')
             # no elimination, do nothing
 
-        # queries.add_question("Do you prefer a study with project approach? (yes/I don't mind)")
-        queries.add_question(["Do you prefer a study with project approach? (yes/I don't mind)", QuestionType.SELECT,
+        queries.add_question(["Do you prefer a study with project approach?", QuestionType.SELECT,
                               queries.get_question_options('yes-no_preference question')])
         return
 
@@ -468,9 +456,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             visited.append('pass project oriented')
             # no elimination, do nothing
 
-        # queries.add_question("Do you mind applying to a numerus fixus study? Note that, numerus fixus study programs have a limited capacity and therefore, may have further requirements such as entrance exam, or portfolio.(yes/I don't mind)")
         queries.add_question([
-                                 "Do you mind applying to a numerus fixus study? Note that, numerus fixus study programs have a limited capacity and therefore, may have further requirements such as entrance exam, or portfolio.(yes/I don't mind)",
+                                 "Do you mind applying to a numerus fixus study? Note that, numerus fixus study programs have a limited capacity and therefore, may have further requirements such as entrance exam, or portfolio.",
                                  QuestionType.SELECT, queries.get_question_options('yes-no_preference question')])
         return
 

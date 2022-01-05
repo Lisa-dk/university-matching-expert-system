@@ -21,7 +21,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
 
 
     # eliminate all if no AP
-    if 'no AP' in visited:
+    if 'None' in visited:
         #print("\n1b. Eliminate all studies")
 
         studies_kb.remove(study)
