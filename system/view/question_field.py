@@ -88,12 +88,7 @@ class QuestionField:
 
     # updates the question and input fields
     def update(self, empty):
-        # if 'diploma' or 'subject' in self.question:
-        if self.question[1] == QuestionType.SELECT or self.question[1] == QuestionType.MULTI_SELECT:
-            self.input_field.frame.destroy()
-        else:
-            self.input_field.input_text.destroy()
-
+        self.input_field.frame.destroy()
         self.button.destroy()
 
         if not empty and len(self.kb_class.kb) > 0:
