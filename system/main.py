@@ -4,21 +4,24 @@ from view.main_application import MainApp
 from view.theme import Theme
 
 
+# bigger things todo:
+#TODO: add trace
+#       -> save questions and answers to text file + load (like results)
+#       -> add advise/disclaimer/explanations to trace?? (im not sure when we should add the explanations but the trace seems like a good place)
+# TODO: fix grade processing for english tests
+# TODO: list implementation to replace regex
+# TODO: comment code (likely when finalised)
+
+
+# smaller things todo:
 # TODO: consistent sizing of window
-# DONE: making window appear in center -> DONE
-# DONE: fix button placements input -> DONE
-# DONE: make buttons change colour when going over them with the cursor -> DONE
 # TODO: when input is number, make sure it is a number
 # TODO: implement grade ranges
-# DONE: have the text field boxed.
-# DONE: Results page
-# TODO: trace page
-# DONE: retake/take test in home page
 # TODO: add option to show more information about the studies.
-# DONE: Code different Question types using tuples
 # TODO: Question Types and input need to match + any possible error handling.
-# TODO: save questions and answers to text file
-# Done: put results in separate text file
+# TODO: look at theme
+# TODO: button placements 
+# TODO: clean up code from comments etc + apply same conventions everywhere (standard python convention)
 
 
 def main():
