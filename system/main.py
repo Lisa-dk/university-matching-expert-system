@@ -9,6 +9,7 @@ from view.theme import Theme
 # DONE: fix button placements input -> DONE
 # DONE: make buttons change colour when going over them with the cursor -> DONE
 # TODO: when input is number, make sure it is a number
+# TODO: implement grade ranges
 # DONE: have the text field boxed.
 # DONE: Results page
 # TODO: trace page
