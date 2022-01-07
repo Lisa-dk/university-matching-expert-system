@@ -7,7 +7,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
         if not any(item in study['about'] for item in user_kb['study preference']):
             #print("xxx removed: " + str(study['label']))
             studies_kb.remove(study)
-        return
+            return study
 
 
     # match diplomas
@@ -17,7 +17,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
         if user_kb['diplomas'] not in study['diplomas']:
             studies_kb.remove(study)
             #print("xxx removed: " + str(study['label']))
-        return
+            return study
 
 
     # eliminate all if no AP
@@ -25,7 +25,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
         #print("\n1b. Eliminate all studies")
 
         studies_kb.remove(study)
-        return
+        return study
 
     '''
     if 'AP option' in visited:
@@ -46,7 +46,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             if 'AP courses' in study.keys() and study['AP courses'] == 'no':
                 studies_kb.remove(study)
                 #print("xxx removed: " + str(study['label']))
-                return
+                return study
             subjects_from = 'AP'
         elif user_kb['diplomas'] == 'IB':
             subjects_from = 'IB'
@@ -58,13 +58,14 @@ def elimination_update(study, studies_kb, user_kb, visited):
             if not any((set(subjOptionN) == set(user_kb['subjects']) or set(subjOptionN).issubset(
                     set(user_kb['subjects']))) for subjOptionN in study[subjects_from]):
                 studies_kb.remove(study)
+                return study
                 #print("xxx removed: " + str(study['label']))
         else:
             #print("NON-nested subjected combinations")
             if any(studySubjs not in user_kb['subjects'] for studySubjs in study[subjects_from]):
                 studies_kb.remove(study)
                 #print("xxx removed: " + str(study['label']))
-        return
+                return study
 
 
     # match subject-grade
@@ -83,7 +84,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
             #print("xxx removing study " + study['label'])
 
-        return
+            return study
 
 
     # match english test
@@ -94,7 +95,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
             #print("xxx removing study " + study['label'])
 
-        return
+            return study
 
 
     # match english level grades
@@ -111,7 +112,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             if int(usr_eng_grd[sect]) < int(study_eng_grd[sect][1]): #if section in study and grade valid
                 studies_kb.remove(study)
                 # print("xxx removing study " + study['label'])
-                return
+                return study
 
 
     if 'city' in visited:
@@ -121,7 +122,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
                    user_kb['city']):  # if it is not the case that any city in user_kb is equal to the city of study
             studies_kb.remove(study)
             #print("xxx removing study " + study['label'])
-        return
+            return study
 
     
     # matching multidisciplinary
@@ -132,7 +133,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
             #print("xxx removing study "+study['label'])
         
-        return
+            return study
 
 
     # matching enterance exam
@@ -144,7 +145,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
             #print("xxx removing study "+study['label'])
         
-        return
+            return study
 
 
     # matching study choice check
@@ -156,7 +157,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
             #print("xxx removing study "+study['label'])
         
-        return
+            return study
 
 
     # matching research
@@ -168,7 +169,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
             #print("xxx removing study "+study['label'])
         
-        return
+            return study
 
 
     # matching practical-oriented approach
@@ -180,7 +181,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
             #print("xxx removing study "+study['label'])
         
-        return
+            return study
 
     
     # matching project oriented approach
@@ -192,7 +193,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
             #print("xxx removing study "+study['label'])
         
-        return
+            return study
 
     
     # matching numerus fixus
@@ -204,11 +205,11 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
             #print("xxx removing study "+study['label'])
         
-        return
+            return study
 
 
     #print("return")
-    return
+    return 1
 
 
 '''

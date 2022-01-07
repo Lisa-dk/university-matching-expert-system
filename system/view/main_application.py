@@ -3,6 +3,7 @@ from view.information_page import InformationPage
 from view.nagivation_bar import NavBar
 from view.question_field import QuestionField
 from view.results_page import ResultsPage
+import os
 
 
 class MainApp:
@@ -14,6 +15,7 @@ class MainApp:
         self.navbar = NavBar(self.master, self)
         self.initialise_kb()
         self.initialise_home()
+        self.make_file()
 
     def initialise_kb(self):
         self.kb = KnowledgeBase()
@@ -33,3 +35,10 @@ class MainApp:
 
     def initialise_results(self):
         self.current_frame = ResultsPage(self.master)
+
+    def make_file(self):
+        path = './model/trace.txt'
+        if os.path.exists(path):
+            os.remove(path)
+
+        open(path, 'x').close()
