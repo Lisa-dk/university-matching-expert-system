@@ -4,6 +4,7 @@ from view.question_field import QuestionField
 from view.results_page import ResultsPage
 from view.theme import Theme
 from view.information_page import InformationPage
+from view.trace_page import TracePage
 
 
 class NavBar:
@@ -11,6 +12,7 @@ class NavBar:
     BUTTONS_Y = 5
 
     def __init__(self, master, MainApp):
+        self.trace_page_button = None
         self.results_page_button = None
         self.master = master
         self.MainApp = MainApp
@@ -38,6 +40,13 @@ class NavBar:
         self.results_page_button.place(x=0, y=self.BUTTONS_Y)
         self.results_page_button.pack(side="left")
 
+    def set_trace_page_button(self):
+        self.trace_page_button = Button(self.top_frame, command=self.trace, text="Trace",
+                                          fg=Theme.BUTTON_TEXT, bg=Theme.NAV_BAR_BG,
+                                          activeforeground="white", activebackground=Theme.NAV_BAR_BG, bd=0, padx=10)
+        self.trace_page_button.place(x=0, y=self.BUTTONS_Y)
+        self.trace_page_button.pack(side="left")
+
     def remove_results_button(self):
         if self.results_page_button is not None:
             self.results_page_button.destroy()
@@ -52,3 +61,8 @@ class NavBar:
         if self.MainApp.current_frame is not None and self.MainApp.current_frame != ResultsPage:
             self.MainApp.current_frame.destroy()
             self.MainApp.initialise_results()
+
+    def trace(self):
+        if self.MainApp.current_frame is not None and self.MainApp.current_frame != TracePage:
+            self.MainApp.current_frame.destroy()
+            self.MainApp.initialise_trace()

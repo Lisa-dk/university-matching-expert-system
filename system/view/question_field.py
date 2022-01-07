@@ -22,8 +22,7 @@ class QuestionField:
         #self.frame.pack()
         
         # TODO: Scrollbar needs canvas appereantly...
-        self.canvas =  Canvas(self.frame)
-        
+        self.canvas = Canvas(self.frame)
 
         self.scrollbar = Scrollbar(self.frame, orient="vertical", command=self.canvas.yview)
         
@@ -124,6 +123,7 @@ class QuestionField:
             self.save_results()
             self.destroy()
             self.main_app.add_results_page_button()
+            self.main_app.add_trace_page_button()
             self.main_app.initialise_results()
 
     # prints the studies for which the requirements are met.

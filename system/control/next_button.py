@@ -37,16 +37,14 @@ def eliminate_studies(kb_class, visited):
     while i < size_kb:
         elim = elimination_update(kb_class.kb[i], kb_class.kb, kb_class.user_kb, visited)
         if elim != 1:
-            #rint(elim)
             elim_studies += ',' + elim['label'] + ' at ' + elim['university']
-            #print(elim_studies)
         # After removal, the items are moved to a lower index in the list.
         if len(kb_class.kb) < size_kb:
             size_kb -= 1
             i -= 1
         i += 1
 
-    if len(elim_studies) == '':
+    if len(elim_studies) == 0:
         elim_studies = 'None'
     else:
         elim_studies = elim_studies[1:]
@@ -60,7 +58,7 @@ def save_trace(question, response, elim_studies):
     if os.path.exists(path):
         with open(path, 'a') as file:
             file.write('question: ' + question + "\n")
-            file.write('response: ' + str(response)+ "\n")
+            file.write('response: ' + str(response) + "\n")
             file.write('eliminated studies: '+ str(elim_studies) + "\n")
             file.close()
 
