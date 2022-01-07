@@ -1,11 +1,11 @@
 from model.knowledge_base import KnowledgeBase
-from view.information_page import InformationPage
+from view.pages.information_page import InformationPage
 from view.nagivation_bar import NavBar
-from view.question_field import QuestionField
-from view.results_page import ResultsPage
+from view.pages.question_field import QuestionField
+from view.pages.results_page import ResultsPage
 import os
 
-from view.trace_page import TracePage
+from view.pages.trace_page import TracePage
 
 
 class MainApp:

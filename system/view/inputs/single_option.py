@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter.font import Font
 
+from view.scroll_frame import ScrollFrame
 from view.theme import Theme
 
 
@@ -8,7 +9,10 @@ class RadioButtonField:
     def __init__(self, master, options):
         self.master = master
         self.options = options
-        self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
+        if len(options) > 15:
+            self.frame = ScrollFrame(self.master)
+        else:
+            self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
         self.frame.pack()
         self.chosen = StringVar(self.frame, options[0])
         self.add_radio_button(self.frame)

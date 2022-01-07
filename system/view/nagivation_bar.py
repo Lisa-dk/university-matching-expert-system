@@ -1,10 +1,9 @@
 from tkinter import *
 
-from view.question_field import QuestionField
-from view.results_page import ResultsPage
+from view.pages.results_page import ResultsPage
 from view.theme import Theme
-from view.information_page import InformationPage
-from view.trace_page import TracePage
+from view.pages.information_page import InformationPage
+from view.pages.trace_page import TracePage
 
 
 class NavBar:

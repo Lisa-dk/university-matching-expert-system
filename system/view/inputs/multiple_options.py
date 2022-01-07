@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter.font import Font
+
+from view.scroll_frame import ScrollFrame
 from view.theme import Theme
 
 
@@ -7,7 +9,10 @@ class CheckButtonField:
     def __init__(self, master, options):
         self.master = master
         self.options = options
-        self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
+        if len(options) > 15:
+            self.frame = ScrollFrame(self.master)
+        else:
+            self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
         self.frame.pack()
         self.buttons = []
         self.check_var = []
@@ -30,7 +35,7 @@ class CheckButtonField:
         chosen = []
         for idx in range(len(self.check_var)):
             if self.check_var[idx].get() == 1:
-                chosen.append(self.options[idx])       
+                chosen.append(self.options[idx])
                 chosen_string += self.options[idx] + ", "
-        
+
         return chosen_string
