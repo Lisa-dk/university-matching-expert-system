@@ -5,7 +5,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
         #print("\nEliminate study preference")
 
         if not any(item in study['about'] for item in user_kb['study preference']):
-            #print("xxx removed: " + str(study['label']))
+            print("xxx removed: " + str(study['label']))
             studies_kb.remove(study)
             return study
 

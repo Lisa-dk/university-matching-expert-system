@@ -35,8 +35,8 @@ class Question:
                             'Circular Engineering', 'Aerospace', 'Data Processing', 'Civil Engineering',
                             'Graphic Design', 'Marketing', 'Business Engineering', 'Technical'],
             'diploma': ['IB', 'Lise Diploma', 'Abitur', 'Label France Education'],
-            # 'courses': ['Analysis & Approaches SL', 'Analysis & Approaches HL', 'Mathematics SL', 'Mathematics HL', 'Calculus', 'Physics SL', 'Physics HL', 'Chemistry SL', 'Chemistry HL'],  # TODO: This one is not used
-            'subjects IB': ['Analysis & Approaches HL', 'Mathematics HL', 'Mathematics SL', 'Physics HL', 'Physics SL',
+            # 'courses': ['Analysis and Approaches SL', 'Analysis and Approaches HL', 'Mathematics SL', 'Mathematics HL', 'Calculus', 'Physics SL', 'Physics HL', 'Chemistry SL', 'Chemistry HL'],  # TODO: This one is not used
+            'subjects IB': ['Analysis and Approaches HL', 'Mathematics HL', 'Mathematics SL', 'Physics HL', 'Physics SL',
                             'Chemistry HL', 'Chemistry SL', 'Biology HL', 'Biology SL', 'English HL', 'English SL',
                             'None of the above'],
             'subjects AP': ['Calculus A/B', 'Calculus B/C', 'Physics 1', 'Physics 2', 'Physics C Mechanics',

@@ -134,8 +134,9 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         # print("Reading Subjects with Regex")
 
         # IB subjects
-        if re.search('[Aa]nalysis\&[Aa]pproaches(\sSL|\sHL)?', answer):
-            user_kb['subjects'].append('Mathematics HL')
+        if re.search('Analysis\sand\s[Aa]pproaches(\sSL|\sHL)?', answer):
+            match = re.search('[Aa]nalysis\sand\s[Aa]pproaches(\sSL|\sHL)?', answer)
+            user_kb['subjects'].append(match.group())
 
         if re.search('[Mm]athematics(\sSL|\sHL)?', answer):
             match = re.search('[Mm]athematics(\sSL|\sHL)?', answer)
@@ -166,6 +167,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             return
 
         visited.append('subjects')  # done with subjects
+        print(user_kb['subjects'][0])
         # queries.add_question("Enter grade for {}:".format(user_kb['subjects'][0]))  # next question - grade for 1st subject in user_kb['subjects']
         queries.add_question(["Enter grade for {}:".format(user_kb['subjects'][0]), QuestionType.TEXT_FIELD,
                               None])  # next question - grade for 1st subject in user_kb['subjects']

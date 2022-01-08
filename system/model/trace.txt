@@ -1,0 +1,24 @@
+question: Do you know what you want to study?
+response: no
+eliminated studies: None
+question: What is your high school diploma?
+response: IB
+eliminated studies: None
+question: Did you take any of the following subjects from IB?
+response: Analysis and Approaches HL, 
+eliminated studies: Chemical Engineering and Chemistry at Technical University of Eindhoven,Electrical Engineering at Technical University of Eindhoven,Architecture, Urbanism and Building at Technical University of Eindhoven,Automative Techonology at Technical University of Eindhoven,Mechanical Engineering at Technical University of Eindhoven,Chemical Engineering at University of Groningen,Industrial Engineering & Management at University of Groningen,Biomedical Engineering at University of Groningen,Circular Engineering at Maastricht University,Aerospace Engineering at Delft University of Technology (TU Delft),Chemical Science & Engineering at University of Twente,Civil Engineering at University of Twente,Electrical Engineering at University of Twente,Industrial Design Engineering at University of Twente,Industrial Engineering & Management Science at University of Twente,Mechanical Engineering at University of Twente
+question: Enter grade for Analysis and Approaches HL:
+response: 5
+eliminated studies: None
+question: Which cities do you prefer? You may select multiple cities.
+response: I don't mind, 
+eliminated studies: None
+question: Do you prefer a multidisciplinary study?
+response: yes
+eliminated studies: Industrial Engineering at Technical University of Eindhoven,Computer Science and Engineering at Technical University of Eindhoven,Business Engineering at Maastricht University,Computer Science and Engineering at Delft University of Technology (TU Delft)
+question: Would you like to take an entrance test?
+response: yes
+eliminated studies: None
+question: Would you like to take a study choice check? Note that, sometimes this is part of the selection procedure.
+response: yes
+eliminated studies: None
