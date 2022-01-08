@@ -20,22 +20,22 @@ class QuestionField:
         self.question_field = None
         self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
         self.frame.pack()
-        
-        # TODO: Scrollbar needs canvas appereantly...
-        #self.canvas = Canvas(self.frame)
-        #self.scrollbar = Scrollbar(self.frame, orient="vertical", command=self.canvas.yview)
-        #self.scrollable_frame = Frame(self.canvas)
-        #self.scrollable_frame.bind(
+
+        # TODO: Scrollbar needs canvas apparently...
+        # self.canvas = Canvas(self.frame)
+        # self.scrollbar = Scrollbar(self.frame, orient="vertical", command=self.canvas.yview)
+        # self.scrollable_frame = Frame(self.canvas)
+        # self.scrollable_frame.bind(
         #    "<Configure>",
         #    lambda e: self.canvas.configure(
         #        scrollregion=self.canvas.bbox("all")
         #    )
-        #)
-        #self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
-        #self.canvas.configure(yscrollcommand=self.scrollbar.set)
-        #self.frame.pack(fill="both", expand=True)
-        #self.canvas.pack(side="left", fill="both", expand=True)
-        #self.scrollbar.pack(side="right", fill="y")
+        # )
+        # self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
+        # self.canvas.configure(yscrollcommand=self.scrollbar.set)
+        # self.frame.pack(fill="both", expand=True)
+        # self.canvas.pack(side="left", fill="both", expand=True)
+        # self.scrollbar.pack(side="right", fill="y")
 
         self.question_text = StringVar()
         self.question_class = Question()
@@ -54,7 +54,8 @@ class QuestionField:
         self.add_save_button(self.frame)
 
     def add_question_field(self, scrollable_frame):
-        self.question_field = Label(scrollable_frame, textvariable=self.question_text, height=3, width=100, wraplength=500,
+        self.question_field = Label(scrollable_frame, textvariable=self.question_text, height=3, width=100,
+                                    wraplength=500,
                                     justify=LEFT, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR,
                                     bd=0)
         self.question_field.pack()
@@ -68,10 +69,10 @@ class QuestionField:
                                                                self.input_field), bg=Theme.BUTTON_COLOUR, bd=1,
                              activebackground=Theme.BUTTON_CLICK)
 
-        self.button.pack()
+        self.button.pack(side="bottom")
 
     def add_input_field(self):
-        # TODO: change with questiontypes
+        # DONE: change with question types
         # if 'diploma' in self.question:
         if self.question[1] == QuestionType.SELECT:
             # self.options = ['Lise Diploma', 'AP', 'IB', 'Label France Education', 'British GCE A Levels']
@@ -131,7 +132,8 @@ class QuestionField:
             results = "No requirements are met. No appropriate study programmes available."
         self.add_text(results)
 
-    def make_file(self):
+    @staticmethod
+    def make_file():
         path = './model/results.txt'
         if os.path.exists(path):
             os.remove(path)

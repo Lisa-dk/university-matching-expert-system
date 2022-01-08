@@ -1,4 +1,3 @@
-import tkinter as tk
 from tkinter import *
 
 
@@ -7,10 +6,12 @@ from view.theme import Theme
 
 
 class ScrollFrame(Frame):
-    def __init__(self, container, *args, **kwargs):
-        super().__init__(container, *args, **kwargs)
-        canvas = tk.Canvas(self, bg=Theme.BG_COLOUR)
-        scrollbar = Scrollbar(self, orient="vertical", command=canvas.yview)
+    def __init__(self, container):
+        super().__init__(container)
+
+        canvas = Canvas(container, bg=Theme.BG_COLOUR)
+        scrollbar = Scrollbar(container, orient="vertical", command=canvas.yview)
+
         self.scrollable_frame = Frame(canvas, bg=Theme.BG_COLOUR)
 
         self.scrollable_frame.bind(

@@ -1,4 +1,3 @@
-from model.rules.question_rules import rules_check
 from model.rules.elimination_rules import elimination_update
 from model.rules.user_rules import edit_user_kb
 from tkinter import messagebox
@@ -17,7 +16,8 @@ def load_new_question(question_field, kb_class, question_class, question, input_
         messagebox.showwarning("Warning", "Please select an option to continue")
     else:
         # checking over the rules and removing the question
-        edit_user_kb(answer, question_class, question_field.disclaimer, kb_class.kb, kb_class.user_kb, question_field.visited)
+        edit_user_kb(answer, question_class, question_field.disclaimer, kb_class.kb, kb_class.user_kb,
+                     question_field.visited)
         question_class.remove_question(question)
         elim_studies = eliminate_studies(kb_class, question_field.visited)
         save_trace(question[0], answer, elim_studies)
@@ -59,6 +59,5 @@ def save_trace(question, response, elim_studies):
         with open(path, 'a') as file:
             file.write('question: ' + question + "\n")
             file.write('response: ' + str(response) + "\n")
-            file.write('eliminated studies: '+ str(elim_studies) + "\n")
+            file.write('eliminated studies: ' + str(elim_studies) + "\n")
             file.close()
-

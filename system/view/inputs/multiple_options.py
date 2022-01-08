@@ -1,7 +1,5 @@
 from tkinter import *
-from tkinter.font import Font
-
-from view.scroll_frame import ScrollFrame
+# from view.scroll_frame import ScrollFrame
 from view.theme import Theme
 
 
@@ -9,14 +7,35 @@ class CheckButtonField:
     def __init__(self, master, options):
         self.master = master
         self.options = options
-        if len(options) > 15:
-            self.frame = ScrollFrame(self.master)
-        else:
-            self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
-        self.frame.pack()
         self.buttons = []
         self.check_var = []
-        self.add_check_button(self.frame)
+        if len(options) > 15:
+            # self.frame = ScrollFrame(self.master)
+
+            container = Frame(master, bg=Theme.BG_COLOUR)
+            container.pack(side=TOP, expand=YES)
+
+            canvas = Canvas(container, bg=Theme.BG_COLOUR, height=300, width=200, highlightthickness=0)
+            scrollbar = Scrollbar(container, orient="vertical", command=canvas.yview, bg=Theme.BG_COLOUR)
+
+            self.frame = Frame(canvas, bg=Theme.BG_COLOUR)
+
+            self.add_check_button(self.frame)
+
+            canvas.create_window(0, 0, anchor='nw', window=self.frame)
+
+            canvas.update_idletasks()
+
+            canvas.configure(scrollregion=canvas.bbox('all'), yscrollcommand=scrollbar.set)
+
+            canvas.pack(fill='y', expand=YES, side=LEFT)
+            scrollbar.pack(fill='y', side='left')
+
+        else:
+            self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
+            self.frame.pack(side="top")
+
+            self.add_check_button(self.frame)
 
     def add_check_button(self, frame):
         for option in self.options:

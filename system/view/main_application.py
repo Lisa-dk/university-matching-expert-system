@@ -45,7 +45,8 @@ class MainApp:
     def initialise_trace(self):
         self.current_frame = TracePage(self.master)
 
-    def make_file(self):
+    @staticmethod
+    def make_file():
         path = './model/trace.txt'
         if os.path.exists(path):
             os.remove(path)
