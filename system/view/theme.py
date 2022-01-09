@@ -1,9 +1,9 @@
 class Theme:
-    TEXT_COLOUR = "#dadfe1"
-    BG_COLOUR = "#163338"
-    BUTTON_COLOUR = "#8d9fa2"
-    NAV_BAR_BG = "#a4b2b5"
-    BUTTON_TEXT = "#163338"
-    BUTTON_CLICK = "#768c90"
+    TEXT_COLOUR = "white"
+    BG_COLOUR = "#2e2e2e"
+    BUTTON_COLOUR = "#CCCCCC"
+    NAV_BAR_BG = "#4dd0e1"
+    BUTTON_TEXT = "#641e16"
+    BUTTON_CLICK = "#a93226"
 
 
