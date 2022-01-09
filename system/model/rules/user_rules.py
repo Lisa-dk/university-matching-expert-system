@@ -85,7 +85,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if answer == 'no':  # no AP courses
             user_kb['AP courses'] = 'no'
             notes.addDisclaimer(
-                "Check university websites for further information for application with these diplomas.")
+                "As you did not take additional AP courses, we suggest you check university websites for further information for application with a {} diploma. ".format(user_kb['diplomas']))
             visited.append('None')  # mark as/done with no AP
 
         elif answer == 'yes':
@@ -108,7 +108,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
             if 'None of the above' in answer:
                 notes.addDisclaimer(
-                    "You have not met the subject requirements of any university in the Netherlands for studying engineering. You are useless. ")
+                    "You have not met the subject requirements of any study programme in the field of engineering for a Dutch university. ")
                 visited.append('None')  # mark as/done with no AP
                 return
 
@@ -169,8 +169,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             # user_kb['english level'] = []  #hmmmm
 
             if user_kb['diplomas'] in 'IB':  # exception for IB
-                notes.addDisclaimer(
-                    "You don't need an English test, since you've studied the IB programme according to the English-level requirements of the study programs in our system.")
+                #notes.addDisclaimer(
+                #    "You don't need an English test, since you've studied the IB programme according to the English-level requirements of the study programs in our system.")
                 # queries.add_question("Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, Enschede, I don't mind)")  # move onto general preferences
                 queries.add_question([
                                          "Which cities do you prefer? You may select multiple cities.",
@@ -205,7 +205,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         # *********** NOTE to self: not finished
         if answer == 'no':  # no english test
             notes.addDisclaimer(
-                                    "You need an English Test with diploma {}.  You are useless.".format(user_kb['diplomas']))
+                                    "You need an English Test with a {} diploma. ".format(user_kb['diplomas']))
             visited.append('None')  # mark as/done with no AP
 
         elif answer == 'yes':  # move onto 'english tests' checking
@@ -234,7 +234,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if re.search('[Nn]one of the above', answer):
             notes.addDisclaimer(
-                "You need an English test from the list provided. You are useless.")
+                "You need to have taken an appropriate english test (e.g. TOEFL iBT) as the english level from your diploma is insufficient. ")
             visited.append('None')  # mark as/done with no AP
 
         return
@@ -407,5 +407,5 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             visited.append('pass project oriented')
             # no elimination, do nothing
 
-        notes.addDisclaimer("You have reached the end of questionnaire.")
+        #notes.addDisclaimer("You have reached the end of questionnaire.")
         return

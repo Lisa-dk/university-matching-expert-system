@@ -14,8 +14,9 @@ class InformationPage:
         self.text_field = Text(self.frame, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0)
         info = "\nWelcome to the study programme test!\n" \
                "This test aims to recommend/match Turkish students with engineering study programmes at Dutch " \
-               "universities. Be aware, however, that not all requirements are included and you should check the " \
-               "requirements of the recommended universities as well."
+               "universities. Be aware, however, that this test only serves as a guide and does not take into consideration all" \
+               "specification. Because of this, you should check the " \
+               "requirements of the recommended study programmes as well."
         self.text_field.insert(END, info)
         self.text_field.configure(state='disabled', width=53, height=8)
 

@@ -110,6 +110,7 @@ class QuestionField:
             self.add_save_button(self.frame)
         else:
             self.save_results()
+            self.save_disclaimers()
             self.destroy()
             self.main_app.add_results_page_button()
             self.main_app.add_trace_page_button()
@@ -127,11 +128,10 @@ class QuestionField:
         self.add_text(results)
 
     @staticmethod
-    def make_file():
+    def make_file(path):
         """
         Creates file to store test results in
         """
-        path = './model/results.txt'
         if os.path.exists(path):
             os.remove(path)
 
@@ -139,8 +139,13 @@ class QuestionField:
         return file
 
     def save_results(self):
-        file = self.make_file()
+        file = self.make_file('./model/results.txt')
         if len(self.kb_class.kb) > 0:
             for study in self.kb_class.kb:
                 file.write(study['label'] + ", " + study['university'] + "\n")
             file.close()
+    
+    def save_disclaimers(self):
+        file = self.make_file('./model/disclaimers.txt')
+        file.write(self.disclaimer.get_disclaimers())
+        file.close()
