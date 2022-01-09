@@ -32,11 +32,9 @@ class TracePage:
                     for line in file:
                         ln = line.split(':')
                         if re.search('question', ln[0]):
-                            self.trace += ln[0] + ln[1]
+                            self.trace += ln[1]
                         else:
-                            if re.search('response', ln[0]):
-                                self.trace += 'Your response:\n'
-                            elif re.search('eliminated studies', ln[0]):
+                            if re.search('eliminated studies', ln[0]):
                                 if ln[1] == 'None':
                                     self.trace += 'No studies were eliminated:\n'
                                 else:
