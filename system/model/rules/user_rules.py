@@ -29,44 +29,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         # print("\nSaving study preference")
         # !!!! NOTE: did not add all descriptions in kb to here
-        if re.search('Chemical Engineering', answer):
-            user_kb['study preference'].append('Chemical Engineering')
-
-        if re.search('Technology', answer):
-            user_kb['study preference'].append('Technology')
-
-        if re.search('Design', answer):
-            user_kb['study preference'].append('Design')
-
-        if re.search('Innovation', answer):
-            user_kb['study preference'].append('Innovation')
-
-        if re.search('Society', answer):
-            user_kb['study preference'].append('Society')
-
-        if re.search('Electrical Engineering', answer):
-            user_kb['study preference'].append('Electrical Engineering')
-
-        if re.search('Architecture', answer):
-            user_kb['study preference'].append('Architecture')
-
-        if re.search('Automative Engineering', answer):
-            user_kb['study preference'].append('Automative Engineering')
-
-        if re.search('Mechanical Engineering', answer):
-            user_kb['study preference'].append('Mechanical Engineering')
-
-        if re.search('Innovation', answer):
-            user_kb['study preference'].append('Innovation')
-
-        if re.search('Industrial Engineering', answer):
-            user_kb['study preference'].append('Industrial Engineering')
-
-        if re.search('Computer Science', answer):
-            user_kb['study preference'].append('Computer Science')
-
-        if re.search('Psychology', answer):
-            user_kb['study preference'].append('Psychology')
+        if type(answer) == list:
+            user_kb['study preference'] = answer
 
        # add diploma
         queries.add_question(["What is your high school diploma?",
@@ -129,42 +93,14 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         # print("\nInitialising subjects")
         visited.remove('diplomas')  # reset visited
-        user_kb['subjects'] = []  # initialise 'subjects'
+        if type(answer) == list:
+            user_kb['subjects'] = answer
 
-        # print("Reading Subjects with Regex")
-
-        # IB subjects
-        if re.search('Analysis\sand\s[Aa]pproaches(\sSL|\sHL)?', answer):
-            match = re.search('[Aa]nalysis\sand\s[Aa]pproaches(\sSL|\sHL)?', answer)
-            user_kb['subjects'].append(match.group())
-
-        if re.search('[Mm]athematics(\sSL|\sHL)?', answer):
-            match = re.search('[Mm]athematics(\sSL|\sHL)?', answer)
-            user_kb['subjects'].append(match.group())
-
-        # AP Mathematics
-        if re.search('[Cc]alculus(\sA\/B|\sB\/C)?', answer):
-            match = re.search('[Cc]alculus(\sA\/B|\sB\/C)?', answer)
-            user_kb['subjects'].append(match.group())
-
-        # IB & AP
-        if re.search('[Pp]hysics(\sSL|\sHL|\s1|\s2|\sC\sMechanics|\sC\sElectricity\sand\sMagnetism)?', answer):
-            match = re.search('[Pp]hysics(\sSL|\sHL|\s1|\s2|\sC)?', answer)
-            user_kb['subjects'].append(match.group())
-
-        if re.search('[Cc]hemistry(\sSL|\sHL)?', answer):
-            match = re.search('[Cc]hemistry(\sSL|\sHL)?', answer)
-            user_kb['subjects'].append(match.group())
-
-        if re.search('[Bb]iology(\sSL|\sHL)?', answer):
-            match = re.search('[Bb]iology(\sSL|\sHL)?', answer)
-            user_kb['subjects'].append(match.group())
-        
-        if re.search('[Nn]one of the above', answer):
-            notes.addDisclaimer(
-                "You have not met the subject requirements of any university in the Netherlands for studying engineering. You are useless. ")
-            visited.append('None')  # mark as/done with no AP
-            return
+            if 'None of the above' in answer:
+                notes.addDisclaimer(
+                    "You have not met the subject requirements of any university in the Netherlands for studying engineering. You are useless. ")
+                visited.append('None')  # mark as/done with no AP
+                return
 
         visited.append('subjects')  # done with subjects
         print(user_kb['subjects'][0])
@@ -335,28 +271,14 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         # print("\nSaving City Preference")
         visited.pop(0)  # reset visited
 
-        if re.search("I don't mind", answer):  # pass on city elimination
+        if "I don't mind" in answer:  # pass on city elimination
             visited.append("pass city")
             # no elimination, do nothing
         else:
             # else, possible regex answers
-            user_kb['city'] = []
-            if re.search('Eindhoven', answer):
-                user_kb['city'].append('Eindhoven')
-
-            if re.search('Groningen', answer):
-                user_kb['city'].append('Groningen')
-
-            if re.search('Maastricht', answer):
-                user_kb['city'].append('Maastricht')
-
-            if re.search('Delft', answer):
-                user_kb['city'].append('Delft')
-            visited.append('city')
-
-            if re.search('Enschede', answer):
-                user_kb['city'].append('Delft')
-            visited.append('city')
+            if type(answer) == list:
+                user_kb['city'] = answer
+                visited.append('city')
 
         queries.add_question(["Do you prefer a multidisciplinary study?", QuestionType.SELECT,
                               queries.get_question_options('yes-no_preference question')])

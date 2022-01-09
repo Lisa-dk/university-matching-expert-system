@@ -50,11 +50,11 @@ class CheckButtonField:
     def get_chosen_option(self):
         # NOTE: the list is for the list implementation to remove regex, but for the subjects there 
         # are some preferences for math courses it seems, so im not sure what to do with that.
-        chosen_string = ""
+        #chosen_string = ""
         chosen = []
         for idx in range(len(self.check_var)):
             if self.check_var[idx].get() == 1:
                 chosen.append(self.options[idx])
-                chosen_string += self.options[idx] + ", "
+                #chosen_string += self.options[idx] + ", "
 
-        return chosen_string
+        return chosen
