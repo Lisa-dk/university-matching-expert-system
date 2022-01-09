@@ -48,8 +48,12 @@ class QuestionField:
     def add_text(self, text):
         self.question_text.set(text)
 
-    def add_save_button(self, scrollable_frame):
-        self.button = Button(scrollable_frame, height=1, width=10, text="Next",
+    def add_save_button(self, frame):
+        """
+        Adds 'next' button to frame which loads new question
+        :param frame: frame to place button in
+        """
+        self.button = Button(frame, height=1, width=10, text="Next",
                              command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
                                                                self.input_field), bg=Theme.BUTTON_COLOUR, bd=1,
                              activebackground=Theme.BUTTON_CLICK)
@@ -57,40 +61,45 @@ class QuestionField:
         self.button.pack(side="bottom")
 
     def add_input_field(self):
-        # DONE: change with question types
+        """
+        Adds an input field to the frame
+        """
         # if 'diploma' in self.question:
         if self.question[1] == QuestionType.SELECT:
-            # self.options = ['Lise Diploma', 'AP', 'IB', 'Label France Education', 'British GCE A Levels']
-            # self.input_field = RadioButtonField(self.frame, self.options)
             self.input_field = RadioButtonField(self.frame, self.question[2])
 
         # elif 'subject' in self.question:
         elif self.question[1] == QuestionType.MULTI_SELECT:
-            # self.options = ['Analytics & Approaches SL', 'Analytics & Approaches HL', 'Mathematics SL', 'Mathematics HL', 'Calculus', 'Physics SL', 'Physics HL', 'Chemistry SL', 'Chemistry HL']
-            # self.input_field = CheckButtonField(self.frame, self.options)
             self.input_field = CheckButtonField(self.frame, self.question[2])
 
         else:  # if self.question[1] == QuestionType.TEXT_FIELD:
             self.input_field = TextFields(self.frame)
 
     def destroy(self):
+        """
+        Removes all frames and items in the frames
+        :return:
+        """
         self.question_field.destroy()
-        # self.question_frame = None
         self.question_field = None
-        # if 'diploma' or 'subject' in self.question:
+
         if self.question[1] == QuestionType.SELECT or self.question[1] == QuestionType.MULTI_SELECT:
             self.input_field.frame.destroy()
-            # self.options = None
         else:
             self.input_field.input_text.destroy()
+
         self.input_field = None
         self.button.destroy()
         self.button = None
         self.frame.destroy()
         self.frame = None
 
-    # updates the question and input fields
+
     def update(self, empty):
+        """
+        Updates the question and input fields + terminates test if necessary
+        :param empty: contains whether questions are left
+        """
         self.input_field.frame.destroy()
         self.button.destroy()
 
@@ -119,6 +128,9 @@ class QuestionField:
 
     @staticmethod
     def make_file():
+        """
+        Creates file to store test results in
+        """
         path = './model/results.txt'
         if os.path.exists(path):
             os.remove(path)
@@ -131,4 +143,4 @@ class QuestionField:
         if len(self.kb_class.kb) > 0:
             for study in self.kb_class.kb:
                 file.write(study['label'] + ", " + study['university'] + "\n")
-        print('saved')
+            file.close()

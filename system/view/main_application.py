@@ -39,6 +39,9 @@ class MainApp:
     def remove_results_button(self):
         self.navbar.remove_results_button()
 
+    def remove_trace_button(self):
+        self.navbar.remove_trace_button()
+
     def initialise_results(self):
         self.current_frame = ResultsPage(self.master)
 

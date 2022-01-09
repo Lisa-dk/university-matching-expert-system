@@ -11,12 +11,17 @@ class TracePage:
         self.trace = None
         self.trace_field = None
         self.master = master
+
         self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
         self.frame.pack()
+
         self.load_trace()
         self.display_trace()
 
     def load_trace(self):
+        """
+        Loads the trace from a text file
+        """
         path = './model/trace.txt'
         if os.path.exists(path):
             if os.stat(path).st_size == 0:
@@ -45,11 +50,17 @@ class TracePage:
             messagebox.showerror("Error", "Something went wrong, please restart the program.")
 
     def display_trace(self):
+        """
+        Shows trace in frame
+        """
         self.trace_field = Label(self.frame, text=self.trace, width=100,
                                    wraplength=500, justify=LEFT, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR,
                                    bg=Theme.BG_COLOUR, bd=0)
         self.trace_field.pack(side=TOP, ipady=10)
 
     def destroy(self):
+        """
+        Removes frame + its items
+        """
         self.trace_field.destroy()
         self.frame.destroy()

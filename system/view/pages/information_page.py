@@ -51,6 +51,7 @@ class InformationPage:
         """
         os.remove(self.path)
         self.main_app.remove_results_button()
+        self.main_app.remove_trace_button()
         self.main_app.initialise_kb()
         self.start_test()
 
