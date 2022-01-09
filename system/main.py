@@ -6,10 +6,10 @@ from view.theme import Theme
 
 # bigger things todo:
 #TODO: add trace
-#       -> save questions and answers to text file + load (like results)
 #       -> add advise/disclaimer/explanations to trace?? (im not sure when we should add the explanations but the trace seems like a good place)
+#DONE   -> save questions and answers to text file + load (like results)
 # TODO: fix grade processing for english tests
-# TODO: list implementation to replace regex
+# DONE: list implementation to replace regex
 # TODO: comment code (likely when finalised)
 
 
