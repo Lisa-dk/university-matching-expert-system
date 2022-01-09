@@ -4,6 +4,16 @@ from model.questions import QuestionType
 
 
 def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
+    """
+    Processes the user input and provides the next questions through if-then rules.
+    :param answer: user input to a question
+    :param queries: class of questions
+    :param notes: #TODO
+    :param studies_kb: kb containing the study programmes
+    :param user_kb: kb containing user info
+    :param visited: list of passed questions
+    :return: Nothing
+    """
     # Do you know what you want to study?
     if 'start' in visited and 'study preference' not in user_kb.keys():
 
@@ -257,7 +267,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         user_kb['english grades'].append(english_grade)
 
         # last question in queries.list
-        if queries.getQuestionListLen() == 1:  # OR if queries.getCurrentQuestion() == "Enter Writing score: ":
+        if queries.get_questionlist_len() == 1:  # OR if queries.getCurrentQuestion() == "Enter Writing score: ":
             visited.pop()  # empty queries
             visited.append('check english grades')
             queries.add_question([

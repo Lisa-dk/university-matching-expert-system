@@ -1,4 +1,12 @@
 def elimination_update(study, studies_kb, user_kb, visited):
+    """
+    Eliminates studies from the kb through if-then rules.
+    :param study: a study in the kb
+    :param studies_kb: the kb containing all studies
+    :param user_kb: kb containing user info
+    :param visited: questions that have passed
+    :return: study if it has been eliminated, else 1
+    """
     
     # study preference selection
     if 'study preference' in user_kb.keys() and 'study preference' in visited:

@@ -16,41 +16,26 @@ class QuestionField:
     def __init__(self, master, kb_class, main_app):
         self.master = master
         self.main_app = main_app
+
         self.button = None
         self.question_field = None
+        self.input_field = None
+        self.options = None
+
+        self.disclaimer = Disclaimer()
+        self.visited = ['start']
+        self.kb_class = kb_class
+
         self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
         self.frame.pack()
 
-        # TODO: Scrollbar needs canvas apparently...
-        # self.canvas = Canvas(self.frame)
-        # self.scrollbar = Scrollbar(self.frame, orient="vertical", command=self.canvas.yview)
-        # self.scrollable_frame = Frame(self.canvas)
-        # self.scrollable_frame.bind(
-        #    "<Configure>",
-        #    lambda e: self.canvas.configure(
-        #        scrollregion=self.canvas.bbox("all")
-        #    )
-        # )
-        # self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
-        # self.canvas.configure(yscrollcommand=self.scrollbar.set)
-        # self.frame.pack(fill="both", expand=True)
-        # self.canvas.pack(side="left", fill="both", expand=True)
-        # self.scrollbar.pack(side="right", fill="y")
-
         self.question_text = StringVar()
         self.question_class = Question()
-        self.disclaimer = Disclaimer()
-        self.visited = ['start']
         self.question = self.question_class.get_questions()[0]
-        self.kb_class = kb_class
 
         self.add_question_field(self.frame)
         self.add_text(self.question[0])
-
-        self.input_field = None
-        self.options = None
         self.add_input_field()
-
         self.add_save_button(self.frame)
 
     def add_question_field(self, scrollable_frame):

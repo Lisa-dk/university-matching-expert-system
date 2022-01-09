@@ -30,26 +30,42 @@ class InformationPage:
         self.frame.pack()
 
     def make_start_button(self):
+        """
+        Adds button to start the test
+        """
         self.button = Button(self.frame, text="Start Test", activeforeground=Theme.TEXT_COLOUR,
                              activebackground=Theme.BUTTON_CLICK,
                              bg=Theme.BUTTON_COLOUR, bd=1, command=self.start_test)
 
     def make_retake_button(self, ):
+        """
+        Adds button to retake the test
+        """
         self.button = Button(self.frame, text="Retake Test", activeforeground=Theme.TEXT_COLOUR,
                              activebackground=Theme.BUTTON_CLICK,
                              bg=Theme.BUTTON_COLOUR, bd=1, command=self.retake_test)
 
     def retake_test(self):
+        """
+        Initialises the test if retaking it
+        """
         os.remove(self.path)
         self.main_app.remove_results_button()
         self.main_app.initialise_kb()
         self.start_test()
 
     def start_test(self):
+        """
+        Starts the test
+        """
         self.destroy()
         self.main_app.start_test()
 
     def destroy(self):
+        """
+        Removes frame + items from main window
+        :return:
+        """
         self.button.destroy()
         self.text_field.destroy()
         self.frame.destroy()

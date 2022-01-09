@@ -52,7 +52,7 @@ class Question:
     def get_questions(self):
         return self.questions
 
-    def getCurrentQuestion(self):
+    def get_current_question(self):
         return self.questions[0]
 
     def add_question(self, question):
@@ -62,8 +62,8 @@ class Question:
         self.questions.remove(question)
         # self.questions.pop(0)
 
-    def clearQuestion(self):
+    def clear_question(self):
         self.questions.clear()
 
-    def getQuestionListLen(self):
+    def get_questionlist_len(self):
         return len(self.questions)

@@ -38,6 +38,10 @@ class CheckButtonField:
             self.add_check_button(self.frame)
 
     def add_check_button(self, frame):
+        """
+        Adds check buttons for all options to a question
+        :param frame: frame to place buttons in
+        """
         for option in self.options:
             idx = self.options.index(option)
             self.check_var.append(IntVar(frame))
@@ -48,13 +52,12 @@ class CheckButtonField:
             self.buttons[idx].pack(anchor=W)
 
     def get_chosen_option(self):
-        # NOTE: the list is for the list implementation to remove regex, but for the subjects there 
-        # are some preferences for math courses it seems, so im not sure what to do with that.
-        #chosen_string = ""
+        """
+        Gets the checked buttons
+        :return: list containing all checked options
+        """
         chosen = []
         for idx in range(len(self.check_var)):
             if self.check_var[idx].get() == 1:
                 chosen.append(self.options[idx])
-                #chosen_string += self.options[idx] + ", "
-
         return chosen

@@ -5,6 +5,10 @@ class KnowledgeBase:
 
     @staticmethod
     def get_kb_dict():
+        """
+        Dictionary serving as a kb, containing all engineering study programmes in NL
+        :return: kb
+        """
         kb = [
 
             # EINDHOVEN UNIVERSITY
