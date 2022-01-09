@@ -9,15 +9,18 @@ from view.theme import Theme
 #       -> add advise/disclaimer/explanations to trace?? (im not sure when we should add the explanations but the trace seems like a good place)
 #DONE   -> save questions and answers to text file + load (like results)
 # TODO: fix grade processing for english tests
+# TODO: add descriptive disclaimers
 # DONE: list implementation to replace regex
 # TODO: comment code (likely when finalised)
+# TODO: fix scrollbar
+# TODO: add scrollbar to trace page
 
 
 # smaller things todo:
 # TODO: consistent sizing of window
 # TODO: when input is number, make sure it is a number
-# TODO: implement grade ranges
-# TODO: add option to show more information about the studies.
+# TODO: implement grade ranges (for both subjects (done) and english)
+# TODO: add option to show more information about the studies. (not necessary)
 # TODO: Question Types and input need to match + any possible error handling.
 # TODO: look at theme
 # TODO: button placements 
