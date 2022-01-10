@@ -14,7 +14,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
 
         if not any(item in study['about'] for item in user_kb['study preference']):
             print("xxx removed: " + str(study['label']))
-            studies_kb.remove(study)
+            #studies_kb.remove(study)
             return study
 
 
@@ -35,16 +35,6 @@ def elimination_update(study, studies_kb, user_kb, visited):
         studies_kb.remove(study)
         return study
 
-    '''
-    if 'AP option' in visited:
-        print("\n1. Eliminate AP")
-        print(user_kb['AP option'])
-        print(study['AP option'])
-        if user_kb['AP option'] != study['AP option']:
-            studies_kb.remove(study)
-            print("removed: " + study['label'])
-            return
-    '''
 
     # match subjects
     if 'subjects' in visited:
@@ -110,8 +100,6 @@ def elimination_update(study, studies_kb, user_kb, visited):
     if 'check english grades' in visited:
         print("\nEliminating English Grades")
 
-        visited.pop()
-        visited.append('english tests')
         #print("study: "+ str(study['label']))
         study_eng_grd = study[user_kb['english tests']]
         usr_eng_grd = user_kb['english grades']
@@ -121,7 +109,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             # print("study section: " + str(study_eng_grd[sect]))
             if float(usr_eng_grd[sect]) < float(study_eng_grd[sect][1]): #if section in study and grade valid
                 studies_kb.remove(study)
-                print("xxx removing study " + study['label'])
+                #print("xxx removing study " + study['label'])
                 return study
 
 

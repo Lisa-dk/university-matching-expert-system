@@ -79,7 +79,6 @@ class QuestionField:
         """
         # if 'diploma' in self.question:
         if self.question[1] == QuestionType.SELECT:
-            print("this: " + str(self.question[2]))
             self.input_field = RadioButtonField(self.frame, self.question[2])
 
         # elif 'subject' in self.question:
