@@ -18,9 +18,9 @@ class RadioButtonField:
         :param frame: frame to place buttons in
         """
         for option in self.options:
-            Radiobutton(frame, text=option, variable=self.chosen, value=option,
+            Radiobutton(frame, text=option, variable=self.chosen, value=option, font=("Arial", 17),
                         fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0, selectcolor=Theme.BUTTON_COLOUR,
-                        activebackground=Theme.BG_COLOUR, activeforeground=Theme.TEXT_COLOUR).pack(anchor=W, pady=10)
+                        activebackground=Theme.BG_COLOUR, activeforeground=Theme.TEXT_COLOUR).pack(fill=X, anchor=W, pady=10)
 
     def get_chosen_option(self):
         """

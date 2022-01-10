@@ -1,6 +1,7 @@
 import re
 
 from model.questions import QuestionType
+from model.questions import Question
 
 
 def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
@@ -147,13 +148,13 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if 'AP courses' in user_kb.keys() and grade > 5:
             # queries.add_question("The max grade is 5 for AP courses. Enter grade for {}: ".format(user_kb['subjects'][0]))
             queries.add_question(
-                ["The max grade is 5 for AP courses. Enter grade for {}: ".format(user_kb['subjects'][0]),
+                ["The max grade is 5 for AP courses.\nEnter grade for {}: ".format(user_kb['subjects'][0]),
                  QuestionType.TEXT_FIELD, None])
             return
         elif user_kb['diplomas'] == 'IB' and grade > 7:
             # queries.add_question("The max grade is 7 for IB subjects. Enter grade for {}: ".format(user_kb['subjects'][0]))
             queries.add_question(
-                ["The max grade is 7 for IB subjects. Enter grade for {}: ".format(user_kb['subjects'][0]),
+                ["The max grade is 7 for IB subjects.\nEnter grade for {}: ".format(user_kb['subjects'][0]),
                  QuestionType.TEXT_FIELD, None])
             return
 
@@ -218,10 +219,10 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         return  # no elimination
 
-
+    '''
     # add english test
     if 'english level' in visited and 'english tests' not in user_kb.keys():
-        # print("\nSaving English Test")
+        print("\nSaving English Test")
         visited.remove('english level')
 
         user_kb['english tests'] = ''  # initialise english test
@@ -229,8 +230,10 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         user_kb['english tests'] = english_level  # save answer
         visited.append('english tests')  # done with english tests - send to elimination
 
-        # queries.add_question("Enter overall score: ")  # next question
-        queries.add_question(["Enter overall score: ", QuestionType.TEXT_FIELD, None])  # next question
+        user_kb['english sections'] = ['Overall', 'Reading', 'Listening', 'Speaking', 'Writing'] # build list
+        print(user_kb['english sections'][0])
+        queries.add_question(["Enter {} score: ".format(user_kb['english sections'][0]), QuestionType.TEXT_FIELD, None])  # next question
+        user_kb['english grades'] = []  # initialise 
 
         if re.search('[Nn]one of the above', answer):
             notes.addDisclaimer(
@@ -238,7 +241,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             visited.append('None')  # mark as/done with no AP
 
         return
-
+    '''
+    
     # grades of english test - INITIALISE LOOP
     if 'english tests' in visited and 'english grades' not in user_kb.keys():
         # print("\nInitialising English Test - Grades")
@@ -257,7 +261,49 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         user_kb['english grades'] = []  # initialise before loop
         visited.append(
             'english grades')  # mark english test grades as done/visited - already here to loop based on tests sections in next if
+    
+    '''
 
+    # grades of english test - INITIALISE LOOP
+    if 'english tests' in visited:
+        print("\nInitialising English Test - Grades")
+        print(queries)
+
+        # if grade of section above max grade, add different question
+        test = user_kb['english tests']
+        for section in Question.english_test_max_grade(test):
+            print("in loop")
+            if section[0] == user_kb['english sections'][0] and answer > float(section[0][1]): # if section in test matches user section checked but grade is higher than max grade of section
+                print("wrong grade")
+                queries.add_question(
+                    ["The maximum grade for the {} grade is {}.\nEnter {} score: ".format(user_kb['english sections'][0], section[0][1], user_kb['english sections'][0]),
+                    QuestionType.TEXT_FIELD, None])  # next question
+                return
+            elif section[0] == user_kb['english sections'][0] and answer <= float(section[0][1]):
+                print("valid grade")
+                user_kb['english sections'].pop(0)  # next section
+                queries.add_question(["Enter {} score: ".format(user_kb['english sections'][0]), QuestionType.TEXT_FIELD, None])
+                break
+        
+        visited.remove('english tests')  # reset visited
+        english_grade = answer
+        user_kb['english grades'].append(english_grade)
+
+        # last question in queries.list
+        if  user_kb['english sections'] == 0:  # OR if queries.getCurrentQuestion() == "Enter Writing score: ":
+            print("adding cities question")
+            #visited.pop()  # empty queries
+            #visited.append('check english grades')
+            queries.add_question([
+                                     "Which cities do you prefer? You may select multiple cities.",
+                                     QuestionType.MULTI_SELECT, queries.get_question_options('cities 2')])
+        # visited appended check 
+        visited.append(
+            'check english grades')  # mark english test grades as done/visited - already here to loop based on tests sections in next if
+
+        return
+
+    '''
     # LOOP
     if 'english grades' in visited:  # and next question condition not in user_kb.keys(): ...
 
@@ -268,12 +314,13 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         # last question in queries.list
         if queries.get_questionlist_len() == 1:  # OR if queries.getCurrentQuestion() == "Enter Writing score: ":
-            visited.pop()  # empty queries
-            visited.append('check english grades')
+            #visited.pop()  # empty queries
+            #visited.append('check english grades')
             queries.add_question([
                                      "Which cities do you prefer? You may select multiple cities.",
                                      QuestionType.MULTI_SELECT, queries.get_question_options('cities 2')])
         return
+    
 
     # Checking City 
     if ('check english grades' in visited or 'check city' in visited) and 'city' not in user_kb.keys():

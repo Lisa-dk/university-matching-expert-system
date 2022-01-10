@@ -14,6 +14,7 @@ from view.theme import Theme
 # TODO: comment code (likely when finalised)
 # TODO: fix scrollbar
 # TODO: add scrollbar to trace page
+# TODO: bring back the image when restart test
 
 
 # smaller things todo:
@@ -29,7 +30,8 @@ from view.theme import Theme
 
 def main():
     root = Tk()
-    root.title("Study Program Test")
+    root.title("University Matching Program for Turkish Students")
+    root.attributes("-fullscreen", True)
 
     width = 500
     height = 500

@@ -27,7 +27,7 @@ class ResultsPage:
         path = './model/results.txt'
         if os.path.exists(path):
             if os.stat(path).st_size == 0:
-                return "No requirements are met. No appropriate study programmes available."
+                return "No requirements are met.\nNo appropriate study programmes available."
             else:
                 with open('./model/results.txt', 'r') as file:
                     results = "Requirements met for the following studies:\n\n"
@@ -64,8 +64,8 @@ class ResultsPage:
         """
         results = self.load_results()
         print('results:\n', results)
-        self.results_field = Label(self.frame, text=results, width=100,
-                                   wraplength=500, justify=LEFT, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR,
+        self.results_field = Label(self.frame, text=results, width=200,
+                                   wraplength=800, justify=LEFT, font=('Arial', 20), fg="red",
                                    bg=Theme.BG_COLOUR, bd=0)
         self.results_field.pack(side=TOP, ipady=10)
     
@@ -74,12 +74,12 @@ class ResultsPage:
         """
         Shows additional short explanation for the results.
         """
-        self.disclaimer_header = Label(self.frame, text="\nShort explanation:", width=100,
-                                   wraplength=500, justify=LEFT, font=Font(family="Arial bold"), fg=Theme.TEXT_COLOUR,
+        self.disclaimer_header = Label(self.frame, text="\nShort explanation:\n", width=100,
+                                   wraplength=500, justify=LEFT, font=("Arial bold", 20, 'underline'), fg="dark blue",
                                    bg=Theme.BG_COLOUR, bd=0)
         self.disclaimer_header.pack(side=TOP, anchor=W)
         self.disclaimer_field = Label(self.frame, text=disclaimers, width=100,
-                                   wraplength=500, justify=LEFT, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR,
+                                   wraplength=500, justify=LEFT, font=('Arial', 17), fg="dark blue",
                                    bg=Theme.BG_COLOUR, bd=0)
         self.disclaimer_field.pack(side=TOP)
 

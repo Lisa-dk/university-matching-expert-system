@@ -39,9 +39,14 @@ class QuestionField:
         self.add_save_button(self.frame)
 
     def add_question_field(self, scrollable_frame):
-        self.question_field = Label(scrollable_frame, textvariable=self.question_text, height=3, width=100,
+        self.question_field = Label(scrollable_frame, 
+                                    textvariable=self.question_text, 
+                                    height=7, width=100,
                                     wraplength=500,
-                                    justify=LEFT, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR,
+                                    justify=CENTER, 
+                                    font=("Arial", 20),
+                                    fg=Theme.TEXT_COLOUR, 
+                                    bg=Theme.BG_COLOUR,
                                     bd=0)
         self.question_field.pack()
 
@@ -53,12 +58,20 @@ class QuestionField:
         Adds 'next' button to frame which loads new question
         :param frame: frame to place button in
         """
-        self.button = Button(frame, height=1, width=10, text="Next",
-                             command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
-                                                               self.input_field), bg=Theme.BUTTON_COLOUR, bd=1,
-                             activebackground=Theme.BUTTON_CLICK)
-
-        self.button.pack(side="bottom")
+        self.button = Button(frame, text="NEXT", 
+                            font=('Arial', 15, 'bold'), 
+                            padx=7,
+                            pady=7,
+                            relief=RAISED,
+                            bg=Theme.NEXT_BUTTON_COLOUR,
+                            fg=Theme.TEXT_COLOUR,
+                            activebackground="green",
+                            activeforeground='white',
+                            command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
+                                                               self.input_field)) 
+                            #bg=Theme.BUTTON_COLOUR, bd=1,
+                            #activebackground=Theme.BUTTON_CLICK)
+        self.button.pack(side="bottom", expand=True, pady=20)
 
     def add_input_field(self):
         """
@@ -66,6 +79,7 @@ class QuestionField:
         """
         # if 'diploma' in self.question:
         if self.question[1] == QuestionType.SELECT:
+            print("this: " + str(self.question[2]))
             self.input_field = RadioButtonField(self.frame, self.question[2])
 
         # elif 'subject' in self.question:

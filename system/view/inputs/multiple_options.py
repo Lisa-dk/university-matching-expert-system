@@ -29,7 +29,7 @@ class CheckButtonField:
             canvas.configure(scrollregion=canvas.bbox('all'), yscrollcommand=scrollbar.set)
 
             canvas.pack(fill='y', expand=YES, side=LEFT)
-            scrollbar.pack(fill='y', side='left')
+            scrollbar.pack(fill='y', side='left', pady=5)
 
         else:
             self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
@@ -46,10 +46,10 @@ class CheckButtonField:
             idx = self.options.index(option)
             self.check_var.append(IntVar(frame))
             self.buttons.append(Checkbutton(frame, text=option, variable=self.check_var[idx], onvalue=1, offvalue=0,
-                                            fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0,
+                                            fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0, font=('Arial', 17),
                                             selectcolor=Theme.BUTTON_COLOUR, activebackground=Theme.BG_COLOUR,
                                             activeforeground=Theme.TEXT_COLOUR))
-            self.buttons[idx].pack(anchor=W)
+            self.buttons[idx].pack(anchor=W, pady=10)
 
     def get_chosen_option(self):
         """

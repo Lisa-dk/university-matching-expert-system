@@ -34,19 +34,37 @@ class NavBar:
         """
         Adds 'home' (info page) to frame
         """
-        self.home_button = Button(self.top_frame, text="Home", command=self.home, fg=Theme.BUTTON_TEXT,
-                                  bg=Theme.NAV_BAR_BG, activeforeground="white", activebackground=Theme.NAV_BAR_BG,
-                                  bd=0, padx=10)
+        self.home_button = Button(self.top_frame, 
+                                  text="Home", 
+                                  font=('Arial', 20),
+                                  command=self.home, 
+                                  fg=Theme.TEXT_COLOUR,
+                                  bg=Theme.NAV_BAR_BG, 
+                                  activeforeground="white", 
+                                  activebackground=Theme.NAV_BAR_BG,
+                                  bd=0, 
+                                  padx=2,
+                                  pady=7,
+                                  relief=RAISED)
         self.home_button.place(x=0, y=self.BUTTONS_Y)
-        self.home_button.pack(side="left")
+        self.home_button.pack(side="left", pady=10)
 
     def set_results_page_button(self):
         """
         Adds button to navigate the results page
         """
-        self.results_page_button = Button(self.top_frame, command=self.results, text="Results",
-                                          fg=Theme.BUTTON_TEXT, bg=Theme.NAV_BAR_BG,
-                                          activeforeground="white", activebackground=Theme.NAV_BAR_BG, bd=0, padx=10)
+        self.results_page_button = Button(self.top_frame, 
+                                        command=self.results, 
+                                        text="Results",
+                                        font=('Arial', 20),
+                                        fg=Theme.TEXT_COLOUR,
+                                        bg=Theme.NAV_BAR_BG, 
+                                        activeforeground="white", 
+                                        activebackground=Theme.NAV_BAR_BG,
+                                        bd=0, 
+                                        padx=2,
+                                        pady=7,
+                                        relief=RAISED)
         self.results_page_button.place(x=0, y=self.BUTTONS_Y)
         self.results_page_button.pack(side="left")
 
@@ -54,9 +72,18 @@ class NavBar:
         """
         Adds button to navigate the trace page
         """
-        self.trace_page_button = Button(self.top_frame, command=self.trace, text="Trace",
-                                          fg=Theme.BUTTON_TEXT, bg=Theme.NAV_BAR_BG,
-                                          activeforeground="white", activebackground=Theme.NAV_BAR_BG, bd=0, padx=10)
+        self.trace_page_button = Button(self.top_frame, 
+                                        command=self.trace, 
+                                        text="Trace",
+                                        font=('Arial', 20),
+                                        fg=Theme.TEXT_COLOUR,
+                                        bg=Theme.NAV_BAR_BG, 
+                                        activeforeground="white", 
+                                        activebackground=Theme.NAV_BAR_BG,
+                                        bd=0, 
+                                        padx=2,
+                                        pady=7,
+                                        relief=RAISED)
         self.trace_page_button.place(x=0, y=self.BUTTONS_Y)
         self.trace_page_button.pack(side="left")
 

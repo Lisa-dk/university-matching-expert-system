@@ -52,7 +52,7 @@ class TracePage:
         Shows trace in frame
         """
         self.trace_field = Label(self.frame, text=self.trace, width=100,
-                                   wraplength=500, justify=LEFT, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR,
+                                   wraplength=500, justify=LEFT, font=('Arial', 15), fg=Theme.TEXT_COLOUR,
                                    bg=Theme.BG_COLOUR, bd=0)
         self.trace_field.pack(side=TOP, ipady=10)
 

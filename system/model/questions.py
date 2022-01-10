@@ -11,6 +11,7 @@ class Question:
     def __init__(self):
         # global question_options
         self.question_options = {}
+        self.english_test_max_grades = {}
         self.create_options_dict()
 
         # self.questions = ["Do you know what you want to study? (yes/no)"]
@@ -46,8 +47,19 @@ class Question:
             'English test': ['TOEFL iBT', 'IELTS (academic)', 'CPE', 'CAE', 'None of the above']
         }
 
+    def create_english_max_grade_dict(self):
+        self.english_test_max_grades = {
+            'TOEFL iBT': [['Overall', 120], ['Section', 30]],
+            'IELTS (academic)': [['Overall', 9], ['Section', 9]],
+            'CPE': [['Overall', 230], ['Section', 230]],
+            'CAE': [['Overall', 210], ['Section', 230]]
+        }
+
     def get_question_options(self, key):
         return self.question_options.get(key)
+    
+    def get_english_test_max_grade(self, key):
+        return self.english_test_max_grades.get(key)
 
     def get_questions(self):
         return self.questions

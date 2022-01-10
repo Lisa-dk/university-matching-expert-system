@@ -1,9 +1,9 @@
 from tkinter.font import Font
 from tkinter import *
 from view.theme import Theme
+from PIL import ImageTk, Image
 
 import os
-
 
 class InformationPage:
     def __init__(self, main_app, master):
@@ -11,14 +11,14 @@ class InformationPage:
         self.main_app = main_app
         self.master = master
         self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
-        self.text_field = Text(self.frame, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0)
-        info = "\nWelcome to the study programme test!\n" \
-               "This test aims to recommend/match Turkish students with engineering study programmes at Dutch " \
-               "universities. Be aware, however, that this test only serves as a guide and does not take into consideration all" \
-               "specification. Because of this, you should check the " \
-               "requirements of the recommended study programmes as well."
-        self.text_field.insert(END, info)
-        self.text_field.configure(state='disabled', width=53, height=8)
+        self.text_field = Text(self.frame, font=('Arial', 20), fg="black", bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0)
+        info = "\tWelcome to the study programme test!\nThis test aims to recommend/match Turkish students with engineering study programmes at Dutch universities. \nBe aware, however, that this test only serves as a guide and does not take into consideration all specification.\nBecause of this, you should check the requirements of the recommended study programmes as well."
+        self.text_field.insert("1.0", info, 'center')
+        self.text_field.configure(state='disabled', width=45, height=7)
+        self.canvas = Canvas(self.master, bg="white", width=350)
+        self.canvas.pack(side=LEFT, fill=BOTH)
+        self.image = ImageTk.PhotoImage(Image.open("view/pages/student_photo.jpg"))
+        self.canvas.create_image(-60,0, anchor=NW, image=self.image)
 
         self.path = './model/results.txt'
         if os.path.exists(self.path):
@@ -27,24 +27,41 @@ class InformationPage:
             self.make_start_button()
 
         self.text_field.pack()
-        self.button.pack()
+        self.button.pack(side=BOTTOM, pady=15)
         self.frame.pack()
-
+        
     def make_start_button(self):
         """
         Adds button to start the test
         """
-        self.button = Button(self.frame, text="Start Test", activeforeground=Theme.TEXT_COLOUR,
-                             activebackground=Theme.BUTTON_CLICK,
-                             bg=Theme.BUTTON_COLOUR, bd=1, command=self.start_test)
+        self.button = Button(self.frame, text="Start Test", 
+                             font=('Arial', 15, 'bold'), 
+                             padx=7,
+                             pady=7,
+                             relief=RAISED,
+                             bg=Theme.BUTTON_COLOUR,
+                             fg=Theme.TEXT_COLOUR,
+                             activebackground="green",
+                             activeforeground='white',
+                             bd=1, 
+                             command=self.start_test)
 
     def make_retake_button(self, ):
         """
         Adds button to retake the test
         """
-        self.button = Button(self.frame, text="Retake Test", activeforeground=Theme.TEXT_COLOUR,
-                             activebackground=Theme.BUTTON_CLICK,
-                             bg=Theme.BUTTON_COLOUR, bd=1, command=self.retake_test)
+        self.button = Button(self.frame, text="Retake Test", 
+                             font=('Arial', 15, 'bold'), 
+                             padx=7,
+                             pady=7,
+                             relief=RAISED,
+                             bg=Theme.BUTTON_COLOUR,
+                             fg=Theme.TEXT_COLOUR,
+                             activebackground="green",
+                             activeforeground='white',
+                             bd=1, 
+                             command=self.retake_test)
+                             
 
     def retake_test(self):
         """
@@ -70,4 +87,5 @@ class InformationPage:
         """
         self.button.destroy()
         self.text_field.destroy()
+        self.canvas.destroy()
         self.frame.destroy()

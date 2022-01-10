@@ -16,8 +16,15 @@ class TextFields:
         Adds a text field to the frame
         :param frame: frame to add text field to
         """
-        self.input_text = Text(frame, height=3, width=10, font=Font(family="Arial"), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=1)
-        self.input_text.pack(pady=10)
+        self.input_text = Text(frame, 
+                               height=1, 
+                               width=5, 
+                               font=('Arial', 17), 
+                               fg=Theme.TEXT_COLOUR, 
+                               bg=Theme.BG_COLOUR, 
+                               bd=1,
+                               wrap='word')
+        self.input_text.pack(padx=10)
 
     def get_chosen_option(self):
         """
