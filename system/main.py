@@ -31,10 +31,10 @@ from view.theme import Theme
 def main():
     root = Tk()
     root.title("University Matching Program for Turkish Students")
-    root.attributes("-fullscreen", True)
+    #root.attributes("-fullscreen", True)
 
-    width = 500
-    height = 500
+    width = 800
+    height = 700
     x = root.winfo_screenwidth()/2 - width/2
     y = root.winfo_screenheight()/2 - height/2
 
