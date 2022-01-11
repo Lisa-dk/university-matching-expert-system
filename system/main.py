@@ -2,10 +2,9 @@ from model.knowledge_base import KnowledgeBase
 from tkinter import *
 from view.main_application import MainApp
 from view.theme import Theme
-
+import os
 
 # bigger things todo:
-# TODO: fix grade processing for english tests
 # TODO: add descriptive disclaimers
 # TODO: add scrollbar to trace page
 
@@ -15,11 +14,15 @@ from view.theme import Theme
 # TODO: button placements 
 # TODO: clean up code from comments etc + apply same conventions everywhere (standard python convention)
 
+def remove_file(path):
+    if os.path.exists(path):
+        os.remove(path)
+
 
 def main():
     root = Tk()
     root.title("University Matching Program for Turkish Students")
-    # root.attributes("-fullscreen", True)
+    #root.attributes("-fullscreen", True)
 
     width = 800
     height = 700
@@ -30,6 +33,9 @@ def main():
     root.configure(bg=Theme.BG_COLOUR)
     MainApp(root)
     root.mainloop()
+    remove_file('./model/disclaimers.txt')
+    remove_file('./model/restuls.txt')
+    remove_file('./model/trace.txt')
 
 
 if __name__ == "__main__":
