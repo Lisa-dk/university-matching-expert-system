@@ -11,8 +11,8 @@ class InformationPage:
         self.main_app = main_app
         self.master = master
         self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
-        self.title_field = Text(self.frame, font=('Arial', 30, 'bold'), fg="blue", bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0)
-        self.text_field = Text(self.frame, font=('Arial', 17, 'italic'), fg="black", bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0)
+        self.title_field = Text(self.frame, font=('Arial', 30, 'bold'), fg="#0f525b", bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0)
+        self.text_field = Text(self.frame, font=('Arial', 17), fg="black", bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0)
         welcome = "Welcome to the study programme test!\n\n"
         info = "This test aims to recommend/match Turkish students with engineering study programmes at Dutch universities.\nBe aware, however, that this test only serves as a guide and does not take into consideration all specification.\nBecause of this, you should check the requirements of the recommended study programmes as well."
         self.title_field.insert("1.0", welcome, CENTER)

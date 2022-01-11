@@ -71,7 +71,7 @@ class QuestionField:
                                                                self.input_field)) 
                             #bg=Theme.BUTTON_COLOUR, bd=1,
                             #activebackground=Theme.BUTTON_CLICK)
-        self.button.pack(side="bottom", expand=True, pady=20)
+        self.button.pack(side="bottom", expand=True, pady=10)
 
     def add_input_field(self):
         """

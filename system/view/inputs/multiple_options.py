@@ -49,7 +49,7 @@ class CheckButtonField:
                                             fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0, font=('Arial', 17),
                                             selectcolor=Theme.BUTTON_COLOUR, activebackground=Theme.BG_COLOUR,
                                             activeforeground=Theme.TEXT_COLOUR))
-            self.buttons[idx].pack(anchor=W, pady=10)
+            self.buttons[idx].pack(anchor=W)
 
     def get_chosen_option(self):
         """
