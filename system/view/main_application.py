@@ -17,16 +17,17 @@ class MainApp:
         self.navbar = NavBar(self.master, self)
         self.initialise_kb()
         self.initialise_home()
-        self.make_file()
 
     def initialise_kb(self):
         self.kb = KnowledgeBase()
+        print(self.kb.user_kb)
 
     def initialise_home(self):
         self.current_frame = InformationPage(self, self.master)
 
     def start_test(self):
         self.current_frame = QuestionField(self.master, self.kb, self)
+        self.make_file()
     
     def add_results_page_button(self):
         if self.navbar.results_page_button is None:

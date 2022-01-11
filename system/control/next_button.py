@@ -18,17 +18,18 @@ def load_new_question(question_field, kb_class, question_class, question, input_
     # obtaining the input
     # qInput = input_field.input_text.get("1.0", "end-1c")
     answer = input_field.get_chosen_option()
-    print(answer)
     if answer == "":
         # Stay with current question
         messagebox.showwarning("Warning", "Please select an option to continue")
     else:
         # checking over the rules and removing the question
+        print("before ", question, "dict: ", question_class.get_questions())
         edit_user_kb(answer, question_class, question_field.disclaimer, kb_class.kb, kb_class.user_kb,
                      question_field.visited)
         question_class.remove_question(question)
         elim_studies = eliminate_studies(kb_class, question_field.visited)
         save_trace(question[0], answer, elim_studies)
+        print("after ", "dict: ", question_class.get_questions())
 
         # noting whether there are questions left.
         empty = 0 if len(question_class.get_questions()) > 0 else 1
@@ -62,7 +63,6 @@ def eliminate_studies(kb_class, visited):
     else:
         elim_studies = elim_studies[1:]
 
-    print(str(elim_studies))
     return elim_studies
 
 

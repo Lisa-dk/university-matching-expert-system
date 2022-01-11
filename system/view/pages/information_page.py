@@ -33,7 +33,7 @@ class InformationPage:
                                 state=DISABLED,
                                 width=420)
 
-        self.path = './model/results.txt'
+        self.path = './model/trace.txt'
         if os.path.exists(self.path):
             self.make_retake_button()
         else:
