@@ -29,3 +29,6 @@ class RadioButtonField:
         """
         print(self.chosen.get())
         return self.chosen.get()
+    
+    def destroy(self):
+        self.frame.destroy()

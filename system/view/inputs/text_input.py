@@ -33,3 +33,7 @@ class TextFields:
         """
         print(self.input_text.get("1.0", "end-1c"))
         return self.input_text.get("1.0", "end-1c")
+    
+    def destroy(self):
+        self.input_text.destroy()
+        self.frame.destroy()

@@ -113,7 +113,7 @@ class QuestionField:
         Updates the question and input fields + terminates test if necessary
         :param empty: contains whether questions are left
         """
-        self.input_field.frame.destroy()
+        self.input_field.destroy()
         self.button.destroy()
 
         if not empty and len(self.kb_class.kb) > 0:
