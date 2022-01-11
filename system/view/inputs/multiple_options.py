@@ -9,9 +9,8 @@ class CheckButtonField:
         self.options = options
         self.buttons = []
         self.check_var = []
+        # Creating a scrollable frame 
         if len(options) > 15:
-            # self.frame = ScrollFrame(self.master)
-
             self.container = Frame(master, bg=Theme.BG_COLOUR)
             self.container.pack(side=TOP, expand=YES)
 

@@ -1,0 +1,6 @@
+question: Do you know what you want to study?
+response: no
+eliminated studies: None
+question: What is your high school diploma?
+response: IB
+eliminated studies: None

@@ -28,7 +28,7 @@ class InformationPage:
         self.canvas.pack(side=LEFT, fill=BOTH)
 
         img = Image.open("view/pages/student_photo.jpg")
-        zoom = 0.8
+        zoom = 0.7
         pixels_x, pixels_y = tuple([int(zoom * x)  for x in img.size])
 
         self.image = ImageTk.PhotoImage(img.resize((pixels_x, pixels_y))) 
