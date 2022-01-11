@@ -19,7 +19,7 @@ from view.theme import Theme
 def main():
     root = Tk()
     root.title("University Matching Program for Turkish Students")
-    #root.attributes("-fullscreen", True)
+    # root.attributes("-fullscreen", True)
 
     width = 800
     height = 700

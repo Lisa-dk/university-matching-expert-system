@@ -39,13 +39,13 @@ class QuestionField:
         self.add_save_button(self.frame)
 
     def add_question_field(self, scrollable_frame):
-        self.question_field = Label(scrollable_frame, 
-                                    textvariable=self.question_text, 
+        self.question_field = Label(scrollable_frame,
+                                    textvariable=self.question_text,
                                     height=7, width=100,
                                     wraplength=500,
-                                    justify=CENTER, 
+                                    justify=CENTER,
                                     font=("Arial", 20),
-                                    fg=Theme.TEXT_COLOUR, 
+                                    fg=Theme.TEXT_COLOUR,
                                     bg=Theme.BG_COLOUR,
                                     bd=0)
         self.question_field.pack()
@@ -58,19 +58,19 @@ class QuestionField:
         Adds 'next' button to frame which loads new question
         :param frame: frame to place button in
         """
-        self.button = Button(frame, text="NEXT", 
-                            font=('Arial', 15, 'bold'), 
-                            padx=7,
-                            pady=7,
-                            relief=RAISED,
-                            bg=Theme.NEXT_BUTTON_COLOUR,
-                            fg=Theme.TEXT_COLOUR,
-                            activebackground="green",
-                            activeforeground='white',
-                            command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
-                                                               self.input_field)) 
-                            #bg=Theme.BUTTON_COLOUR, bd=1,
-                            #activebackground=Theme.BUTTON_CLICK)
+        self.button = Button(frame, text="NEXT",
+                             font=('Arial', 15, 'bold'),
+                             padx=7,
+                             pady=7,
+                             relief=RAISED,
+                             bg=Theme.NEXT_BUTTON_COLOUR,
+                             fg=Theme.TEXT_COLOUR,
+                             activebackground="green",
+                             activeforeground='white',
+                             command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
+                                                               self.input_field))
+                             # bg=Theme.BUTTON_COLOUR, bd=1,
+                             # activebackground=Theme.BUTTON_CLICK)
         self.button.pack(side="bottom", expand=True, pady=10)
 
     def add_input_field(self):
@@ -96,17 +96,17 @@ class QuestionField:
         self.question_field.destroy()
         self.question_field = None
 
-        if self.question[1] == QuestionType.SELECT or self.question[1] == QuestionType.MULTI_SELECT:
-            self.input_field.frame.destroy()
-        else:
-            self.input_field.input_text.destroy()
+        # if self.question[1] == QuestionType.SELECT or self.question[1] == QuestionType.MULTI_SELECT:
+        #     self.input_field.destroy()
+        # else:
+        #     self.input_field.destroy()
 
+        self.input_field.destroy()
         self.input_field = None
         self.button.destroy()
         self.button = None
         self.frame.destroy()
         self.frame = None
-
 
     def update(self, empty):
         """
@@ -157,7 +157,7 @@ class QuestionField:
             for study in self.kb_class.kb:
                 file.write(study['label'] + ", " + study['university'] + "\n")
             file.close()
-    
+
     def save_disclaimers(self):
         file = self.make_file('./model/disclaimers.txt')
         file.write(self.disclaimer.get_disclaimers())

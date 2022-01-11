@@ -36,7 +36,6 @@ class CheckButtonField:
 
             self.add_check_button(self.frame)
 
-
     def add_check_button(self, frame):
         """
         Adds check buttons for all options to a question
