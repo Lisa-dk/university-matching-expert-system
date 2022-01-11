@@ -100,7 +100,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if answer == 'no':  # no AP courses
             user_kb['AP courses'] = 'no'
             notes.addDisclaimer(
-                "As you did not take additional AP courses, we suggest you check university websites for further information for application with a {} diploma. ".format(user_kb['diplomas']))
+                "As you did not take additional AP courses, we suggest you check university websites for further information for application with {} ".format(user_kb['diplomas']))
             visited.append('None')  # mark as/done with no AP
 
         elif answer == 'yes':
@@ -220,7 +220,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         # *********** NOTE to self: not finished
         if answer == 'no':  # no english test
             notes.addDisclaimer(
-                                    "You need an English Test with a {} diploma. ".format(user_kb['diplomas']))
+                                    "You need an English Test with {}. ".format(user_kb['diplomas']))
             visited.append('None')  # mark as/done with no AP
 
         elif answer == 'yes':  # move onto 'english tests' checking
