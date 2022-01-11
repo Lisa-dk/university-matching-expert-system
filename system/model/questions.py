@@ -20,10 +20,10 @@ class Question:
 
     def create_options_dict(self):
         self.question_options = {
-            # TODO: change I don't mind to no preference
-            # TODO: entrance exam question needs 'no' - 'no preference' question type, will be done after regex-list is solved
+            # TODO: entrance exam question needs 'no' - 'no preference'
             'yes-no question': ['yes', 'no'],
-            'yes-no_preference question': ['yes', "I don't mind"],
+            'yes-no_preference question': ['yes', 'no preference'],
+            'no-no_preference question': ['no', 'no preference'],
             'preferences': ['Chemistry', 'Biology', 'Mathematics', 'Physics', 'Electricity', 'Magnetism',
                             'Material Science', 'Architecture', 'Building Sciences', 'Real Estate', 'Transport',
                             'Cars', 'Electronics', 'Software', 'Climate', 'Economics', 'Social Sciences', 'Business',
@@ -41,8 +41,8 @@ class Question:
                             'None of the above'],
             'subjects AP': ['Calculus A/B', 'Calculus B/C', 'Physics 1', 'Physics 2', 'Physics C Mechanics',
                             'Physics C Electricity and Magnetism', 'Chemistry', 'None of the above'],
-            'cities': ['Eindhoven', 'Groningen', 'Maastricht', 'Delft', 'Enschede', "I don't mind"],
-            'cities 2': ['Eindhoven', 'Groningen', 'Maastricht', 'Delft', 'Enschede', "I don't mind"],
+            'cities': ['Eindhoven', 'Groningen', 'Maastricht', 'Delft', 'Enschede', "no preference"],
+            'cities 2': ['Eindhoven', 'Groningen', 'Maastricht', 'Delft', 'Enschede', "no preference"],
             'English test': ['TOEFL iBT', 'IELTS (academic)', 'CPE', 'CAE', 'None of the above']
         }
 

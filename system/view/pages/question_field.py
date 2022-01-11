@@ -41,8 +41,8 @@ class QuestionField:
     def add_question_field(self, scrollable_frame):
         self.question_field = Label(scrollable_frame,
                                     textvariable=self.question_text,
-                                    height=7, width=100,
-                                    wraplength=500,
+                                    height=4, width=140,
+                                    wraplength=650,
                                     justify=CENTER,
                                     font=("Arial", 20),
                                     fg=Theme.TEXT_COLOUR,

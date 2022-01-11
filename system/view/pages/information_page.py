@@ -22,25 +22,25 @@ class InformationPage:
         self.text_field.insert("1.0", info, CENTER)
 
         self.title_field.configure(state='disabled', width=80, height=3)
-        self.text_field.configure(state='disabled', width=80, height=10)
+        self.text_field.configure(state='disabled', width=100, height=10)
 
         self.canvas = Canvas(self.master, bg="white", width=420)
         self.canvas.pack(side=LEFT, fill=BOTH)
 
         img = Image.open("view/pages/student_photo.jpg")
-        zoom = 0.7
+        zoom = 0.09
         pixels_x, pixels_y = tuple([int(zoom * x)  for x in img.size])
 
         self.image = ImageTk.PhotoImage(img.resize((pixels_x, pixels_y))) 
         self.canvas.create_image(0,0, 
                                 anchor=NW, 
                                 image=self.image)
-        self.canvas.create_text(3,612, text="https://www.istockphoto.com/tr/foto%C4%9Fraf/s%C4%B1n%C4%B1flar-aras%C4%B1nda-koridorda-%C3%B6%C4%9Frenciler-gm1202242519-345072828",
+        self.canvas.create_text(3,545, text="https://www.pexels.com/photo/friends-sitting-in-the-library-8199567/",
                                 font=("Arial", 10),
                                 fill="dark blue",
                                 anchor=NW,
                                 state=DISABLED,
-                                width=420)
+                                width=330)
 
         self.path = './model/trace.txt'
         if os.path.exists(self.path):

@@ -135,7 +135,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
 
 
     # matching enterance exam
-    if 'enterance exam' in visited:
+    if 'entrance exam' in visited:
         #print("\nEliminating Enterance Exam")
     
         # remove studies that have enterance exam

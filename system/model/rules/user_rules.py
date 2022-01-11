@@ -186,9 +186,9 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             if user_kb['diplomas'] in 'IB':  # exception for IB
                 #notes.addDisclaimer(
                 #    "You don't need an English test, since you've studied the IB programme according to the English-level requirements of the study programs in our system.")
-                # queries.add_question("Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, Enschede, I don't mind)")  # move onto general preferences
+                # queries.add_question("Which cities do you prefer? You may select multiple cities. (Eindhoven, Groningen, Maastricht, Delft, Enschede, no preference)")  # move onto general preferences
                 queries.add_question([
-                                         "Which cities do you prefer? You may select multiple cities.",
+                                         "Which cities do you prefer?\nYou may select multiple cities.",
                                          QuestionType.MULTI_SELECT,
                                          queries.get_question_options('cities')])  # move onto general preferences
                 # print(str(visited))
@@ -283,7 +283,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             #print("adding cities question")
             visited.remove('english tests')  # reset visited
             queries.add_question([
-                                     "Which cities do you prefer? You may select multiple cities.",
+                                     "Which cities do you prefer?\nYou may select multiple cities.",
                                      QuestionType.MULTI_SELECT, queries.get_question_options('cities 2')])
             visited.append('check english grades')  # mark english test grades as done/visited
         
@@ -298,7 +298,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         print("\nSaving City Preference")
         visited.pop(0)  # reset visited
 
-        if "I don't mind" in answer:  # pass on city elimination
+        if "no preference" in answer:  # pass on city elimination
             visited.append("pass city")
             # no elimination, do nothing
         else:
@@ -319,12 +319,12 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if answer == 'yes':  # those that are not will be eliminated
             visited.append('multidisciplinary')
-        elif answer == "I don't mind":  # pass
+        elif answer == "no preference":  # pass
             visited.append('pass multidisciplinary')
             # no elimination, do nothing
 
         queries.add_question(["Would you like to take an entrance test?", QuestionType.SELECT,
-                              queries.get_question_options('yes-no_preference question')])
+                              queries.get_question_options('no-no_preference question')])
         return
 
     # Entrance Exam
@@ -336,12 +336,12 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if answer == 'no':  # no, the user doesn't want the studies with entrance exam, those that have will be eliminated
             visited.append('entrance exam')
-        elif answer == "I don't mind":  # pass
+        elif answer == "no preference":  # pass
             visited.append('pass entrance exam')
             # no elimination, do nothing
 
         queries.add_question([
-                                 "Would you like to take a study choice check? Note that, sometimes this is part of the selection procedure.",
+                                 "Would you like to take a study choice check?\nNote that, sometimes this is part of the selection procedure.",
                                  QuestionType.SELECT, queries.get_question_options('yes-no_preference question')])
         return
 
@@ -353,7 +353,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if answer == 'yes':  # studies not offering study choice check will be eliminated
             visited.append('study choice check')
-        elif answer == "I don't mind":  # pass
+        elif answer == "no preference":  # pass
             visited.append('pass study choice check')
             # no elimination, do nothing
 
@@ -369,7 +369,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if answer == 'yes':  # studies not offering research will be eliminated
             visited.append('research')
-        elif answer == "I don't mind":  # pass
+        elif answer == "no preference":  # pass
             visited.append('pass research')
             # no elimination, do nothing
 
@@ -386,11 +386,11 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if answer == 'yes':  # studies not offering practical-oriented approach will be eliminated
             visited.append('practical oriented')
-        elif answer == "I don't mind":  # pass
+        elif answer == "no preference":  # pass
             visited.append('pass practical oriented')
             # no elimination, do nothing
 
-        queries.add_question(["Do you prefer a study with project approach?", QuestionType.SELECT,
+        queries.add_question(["Do you prefer project-oriented study?", QuestionType.SELECT,
                               queries.get_question_options('yes-no_preference question')])
         return
 
@@ -403,13 +403,13 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if answer == 'yes':  # studies not offering project oriented approach will be eliminated
             visited.append('project oriented')
-        elif answer == "I don't mind":  # pass
+        elif answer == "no preference":  # pass
             visited.append('pass project oriented')
             # no elimination, do nothing
 
         queries.add_question([
-                                 "Do you mind applying to a numerus fixus study? Note that, numerus fixus study programs have a limited capacity and therefore, may have further requirements such as entrance exam, or portfolio.",
-                                 QuestionType.SELECT, queries.get_question_options('yes-no_preference question')])
+                                 "Do you mind applying to a numerus fixus study?\nNote that, numerus fixus study programs have a limited capacity and therefore, may have further requirements such as entrance exam, or portfolio.",
+                                 QuestionType.SELECT, queries.get_question_options('no-no_preference question')])
         return
 
     # Numerus Fixus
@@ -420,7 +420,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if answer == 'no':  # studies that are numerus fixus will be eliminated
             visited.append('project oriented')
-        elif answer == "I don't mind":  # pass
+        elif answer == "no preference":  # pass
             visited.append('pass project oriented')
             # no elimination, do nothing
 
