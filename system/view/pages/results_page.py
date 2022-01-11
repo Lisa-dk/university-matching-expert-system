@@ -65,7 +65,7 @@ class ResultsPage:
         results = self.load_results()
         print('results:\n', results)
         self.results_field = Label(self.frame, text=results, width=200,
-                                   wraplength=800, justify=LEFT, font=('Arial', 20), fg="red",
+                                   wraplength=800, justify=LEFT, font=('Arial', 20), fg=Theme.RESULT_TEXT,
                                    bg=Theme.BG_COLOUR, bd=0)
         self.results_field.pack(side=TOP, ipady=10)
     
@@ -75,11 +75,11 @@ class ResultsPage:
         Shows additional short explanation for the results.
         """
         self.disclaimer_header = Label(self.frame, text="\nShort explanation:\n", width=100,
-                                   wraplength=500, justify=LEFT, font=("Arial bold", 20, 'underline'), fg="dark blue",
+                                   wraplength=500, justify=LEFT, font=("Arial bold", 20, 'underline'), fg=Theme.DISCLAIMER_HEADER,
                                    bg=Theme.BG_COLOUR, bd=0)
         self.disclaimer_header.pack(side=TOP, anchor=W)
         self.disclaimer_field = Label(self.frame, text=disclaimers, width=100,
-                                   wraplength=500, justify=LEFT, font=('Arial', 17), fg="dark blue",
+                                   wraplength=500, justify=LEFT, font=('Arial', 17), fg=Theme.TEXT_COLOUR,
                                    bg=Theme.BG_COLOUR, bd=0)
         self.disclaimer_field.pack(side=TOP)
 

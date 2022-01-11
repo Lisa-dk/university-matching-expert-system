@@ -23,13 +23,11 @@ def load_new_question(question_field, kb_class, question_class, question, input_
         messagebox.showwarning("Warning", "Please select an option to continue")
     else:
         # checking over the rules and removing the question
-        print("before ", question, "dict: ", question_class.get_questions())
         edit_user_kb(answer, question_class, question_field.disclaimer, kb_class.kb, kb_class.user_kb,
                      question_field.visited)
         question_class.remove_question(question)
         elim_studies = eliminate_studies(kb_class, question_field.visited)
         save_trace(question[0], answer, elim_studies)
-        print("after ", "dict: ", question_class.get_questions())
 
         # noting whether there are questions left.
         empty = 0 if len(question_class.get_questions()) > 0 else 1

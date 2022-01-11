@@ -5,5 +5,7 @@ class Theme:
     NAV_BAR_BG = "#4dd0e1"
     BUTTON_CLICK = "#a93226"
     NEXT_BUTTON_COLOUR = "#4a7abc"
+    INFO_HEADER = "#0f525b"
+    DISCLAIMER_HEADER = "#0f525b"
 
 
