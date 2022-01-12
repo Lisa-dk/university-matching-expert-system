@@ -34,7 +34,7 @@ def main():
     MainApp(root)
     root.mainloop()
     remove_file('./model/disclaimers.txt')
-    remove_file('./model/restuls.txt')
+    remove_file('./model/results.txt')
     remove_file('./model/trace.txt')
 
 

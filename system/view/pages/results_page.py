@@ -17,7 +17,6 @@ class ResultsPage:
         self.frame.pack()
 
         self.display_results()
-        self.load_disclaimers()
 
     def load_results(self):
         """
@@ -27,7 +26,11 @@ class ResultsPage:
         path = './model/results.txt'
         if os.path.exists(path):
             if os.stat(path).st_size == 0:
-                return "No requirements are met.\nNo appropriate study programmes available."
+                if os.path.exists('./model/disclaimers.txt'):
+                    print("disclaimers", self.load_disclaimers())
+                    return self.load_disclaimers()
+                else:
+                    return "No requirements are met.\nNo appropriate study programmes available."
             else:
                 with open('./model/results.txt', 'r') as file:
                     results = "Requirements met for the following studies:\n\n"
@@ -46,14 +49,14 @@ class ResultsPage:
         path = './model/disclaimers.txt'
         if os.path.exists(path):
             if os.stat(path).st_size == 0:
-                pass
+                return "No requirements are met.\nNo appropriate study programmes available."
             else:
                 with open('./model/disclaimers.txt', 'r') as file:
                     disclaimers = ''
                     for line in file:
                         disclaimers += line
                     file.close()
-                    self.display_disclaimers(disclaimers)
+                    return disclaimers
         else:
             messagebox.showerror("Error", "Something went wrong, please restart the program.")
 
@@ -68,20 +71,7 @@ class ResultsPage:
                                    wraplength=800, justify=LEFT, font=('Arial', 20), fg=Theme.RESULT_TEXT,
                                    bg=Theme.BG_COLOUR, bd=0)
         self.results_field.pack(side=TOP, ipady=10)
-    
 
-    def display_disclaimers(self, disclaimers):
-        """
-        Shows additional short explanation for the results.
-        """
-        self.disclaimer_header = Label(self.frame, text="\nShort explanation:\n", width=100,
-                                   wraplength=500, justify=LEFT, font=("Arial bold", 20, 'underline'), fg=Theme.DISCLAIMER_HEADER,
-                                   bg=Theme.BG_COLOUR, bd=0)
-        self.disclaimer_header.pack(side=TOP, anchor=W)
-        self.disclaimer_field = Label(self.frame, text=disclaimers, width=100,
-                                   wraplength=500, justify=LEFT, font=('Arial', 17), fg=Theme.TEXT_COLOUR,
-                                   bg=Theme.BG_COLOUR, bd=0)
-        self.disclaimer_field.pack(side=TOP)
 
     def destroy(self):
         """
