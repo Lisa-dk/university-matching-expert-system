@@ -4,9 +4,6 @@ from view.main_application import MainApp
 from view.theme import Theme
 import os
 
-# bigger things todo:
-# TODO: add descriptive disclaimers
-# TODO: add scrollbar to trace page
 
 # smaller things todo:
 # TODO: consistent sizing of window
@@ -22,7 +19,6 @@ def remove_file(path):
 def main():
     root = Tk()
     root.title("University Matching Program for Turkish Students")
-    #root.attributes("-fullscreen", True)
 
     width = 800
     height = 700
