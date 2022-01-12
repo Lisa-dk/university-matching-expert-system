@@ -27,7 +27,6 @@ class ResultsPage:
         if os.path.exists(path):
             if os.stat(path).st_size == 0:
                 if os.path.exists('./model/disclaimers.txt'):
-                    print("disclaimers", self.load_disclaimers())
                     return self.load_disclaimers()
                 else:
                     return "No requirements are met.\nNo appropriate study programmes available."

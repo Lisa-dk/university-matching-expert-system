@@ -130,7 +130,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         visited.append('subjects')  # done with subjects
         print(user_kb['subjects'][0])
         # queries.add_question("Enter grade for {}:".format(user_kb['subjects'][0]))  # next question - grade for 1st subject in user_kb['subjects']
-        queries.add_question(["Enter grade for {}:".format(user_kb['subjects'][0]), QuestionType.TEXT_FIELD,
+        queries.add_question(["Enter grade for {}.".format(user_kb['subjects'][0]), QuestionType.TEXT_FIELD,
                               None])  # next question - grade for 1st subject in user_kb['subjects']
 
         return
@@ -162,13 +162,13 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if 'AP courses' in user_kb.keys() and grade > 5:
             # queries.add_question("The max grade is 5 for AP courses. Enter grade for {}: ".format(user_kb['subjects'][0]))
             queries.add_question(
-                ["The max grade is 5 for AP courses.\nEnter grade for {}: ".format(user_kb['subjects'][0]),
+                ["The max grade is 5 for AP courses.\nEnter grade for {}. ".format(user_kb['subjects'][0]),
                  QuestionType.TEXT_FIELD, None])
             return
         elif user_kb['diplomas'] == 'IB' and grade > 7:
             # queries.add_question("The max grade is 7 for IB subjects. Enter grade for {}: ".format(user_kb['subjects'][0]))
             queries.add_question(
-                ["The max grade is 7 for IB subjects.\nEnter grade for {}: ".format(user_kb['subjects'][0]),
+                ["The max grade is 7 for IB subjects.\nEnter grade for {}. ".format(user_kb['subjects'][0]),
                  QuestionType.TEXT_FIELD, None])
             return
 
@@ -206,7 +206,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
                 visited.append('english proof')
         else:
             # queries.add_question("Enter grade for {}: ".format(user_kb['subjects'][0]))  # get next subject in user_kb
-            queries.add_question(["Enter grade for {}: ".format(user_kb['subjects'][0]), QuestionType.TEXT_FIELD,
+            queries.add_question(["Enter grade for {}. ".format(user_kb['subjects'][0]), QuestionType.TEXT_FIELD,
                                   None])  # get next subject in user_kb
 
         return
@@ -244,7 +244,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         user_kb['english tests'] = english_level  # save answer
         visited.append('english tests')  # done with english tests - send to elimination
 
-        queries.add_question(["Enter {} score: ".format(english_sections[0]), QuestionType.TEXT_FIELD, None])  # next question
+        queries.add_question(["Enter {} score. ".format(english_sections[0]), QuestionType.TEXT_FIELD, None])  # next question
         user_kb['english grades'] = []  # initialise 
 
         if re.search('[Nn]one of the above', answer):
@@ -266,7 +266,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         if float(answer) > float(english_test_max_grade[test]): # if grade is higher than max grade of section
             #print("wrong grade")
             queries.add_question(
-                ["The maximum grade for the {} grade is {}.\nEnter {} score: ".format(english_sections[0], english_test_max_grade[test], english_sections[0]),
+                ["The maximum grade for the {} grade is {}.\nEnter {} score. ".format(english_sections[0], english_test_max_grade[test], english_sections[0]),
                 QuestionType.TEXT_FIELD, None])  # next question
             return
 
@@ -288,7 +288,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             visited.append('check english grades')  # mark english test grades as done/visited
         
         else:   # still checking other english test sections    
-            queries.add_question(["Enter {} score: ".format(english_sections[0]), QuestionType.TEXT_FIELD, None]) # next question
+            queries.add_question(["Enter {} score. ".format(english_sections[0]), QuestionType.TEXT_FIELD, None]) # next question
         
         return
 

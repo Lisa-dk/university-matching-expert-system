@@ -47,18 +47,19 @@ class TracePage:
                     for line in file:
                         ln = line.split(':')
                         if re.search('question', ln[0]):
-                            self.trace += ln[1]
+                            self.trace += ln[1][1:]
                         else:
-                            if re.search('eliminated studies', ln[0]):
-                                if ln[1] == 'None':
-                                    self.trace += 'No studies were eliminated:\n'
-                                else:
-                                    self.trace += 'The following studies were eliminated:\n'
-
-                            answers = ln[1].split(',')
-                            for item in answers:
-                                if item != []:
-                                    self.trace += item + '\n'
+                            if re.search('eliminated studies', ln[0]) or re.search('response', ln[0]):
+                                if re.search('eliminated studies', ln[0]):
+                                    if ln[1] == 'None':
+                                        self.trace += 'No studies were eliminated:\n'
+                                    else:
+                                        self.trace += 'The following studies were eliminated:\n'
+                                answers = ln[1][1:].split(';')
+                                print(ln)
+                                for item in answers:
+                                    if item != []:
+                                        self.trace += item + '\n'
         else:
             messagebox.showerror("Error", "Something went wrong, please restart the program.")
 
