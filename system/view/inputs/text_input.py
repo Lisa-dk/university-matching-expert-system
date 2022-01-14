@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter.font import Font
+# from tkinter.font import Font
 from view.theme import Theme
 
 

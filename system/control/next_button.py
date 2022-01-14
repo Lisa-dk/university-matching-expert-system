@@ -12,7 +12,7 @@ def load_new_question(question_field, kb_class, question_class, question, input_
     :param kb_class: class containing the kb and user kb
     :param question_class: class containing the questions
     :param question: the current question
-    :param input_field: field containg the user input
+    :param input_field: field contains the user input
     """
     # obtaining the input
     answer = input_field.get_chosen_option()

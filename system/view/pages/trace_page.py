@@ -1,7 +1,7 @@
 from tkinter import messagebox
 from view.theme import Theme
 from tkinter import *
-from tkinter.font import Font
+# from tkinter.font import Font
 import os
 import re
 
@@ -58,7 +58,7 @@ class TracePage:
                                 answers = ln[1][1:].split(';')
                                 print(ln)
                                 for item in answers:
-                                    if item != []:
+                                    if item:
                                         self.trace += item + '\n'
         else:
             messagebox.showerror("Error", "Something went wrong, please restart the program.")

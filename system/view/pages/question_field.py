@@ -1,5 +1,7 @@
 from tkinter import *
-from tkinter.font import Font
+# from tkinter.font import Font
+import os
+
 from control.next_button import load_new_question
 from model.questions import Question, QuestionType
 from view.inputs.single_option import RadioButtonField
@@ -7,8 +9,6 @@ from view.inputs.multiple_options import CheckButtonField
 from view.inputs.text_input import TextFields
 from view.theme import Theme
 from model.disclaimer import Disclaimer
-
-import os
 
 
 class QuestionField:
@@ -69,8 +69,8 @@ class QuestionField:
                              activeforeground='white',
                              command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
                                                                self.input_field))
-                             # bg=Theme.BUTTON_COLOUR, bd=1,
-                             # activebackground=Theme.BUTTON_CLICK)
+        # bg=Theme.BUTTON_COLOUR, bd=1,
+        # activebackground=Theme.BUTTON_CLICK)
         self.button.pack(side="bottom", expand=True, pady=10)
 
     def add_input_field(self):

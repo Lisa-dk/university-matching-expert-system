@@ -8,5 +8,3 @@ class Theme:
     INFO_HEADER = "#0f525b"
     DISCLAIMER_HEADER = "#0f525b"
     RESULT_TEXT = "#466f75"
-
-

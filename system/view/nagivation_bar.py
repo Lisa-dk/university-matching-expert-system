@@ -26,23 +26,24 @@ class NavBar:
         """
         Adds top bar to frame
         """
-        self.top_frame = Frame(self.master, bg=Theme.NAV_BAR_BG)
+        self.top_frame = Frame(self.master, height=50, bg=Theme.NAV_BAR_BG)
         self.top_frame.pack(side="top", fill='x', ipady=self.HEIGHT)
+        self.top_frame.pack_propagate(0)
         self.set_home_button()
 
     def set_home_button(self):
         """
         Adds 'home' (info page) to frame
         """
-        self.home_button = Button(self.top_frame, 
-                                  text="Home", 
+        self.home_button = Button(self.top_frame,
+                                  text="Home",
                                   font=('Arial', 20),
-                                  command=self.home, 
+                                  command=self.home,
                                   fg=Theme.TEXT_COLOUR,
-                                  bg=Theme.NAV_BAR_BG, 
-                                  activeforeground="white", 
+                                  bg=Theme.NAV_BAR_BG,
+                                  activeforeground="white",
                                   activebackground=Theme.NAV_BAR_BG,
-                                  bd=0, 
+                                  bd=0,
                                   padx=2,
                                   pady=7,
                                   relief=RAISED)
@@ -53,18 +54,18 @@ class NavBar:
         """
         Adds button to navigate the results page
         """
-        self.results_page_button = Button(self.top_frame, 
-                                        command=self.results, 
-                                        text="Results",
-                                        font=('Arial', 20),
-                                        fg=Theme.TEXT_COLOUR,
-                                        bg=Theme.NAV_BAR_BG, 
-                                        activeforeground="white", 
-                                        activebackground=Theme.NAV_BAR_BG,
-                                        bd=0, 
-                                        padx=2,
-                                        pady=7,
-                                        relief=RAISED)
+        self.results_page_button = Button(self.top_frame,
+                                          command=self.results,
+                                          text="Results",
+                                          font=('Arial', 20),
+                                          fg=Theme.TEXT_COLOUR,
+                                          bg=Theme.NAV_BAR_BG,
+                                          activeforeground="white",
+                                          activebackground=Theme.NAV_BAR_BG,
+                                          bd=0,
+                                          padx=2,
+                                          pady=7,
+                                          relief=RAISED)
         self.results_page_button.place(x=0, y=self.BUTTONS_Y)
         self.results_page_button.pack(side="left")
 
@@ -72,15 +73,15 @@ class NavBar:
         """
         Adds button to navigate the trace page
         """
-        self.trace_page_button = Button(self.top_frame, 
-                                        command=self.trace, 
+        self.trace_page_button = Button(self.top_frame,
+                                        command=self.trace,
                                         text="Trace",
                                         font=('Arial', 20),
                                         fg=Theme.TEXT_COLOUR,
-                                        bg=Theme.NAV_BAR_BG, 
-                                        activeforeground="white", 
+                                        bg=Theme.NAV_BAR_BG,
+                                        activeforeground="white",
                                         activebackground=Theme.NAV_BAR_BG,
-                                        bd=0, 
+                                        bd=0,
                                         padx=2,
                                         pady=7,
                                         relief=RAISED)

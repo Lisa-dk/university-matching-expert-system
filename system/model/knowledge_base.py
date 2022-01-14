@@ -47,7 +47,7 @@ class KnowledgeBase:
                 'about': ['Chemical Engineering', 'Chemistry', 'Sustainability', 'Healthcare', 'Material Science',
                           'Process Engineering', 'Design'],
                 'multidisciplinary': 'yes',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'yes',
                 # The outcome of the study choice check is not binding and does not influence your admission to the program. Consider the study choice check as a useful way to prepare yourself for starting your Bachelor's program at TU/e.
                 'research': 'yes',
@@ -85,7 +85,7 @@ class KnowledgeBase:
                 'about': ['Electrical Engineering', 'Electricity', 'Magnetism', 'Healthcare',
                           'Environment', 'Sustainability', 'Society'],
                 'multidisciplinary': 'no',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'yes',
                 'research': 'no',
                 'practical oriented': 'no',
@@ -122,7 +122,7 @@ class KnowledgeBase:
                 'about': ['Architecture', 'Building Sciences', 'Design', 'Real Estate',
                           'Innovation', 'Creativity'],
                 'multidisciplinary': 'yes',
-                'enterance exam': 'yes',
+                'entrance exam': 'yes',
                 'study choice check': 'no',
                 'research': 'no',
                 'practical oriented': 'no',
@@ -130,7 +130,7 @@ class KnowledgeBase:
                 'numerus fixus': 'no',
             },
             {
-                'label': 'Automative Techonology',
+                'label': 'Automative Technology',
                 'university': 'Technical University of Eindhoven',
                 'city': 'Eindhoven',
                 'degree': 'Bachelor of Science',
@@ -158,7 +158,7 @@ class KnowledgeBase:
                 'CAE': [['Overall', 176], ['Reading', 169], ['Listening', 169], ['Speaking', 169], ['Writing', 169]],
                 'about': ['Automative Technology', 'Cars', 'Electronics', 'Software'],
                 'multidisciplinary': 'no',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'yes',
                 'research': 'no',
                 'practical oriented': 'no',
@@ -194,7 +194,7 @@ class KnowledgeBase:
                 'CAE': [['Overall', 176], ['Reading', 169], ['Listening', 169], ['Speaking', 169], ['Writing', 169]],
                 'about': ['Mechanical Engineering', 'Mathematics', 'Physics', 'Chemistry', 'Innovation', 'Creativity'],
                 'multidisciplinary': 'yes',
-                'enterance exam': 'yes',
+                'entrance exam': 'yes',
                 'study choice check': 'no',
                 'research': 'no',
                 'practical oriented': 'no',
@@ -224,7 +224,7 @@ class KnowledgeBase:
                 'about': ['Innovation', 'Sustainability', 'Environment', 'Climate', 'Economics', 'Social Sciences',
                           'Technology', 'Society'],
                 'multidisciplinary': 'yes',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'yes',
                 'research': 'no',
                 'practical oriented': 'no',
@@ -254,7 +254,7 @@ class KnowledgeBase:
                 'about': ['Industrial Engineering', 'Business', 'Management', 'Technology', 'Production',
                           'Information Systems'],
                 'multidisciplinary': 'no',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'no',
                 'research': 'yes',
                 'practical oriented': 'yes',
@@ -283,7 +283,7 @@ class KnowledgeBase:
                 'CAE': [['Overall', 176], ['Reading', 169], ['Listening', 169], ['Speaking', 169], ['Writing', 169]],
                 'about': ['Computer Science', 'Software', 'Programming', 'Design', 'Internet', 'Technology'],
                 'multidisciplinary': 'no',
-                'enterance exam': 'yes',
+                'entrance exam': 'yes',
                 'study choice check': 'no',
                 'research': 'no',
                 'practical oriented': 'no',
@@ -312,7 +312,7 @@ class KnowledgeBase:
                 'CAE': [['Overall', 176], ['Reading', 169], ['Listening', 169], ['Speaking', 169], ['Writing', 169]],
                 'about': ['Psychology', 'Technology', 'Robots', 'Society', 'Design'],
                 'multidisciplinary': 'yes',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'yes',
                 'research': 'yes',
                 'practical oriented': 'yes',  # hands-on/lab experience
@@ -349,7 +349,7 @@ class KnowledgeBase:
                 'CAE': [['Overall', 180]],
                 'about': ['Chemical Engineering', 'Chemistry', 'Sustainability', 'Process Engineering', 'Design'],
                 'multidisciplinary': 'yes',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'yes',  # matching
                 'research': 'yes',
                 'practical oriented': 'yes',  # hands-on/lab experience
@@ -379,7 +379,7 @@ class KnowledgeBase:
                 'CAE': [['Overall', 180]],
                 'about': ['Industrial Engineering', 'Design', 'Business', 'Management', 'Technology', 'Production'],
                 'multidisciplinary': 'yes',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'yes',  # matching
                 'research': 'yes',
                 'practical oriented': 'no',  # hands-on/lab experience
@@ -409,7 +409,7 @@ class KnowledgeBase:
                 'CAE': [['Overall', 180]],
                 'about': ['Biomedical Engineering', 'Healthcare', 'Biology', 'Sustainability', 'Innovation', 'Design'],
                 'multidisciplinary': 'yes',
-                'enterance exam': 'yes',
+                'entrance exam': 'yes',
                 'study choice check': 'yes',  # matching
                 'research': 'no',
                 'practical oriented': 'yes',  # hands-on/lab experience
@@ -460,7 +460,7 @@ class KnowledgeBase:
                 'about': ['Circular Engineering', 'Economics', 'Environment', 'Sustainability',
                           'Innovation', 'Design'],
                 'multidisciplinary': 'no',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'no',
                 'research': 'yes',
                 'practical oriented': 'yes',  # hands-on/lab experience
@@ -487,7 +487,7 @@ class KnowledgeBase:
                 'CAE': [['Overall', 180]],
                 'about': ['Mathematics', 'Business', 'Economics', 'Society', 'Technology', 'Innovation'],
                 'multidisciplinary': 'no',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'no',
                 'research': 'no',
                 'practical oriented': 'no',  # hands-on/lab experience
@@ -519,7 +519,7 @@ class KnowledgeBase:
                 'CAE': [['Overall', 176]],
                 'about': ['Aerospace', 'Technology', 'Innovation', 'Design'],
                 'multidisciplinary': 'yes',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'no',
                 'research': 'no',
                 'practical oriented': 'no',  # hands-on/lab experience
@@ -546,7 +546,7 @@ class KnowledgeBase:
                 'about': ['Computer Science', 'Software', 'Mathematics', 'Programming', 'Technology',
                           'Data Processing'],
                 'multidisciplinary': 'no',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'no',
                 'research': 'no',
                 'practical oriented': 'no',  # hands-on/lab experience
@@ -588,7 +588,7 @@ class KnowledgeBase:
                 'about': ['Chemical Engineering', 'Mathematics', 'Physics', 'Chemistry', 'Material Science',
                           'Process Engineering'],
                 'multidisciplinary': 'no',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'no',
                 'research': 'yes',
                 'practical oriented': 'no',  # hands-on/lab experience
@@ -623,7 +623,7 @@ class KnowledgeBase:
                 'about': ['Civil Engineering', 'Environment', 'Business', 'Society', 'Technology', 'Management',
                           'Design', 'Building Sciences', 'Transport'],
                 'multidisciplinary': 'no',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'no',
                 'research': 'no',
                 'practical oriented': 'no',  # hands-on/lab experience
@@ -657,7 +657,7 @@ class KnowledgeBase:
                 'CAE': [['Overall', 180]],
                 'about': ['Electrical Engineering', 'Robots', 'Electricity', 'Physics'],
                 'multidisciplinary': 'no',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'no',
                 'research': 'yes',
                 'practical oriented': 'no',  # hands-on/lab experience
@@ -692,7 +692,7 @@ class KnowledgeBase:
                 'about': ['Industrial Engineering', 'Technology', 'Design', 'Creativity', 'Innovation', 'Production',
                           'Graphic Design', 'Marketing'],
                 'multidisciplinary': 'no',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'no',
                 'research': 'no',
                 'practical oriented': 'yes',  # hands-on/lab experience
@@ -721,7 +721,7 @@ class KnowledgeBase:
                 'about': ['Industrial Engineering', 'Business Engineering', 'Technical', 'Business', 'Society',
                           'Mathematics', 'Technology', 'Healthcare'],
                 'multidisciplinary': 'no',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'no',
                 'research': 'no',
                 'practical oriented': 'yes',  # hands-on/lab experience
@@ -751,7 +751,7 @@ class KnowledgeBase:
                 'CAE': [['Overall', 180]],
                 'about': ['Mechanical Engineering', 'Technology', 'Society', 'Design', 'Physics'],
                 'multidisciplinary': 'yes',
-                'enterance exam': 'no',
+                'entrance exam': 'no',
                 'study choice check': 'no',
                 'research': 'no',
                 'practical oriented': 'yes',  # hands-on/lab experience

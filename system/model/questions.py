@@ -65,5 +65,5 @@ class Question:
     def clear_question(self):
         self.questions.clear()
 
-    def get_questionlist_len(self):
+    def get_question_list_len(self):
         return len(self.questions)
