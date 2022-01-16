@@ -1,3 +1,4 @@
+from tkinter import *
 import os
 
 from model.knowledge_base import KnowledgeBase
@@ -6,6 +7,7 @@ from view.nagivation_bar import NavBar
 from view.pages.question_field import QuestionField
 from view.pages.results_page import ResultsPage
 from view.pages.trace_page import TracePage
+from view.theme import Theme
 
 
 class MainApp:
@@ -15,6 +17,11 @@ class MainApp:
         self.current_frame = None
 
         self.navbar = NavBar(self.master, self)
+
+        # self.top_frame = Frame(self.master, height=20, bg="#8C8984")
+        # self.top_frame.pack(side="bottom", fill='x', ipady=2)
+        # self.top_frame.pack_propagate(0)
+
         self.initialise_kb()
         self.initialise_home()
 

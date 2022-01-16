@@ -56,7 +56,7 @@ class ResultsPage:
         self.disclaimer_field = None
         self.disclaimer_header = None
 
-        self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
+        self.frame = Frame(self.master, bg=Theme.BG_COLOUR, width=750, height=600)
         self.frame.pack()
 
         self.display_results()
@@ -67,10 +67,22 @@ class ResultsPage:
         """
         results = load_results()
         print('results:\n', results)
-        self.results_field = Label(self.frame, text=results, width=200,
-                                   wraplength=800, justify=LEFT, font=('Arial', 20), fg=Theme.RESULT_TEXT,
-                                   bg=Theme.BG_COLOUR, bd=0)
-        self.results_field.pack(side=TOP, ipady=10)
+
+        # self.results_field = Text(self.frame, text=results, width=200,
+        #                            wraplength=750, justify=LEFT, font=('Arial', 20),
+        #                            fg=Theme.RESULT_TEXT, bg=Theme.BG_COLOUR, bd=0)
+        # self.results_field.pack(side=TOP, ipadx=10, ipady=10)
+
+        self.results_field = Text(self.frame, font=('Arial', 16), fg=Theme.TEXT_COLOUR,
+                                  bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0)
+
+        self.results_field.insert("1.0", results, CENTER)
+
+        self.results_field.configure(state='disabled', width=200, height=25)
+
+        self.results_field.pack(anchor='w', fill=X)
+        self.frame.pack(anchor='e', padx=10, pady=10)
+
 
     def destroy(self):
         """

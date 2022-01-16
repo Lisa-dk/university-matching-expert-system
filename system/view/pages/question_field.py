@@ -41,14 +41,14 @@ class QuestionField:
     def add_question_field(self, scrollable_frame):
         self.question_field = Label(scrollable_frame,
                                     textvariable=self.question_text,
-                                    height=4, width=140,
+                                    width=140,
                                     wraplength=650,
                                     justify=CENTER,
                                     font=("Arial", 20),
                                     fg=Theme.TEXT_COLOUR,
                                     bg=Theme.BG_COLOUR,
                                     bd=0)
-        self.question_field.pack()
+        self.question_field.pack(pady=20)
 
     def add_text(self, text):
         self.question_text.set(text)
@@ -65,13 +65,11 @@ class QuestionField:
                              relief=RAISED,
                              bg=Theme.NEXT_BUTTON_COLOUR,
                              fg=Theme.TEXT_COLOUR,
-                             activebackground="green",
+                             activebackground=Theme.BUTTON_CLICK,
                              activeforeground='white',
                              command=lambda: load_new_question(self, self.kb_class, self.question_class, self.question,
                                                                self.input_field))
-        # bg=Theme.BUTTON_COLOUR, bd=1,
-        # activebackground=Theme.BUTTON_CLICK)
-        self.button.pack(side="bottom", expand=True, pady=10)
+        self.button.pack(side="bottom", expand=True, pady=20)
 
     def add_input_field(self):
         """

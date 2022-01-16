@@ -10,11 +10,11 @@ class CheckButtonField:
         self.buttons = []
         self.check_var = []
         # Creating a scrollable frame 
-        if len(options) > 15:
+        if len(options) > 8:
             self.container = Frame(master, bg=Theme.BG_COLOUR)
             self.container.pack(side=TOP, expand=YES)
 
-            self.canvas = Canvas(self.container, bg=Theme.BG_COLOUR, height=300, width=200, highlightthickness=0)
+            self.canvas = Canvas(self.container, bg=Theme.BG_COLOUR, height=360, width=300, highlightthickness=0)
             self.scrollbar = Scrollbar(self.container, orient="vertical", command=self.canvas.yview, bg=Theme.BG_COLOUR)
 
             self.frame = Frame(self.canvas, bg=Theme.BG_COLOUR)
@@ -27,8 +27,8 @@ class CheckButtonField:
 
             self.canvas.configure(scrollregion=self.canvas.bbox('all'), yscrollcommand=self.scrollbar.set)
 
-            self.canvas.pack(fill='y', expand=YES, side=LEFT)
-            self.scrollbar.pack(fill='y', side='left', pady=5)
+            self.canvas.pack(fill='y', expand=YES, side=LEFT, pady=10)
+            self.scrollbar.pack(fill='y', side='left', pady=10)
 
         else:
             self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
@@ -45,7 +45,7 @@ class CheckButtonField:
             idx = self.options.index(option)
             self.check_var.append(IntVar(frame))
             self.buttons.append(Checkbutton(frame, text=option, variable=self.check_var[idx], onvalue=1, offvalue=0,
-                                            fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0, font=('Arial', 17),
+                                            fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0, font=('Arial', 16),
                                             selectcolor=Theme.BUTTON_COLOUR, activebackground=Theme.BG_COLOUR,
                                             activeforeground=Theme.TEXT_COLOUR, pady=5))
             self.buttons[idx].pack(anchor=W)
@@ -62,7 +62,7 @@ class CheckButtonField:
         return chosen
 
     def destroy(self):
-        if len(self.options) > 15:
+        if len(self.options) > 8:
             self.container.destroy()
             self.canvas.destroy()
             self.scrollbar.destroy()

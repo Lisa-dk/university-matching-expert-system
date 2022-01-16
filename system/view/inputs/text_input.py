@@ -5,7 +5,8 @@ from view.theme import Theme
 
 class TextFields:
     def __init__(self, master):
-        self.input_text = None
+        self.input_text = StringVar()  # the text in  your entry
+        self.input_widget = None
         self.master = master
         self.frame = Frame(self.master, bg=Theme.BG_COLOUR)
         self.frame.pack()
@@ -16,24 +17,26 @@ class TextFields:
         Adds a text field to the frame
         :param frame: frame to add text field to
         """
-        self.input_text = Text(frame, 
-                               height=1, 
-                               width=5, 
-                               font=('Arial', 17), 
-                               fg=Theme.TEXT_COLOUR, 
-                               bg=Theme.BG_COLOUR, 
-                               bd=1,
-                               wrap='word')
-        self.input_text.pack(padx=10)
+        # self.input_text = Text(frame, height=1, width=5, font=('Arial', 16), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=1, wrap='word')
+
+        self.input_widget = Entry(frame, width=5, font=('Arial', 16), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=1, textvariable=self.input_text)
+        self.input_widget.focus_set()
+        self.input_widget.pack(padx=10, pady=5)
+
+        def character_limit(entry_text):
+            if len(entry_text.get()) > 0:
+                entry_text.set(entry_text.get()[-1])
+
+        self.input_text.trace("w", lambda *args: character_limit(self.input_text))
 
     def get_chosen_option(self):
         """
         Gets contents text field
         :return: contents text field (as str)
         """
-        print(self.input_text.get("1.0", "end-1c"))
-        return self.input_text.get("1.0", "end-1c")
+        print(self.input_widget.get()[-1])
+        return self.input_widget.get()[-1]
     
     def destroy(self):
-        self.input_text.destroy()
+        self.input_widget.destroy()
         self.frame.destroy()
