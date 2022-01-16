@@ -12,26 +12,33 @@ class TracePage:
         self.trace_field = None
         self.master = master
 
-        self.container = Frame(master, bg=Theme.BG_COLOUR)
-        self.container.pack()
+        # self.container = Frame(master, bg=Theme.BG_COLOUR)
+        # self.container.pack()
+        self.frame = Frame(self.master, bg=Theme.BG_COLOUR, width=750, height=600)
+        # self.frame.pack(anchor='center', ipady=10, ipadx=10)
 
-        self.canvas = Canvas(self.container, bg=Theme.BG_COLOUR, width=800, height=700)
-        self.scrollbar = Scrollbar(self.container, orient="vertical", command=self.canvas.yview, bg=Theme.BG_COLOUR)
+        # self.canvas = Canvas(self.container, bg=Theme.BG_COLOUR, width=750, height=600)
+        # self.scrollbar = Scrollbar(self.container, orient="vertical", command=self.canvas.yview, bg=Theme.BG_COLOUR)
+        self.scrollbar = Scrollbar(self.frame, orient="vertical", bg=Theme.BG_COLOUR)
+        self.scrollbar.pack(fill='y', side='right', pady=10)
 
-        self.frame = Frame(self.canvas, bg=Theme.BG_COLOUR)
+        # self.frame = Frame(self.canvas, bg=Theme.BG_COLOUR)
         # self.frame.pack()
 
         self.load_trace()
         self.display_trace()
 
-        self.canvas.create_window(0, 0, anchor='nw', window=self.frame)
+        # self.canvas.create_window(0, 0, anchor='nw', window=self.frame)
+        #
+        # self.canvas.update_idletasks()
+        #
+        # self.canvas.configure(scrollregion=self.canvas.bbox('all'), yscrollcommand=self.scrollbar.set)
+        #
+        # self.canvas.pack(fill='y', expand='yes', side='left')
+        # self.scrollbar.pack(fill='y', side='right', pady=5)
 
-        self.canvas.update_idletasks()
-
-        self.canvas.configure(scrollregion=self.canvas.bbox('all'), yscrollcommand=self.scrollbar.set)
-
-        self.canvas.pack(fill='y', expand=YES, side=LEFT)
-        self.scrollbar.pack(fill='y', side='left', pady=5)
+        self.scrollbar.config(command=self.trace_field.yview)
+        self.frame.pack(anchor='center', ipady=10, ipadx=10)
 
     def load_trace(self):
         """
@@ -67,17 +74,18 @@ class TracePage:
         """
         Shows trace in frame
         """
-        self.trace_field = Label(self.frame, text=self.trace, width=100,
-                                 wraplength=500, justify=LEFT, font=('Arial', 15), fg=Theme.TEXT_COLOUR,
-                                 bg=Theme.BG_COLOUR, bd=0)
-        self.trace_field.pack(side=TOP, ipady=10)
+        self.trace_field = Text(self.frame, yscrollcommand=self.scrollbar.set,
+                                wrap='word', font=('Arial', 15), relief=FLAT,
+                                fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0)
+        self.trace_field.insert("1.0", self.trace, CENTER)
+        self.trace_field.pack(side='top', fill=X)
 
     def destroy(self):
         """
         Removes frame + its items
         """
         self.trace_field.destroy()
-        self.container.destroy()
+        # self.container.destroy()
         self.frame.destroy()
-        self.canvas.destroy()
+        # self.canvas.destroy()
         self.scrollbar.destroy()

@@ -57,7 +57,7 @@ class ResultsPage:
         self.disclaimer_header = None
 
         self.frame = Frame(self.master, bg=Theme.BG_COLOUR, width=750, height=600)
-        self.frame.pack()
+        # self.frame.pack()
 
         self.display_results()
 
@@ -82,7 +82,6 @@ class ResultsPage:
 
         self.results_field.pack(anchor='w', fill=X)
         self.frame.pack(anchor='e', padx=10, pady=10)
-
 
     def destroy(self):
         """
