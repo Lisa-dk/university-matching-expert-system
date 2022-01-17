@@ -34,15 +34,15 @@ class Question:
                             'Industrial Engineering', 'Computer Science', 'Biomedical Engineering',
                             'Circular Engineering', 'Aerospace', 'Data Processing', 'Civil Engineering',
                             'Graphic Design', 'Marketing', 'Business Engineering', 'Technical'],
-            'diploma': ['IB', 'Lise Diploma', 'Abitur', 'Label France Education'],
+            'diploma': ['IB', 'Turkish Lise Diploma', 'Abitur', 'Label France Education'],
             # 'courses': ['Analysis and Approaches SL', 'Analysis and Approaches HL', 'Mathematics SL', 'Mathematics HL', 'Calculus', 'Physics SL', 'Physics HL', 'Chemistry SL', 'Chemistry HL'],  # TODO: This one is not used
             'subjects IB': ['Analysis and Approaches HL', 'Analysis and Approaches SL', 'Mathematics HL', 'Mathematics SL', 'Physics HL', 'Physics SL',
                             'Chemistry HL', 'Chemistry SL', 'Biology HL', 'Biology SL', 'English HL', 'English SL',
                             'None of the above'],
             'subjects AP': ['Calculus A/B', 'Calculus B/C', 'Physics 1', 'Physics 2', 'Physics C Mechanics',
                             'Physics C Electricity and Magnetism', 'Chemistry', 'None of the above'],
-            'cities': ['Eindhoven', 'Groningen', 'Maastricht', 'Delft', 'Enschede', "no preference"],
-            'cities 2': ['Eindhoven', 'Groningen', 'Maastricht', 'Delft', 'Enschede', "no preference"],
+            'cities': ['Eindhoven', 'Groningen', 'Maastricht', 'Delft', 'Enschede', 'Amsterdam', "no preference"],
+            'cities 2': ['Eindhoven', 'Groningen', 'Maastricht', 'Delft', 'Enschede', 'Amsterdam', "no preference"],
             'English test': ['TOEFL iBT', 'IELTS (academic)', 'CPE', 'CAE', 'None of the above']
         }
 

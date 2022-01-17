@@ -13,7 +13,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
         # print("\nEliminate study preference")
 
         if not any(item in study['about'] for item in user_kb['study preference']):
-            print("xxx removed: " + str(study['label']))
+            # print("xxx removed: " + str(study['label']))
             # studies_kb.remove(study)
             return study
 
@@ -93,15 +93,12 @@ def elimination_update(study, studies_kb, user_kb, visited):
 
     # match english level grades
     if 'check english grades' in visited:
-        print("\nEliminating English Grades")
+        # print("\nEliminating English Grades")
 
         # print("study: "+ str(study['label']))
         study_eng_grd = study[user_kb['english tests']]
         usr_eng_grd = user_kb['english grades']
-        # print("user english grades: " + str(usr_eng_grd))
         for sect in range(len(study[user_kb['english tests']])):
-            # print("user grade: " + str(usr_eng_grd[sect]))
-            # print("study section: " + str(study_eng_grd[sect]))
             if float(usr_eng_grd[sect]) < float(study_eng_grd[sect][1]):  # if section in study and grade valid
                 studies_kb.remove(study)
                 # print("xxx removing study " + study['label'])
@@ -194,10 +191,3 @@ def elimination_update(study, studies_kb, user_kb, visited):
 
     # print("return")
     return 1
-
-
-'''
-GPA?
-Preferences:
-    Does the client want to have to get the Bachelor's diploma approved in Turkey? (This filters based on the top 600 universities ranking).
-'''

@@ -42,9 +42,9 @@ def load_results():
                 for line in file:
                     result = line.split(',')
                     if len(result) == 3:
-                        results += "- " + result[0] + " at" + result[1] + "\n" + result[2]
+                        results += "- " + result[0] + " at" + result[1] + "\n" + result[2] + "\n"
                     else:
-                        results += "- " + result[0] + " at" + result[1]
+                        results += "- " + result[0] + " at" + result[1]  + "\n" + result[2] + "\n"
                 file.close()
                 return results
     else:

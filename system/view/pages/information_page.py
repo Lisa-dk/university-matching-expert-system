@@ -17,7 +17,7 @@ class InformationPage:
         self.welcome_field = Text(self.frame, font=('Arial', 18), fg=Theme.INFO_HEADER, bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0)
         self.text_field = Text(self.frame, font=('Arial', 14), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0)
 
-        title = "International University Matching Program"
+        title = "University Matching Program"
         welcome = "Welcome to the study programme test for universities in The Netherlands!"
         info = "This test aims to recommend/match Turkish students with engineering study programmes at Dutch universities. " \
                "Be aware, however, that this test only serves as a guide and does not take into consideration all specification. " \

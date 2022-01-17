@@ -10,7 +10,12 @@ from view.theme import Theme
 # DONE: look at theme
 # DONE: button placements
 # TODO: clean up code from comments etc + apply same conventions everywhere (standard python convention)
-# TODO: Remove print statements to the terminal
+# TODO: Remove print statements to the terminal --> NOTE: I did not delete all of it, should we?
+# TODO: Previous Button
+# TODO: fit frame to 'Do you follow the following IB courses?" question (since now HL SL standard form info is added)
+# DONE: add links
+# DONE: Add Vrije University
+# TODO: check disclaimer texts? -> NOTE: I corrected the one for English
 # DONE: Size scrollbar frame multiple-choice
 # DONE: Placement frame results
 # DONE: Size scrollbar frame trace
