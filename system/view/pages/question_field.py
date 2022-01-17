@@ -153,7 +153,7 @@ class QuestionField:
         file = self.make_file('./model/results.txt')
         if len(self.kb_class.kb) > 0:
             for study in self.kb_class.kb:
-                file.write(study['label'] + ", " + study['university'] + "\n")
+                file.write(study['label'] + ", " + study['university'] + ", " + study['link'] + "\n")
             file.close()
 
     def save_disclaimers(self):

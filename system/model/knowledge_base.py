@@ -15,6 +15,7 @@ class KnowledgeBase:
             {
                 'label': 'Chemical Engineering and Chemistry',
                 'university': 'Technical University of Eindhoven',
+                'link': 'https://www.tue.nl/en/education/bachelor-college/bachelor-chemical-engineering-and-chemistry/',
                 'city': 'Eindhoven',
                 'degree': 'Bachelor of Science',
                 'duration': '3',

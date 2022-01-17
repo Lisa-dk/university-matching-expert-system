@@ -41,7 +41,10 @@ def load_results():
                 results = "Requirements met for the following studies:\n\n"
                 for line in file:
                     result = line.split(',')
-                    results += result[0] + " at" + result[1]
+                    if len(result) == 3:
+                        results += "- " + result[0] + " at" + result[1] + "\n" + result[2]
+                    else:
+                        results += "- " + result[0] + " at" + result[1]
                 file.close()
                 return results
     else:

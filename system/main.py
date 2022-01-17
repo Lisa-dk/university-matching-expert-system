@@ -13,8 +13,8 @@ from view.theme import Theme
 # TODO: Remove print statements to the terminal
 # DONE: Size scrollbar frame multiple-choice
 # DONE: Placement frame results
-# TODO: Size scrollbar frame trace
-# TODO: Placement frame trace
+# DONE: Size scrollbar frame trace
+# DONE: Placement frame trace
 
 
 def remove_file(path):
