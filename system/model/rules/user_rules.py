@@ -24,7 +24,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     Processes the user input and provides the next questions through if-then rules.
     :param answer: user input to a question
     :param queries: class of questions
-    :param notes: #TODO
+    :param notes: class of disclaimers
     :param studies_kb: kb containing the study programmes
     :param user_kb: kb containing user info
     :param visited: list of passed questions
