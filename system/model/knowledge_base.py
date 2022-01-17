@@ -197,7 +197,7 @@ class KnowledgeBase:
                                      ['Writing', 6.0]],
                 'CPE': [['Overall', 180], ['Reading', 169], ['Listening', 169], ['Speaking', 169], ['Writing', 169]],
                 'CAE': [['Overall', 176], ['Reading', 169], ['Listening', 169], ['Speaking', 169], ['Writing', 169]],
-                'about': ['Mechanical Engineering', 'Mathematics', 'Physics', 'Chemistry', 'Innovation', 'Creativity'],
+                'about': ['Mechanical Engineering', 'Mathematics', 'Physics', 'Innovation', 'Creativity'],
                 'multidisciplinary': 'yes',
                 'entrance exam': 'yes',
                 'study choice check': 'no',
