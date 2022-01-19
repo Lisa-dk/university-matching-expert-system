@@ -67,7 +67,5 @@ class TracePage:
         Removes frame + its items
         """
         self.trace_field.destroy()
-        # self.container.destroy()
         self.frame.destroy()
-        # self.canvas.destroy()
         self.scrollbar.destroy()

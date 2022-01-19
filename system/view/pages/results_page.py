@@ -76,12 +76,7 @@ class ResultsPage:
         Shows the results in the frame
         """
         results = load_results()
-        print('results:\n', results)
-
-        # self.results_field = Text(self.frame, text=results, width=200,
-        #                            wraplength=750, justify=LEFT, font=('Arial', 20),
-        #                            fg=Theme.RESULT_TEXT, bg=Theme.BG_COLOUR, bd=0)
-        # self.results_field.pack(side=TOP, ipadx=10, ipady=10)
+        #print('results:\n', results)
 
         self.results_field = Text(self.frame, yscrollcommand=self.scrollbar.set, font=('Arial', 16), fg=Theme.TEXT_COLOUR,
                                   bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0)

@@ -93,12 +93,6 @@ class QuestionField:
         """
         self.question_field.destroy()
         self.question_field = None
-
-        # if self.question[1] == QuestionType.SELECT or self.question[1] == QuestionType.MULTI_SELECT:
-        #     self.input_field.destroy()
-        # else:
-        #     self.input_field.destroy()
-
         self.input_field.destroy()
         self.input_field = None
         self.button.destroy()

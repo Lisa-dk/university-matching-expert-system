@@ -18,10 +18,6 @@ class MainApp:
 
         self.navbar = NavBar(self.master, self)
 
-        # self.top_frame = Frame(self.master, height=20, bg="#8C8984")
-        # self.top_frame.pack(side="bottom", fill='x', ipady=2)
-        # self.top_frame.pack_propagate(0)
-
         self.initialise_kb()
         self.initialise_home()
 
