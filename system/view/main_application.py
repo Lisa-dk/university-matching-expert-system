@@ -1,6 +1,4 @@
 from tkinter import *
-import os
-
 from model.knowledge_base import KnowledgeBase
 from view.pages.information_page import InformationPage
 from view.nagivation_bar import NavBar
@@ -8,6 +6,8 @@ from view.pages.question_field import QuestionField
 from view.pages.results_page import ResultsPage
 from view.pages.trace_page import TracePage
 from view.theme import Theme
+
+import os
 
 
 class MainApp:
@@ -23,7 +23,6 @@ class MainApp:
 
     def initialise_kb(self):
         self.kb = KnowledgeBase()
-        print(self.kb.user_kb)
 
     def initialise_home(self):
         self.current_frame = InformationPage(self, self.master)

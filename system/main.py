@@ -1,26 +1,16 @@
 from tkinter import *
-import os
-
-# from model.knowledge_base import KnowledgeBase
 from view.main_application import MainApp
 from view.theme import Theme
 
+import os
+
 # smaller things to-do:
-# DONE: consistent sizing of window
-# DONE: look at theme
-# DONE: button placements
 # TODO: clean up code from comments etc + apply same conventions everywhere (standard python convention)
 # TODO: Remove print statements to the terminal --> NOTE: I did not delete all of it, should we?
 # TODO: Previous Button
 # TODO: change test to survey
 # TODO: fit frame to 'Do you follow the following IB courses?" question (since now HL SL standard form info is added)
-# DONE: add links
-# DONE: Add Vrije University
 # TODO: check disclaimer texts? -> NOTE: I corrected the one for English
-# DONE: Size scrollbar frame multiple-choice
-# DONE: Placement frame results
-# DONE: Size scrollbar frame trace
-# DONE: Placement frame trace
 
 
 def remove_file(path):

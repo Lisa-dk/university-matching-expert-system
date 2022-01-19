@@ -1,4 +1,3 @@
-# from tkinter.font import Font
 from tkinter import *
 from view.theme import Theme
 from PIL import ImageTk, Image
@@ -40,13 +39,6 @@ class InformationPage:
 
         self.image = ImageTk.PhotoImage(img.resize((pixels_x, pixels_y))) 
         self.canvas.create_image(0, 0, anchor=NW, image=self.image)
-        # self.canvas.create_text(3, 545,
-        #                         text="https://www.pexels.com/photo/friends-sitting-in-the-library-8199567/",
-        #                         font=("Arial", 10),
-        #                         fill="dark blue",
-        #                         anchor=NW,
-        #                         state=DISABLED,
-        #                         width=330)
 
         self.path = './model/trace.txt'
         if os.path.exists(self.path):

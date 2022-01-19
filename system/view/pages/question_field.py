@@ -1,7 +1,4 @@
 from tkinter import *
-# from tkinter.font import Font
-import os
-
 from control.next_button import load_new_question
 from model.questions import Question, QuestionType
 from view.inputs.single_option import RadioButtonField
@@ -9,6 +6,8 @@ from view.inputs.multiple_options import CheckButtonField
 from view.inputs.text_input import TextFields
 from view.theme import Theme
 from model.disclaimer import Disclaimer
+
+import os
 
 
 class QuestionField:

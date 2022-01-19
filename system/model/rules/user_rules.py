@@ -2,9 +2,6 @@ import re
 
 from model.questions import QuestionType
 
-# from model.questions import Question
-
-
 english_test_max_grade = {
     'TOEFL iBT overall': 120,
     'TOEFL iBT sections': 30,
@@ -32,9 +29,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     """
     # Do you know what you want to study?
     if 'start' in visited and 'study preference' not in user_kb.keys():
-
-        # print("\nSaving Study-preference question:")
-
         if answer == 'yes':  # knows what to study
             queries.add_question(["What are your study preferences?",
                                   QuestionType.MULTI_SELECT, queries.get_question_options('preferences')])
@@ -52,8 +46,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     # save study preference
     if 'start' in visited and 'study preference' in user_kb.keys():
         visited.remove('start')
-
-        # print("\nSaving study preference")
         if type(answer) == list:
             user_kb['study preference'] = answer
 
@@ -65,8 +57,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
     # add IB vs. no-IB diploma
     if 'study preference' in visited and 'diplomas' not in user_kb.keys():
-
-        # print("\n1. Creating and Adding Diploma")
         visited.remove('study preference')  # reset visited
         user_kb['diplomas'] = ''  # initialise 'diplomas'
 
@@ -93,8 +83,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     # if diploma is not IB
     if 'diplomas' in user_kb.keys() and user_kb['diplomas'] != 'IB' and 'AP courses' not in user_kb.keys():  # 'diplomas' in user.keys() but not IB
 
-        # print("\nNo-IB")
-
         if answer == 'no':  # no AP courses
             user_kb['AP courses'] = 'no'
             notes.addDisclaimer(
@@ -114,8 +102,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
     # add subjects
     if 'diplomas' in visited and 'subjects' not in user_kb.keys():
-
-        # print("\nInitialising subjects")
         visited.remove('diplomas')  # reset visited
         if type(answer) == list:
             user_kb['subjects'] = answer
@@ -135,15 +121,12 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
     # add grades of subjects - INITIALISE LOOP
     if 'subjects' in visited and 'subject grades' not in user_kb.keys() and 'subject grades' not in visited:
-        # print("\nCreated subject grades")
         visited.remove('subjects')  # reset visited
         visited.append(
             'subject grades')  # mark subject grades as done/visited - already here to loop based on 'subjects' in next if
         user_kb['subject grades'] = []  # initialise - subject grades already here to loop in next if
 
     if 'subject grades' in visited and 'subject grades' in user_kb.keys():
-
-        # print("\n3. Saving subject's grade")
 
         if len(visited) == 2:  # next subject exists
             visited.pop(1)
@@ -173,7 +156,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         # valid grade input
         user_kb['subject grades'].append(grade)  # save response-grade
         user_kb['subjects'].pop(0)  # remove the current subject from loop/done with the current subject
-
 
         # is this the last subject to check in user_kb? Then make next question about English tests.
         if len(user_kb['subjects']) == 0:
@@ -209,11 +191,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
     # determine english level
     if 'english proof' in visited:  # visited only has 'subject grades' and not the subject as well from previous if
-
-        # print("\nDetermine English Test Question")
         visited.remove('english proof')
 
-        # *********** NOTE to self: not finished
         if answer == 'no':  # no english test
             notes.addDisclaimer(
                 "Students applying with the {} diploma need to take one of the following English tests: TOEFL iBT, IELTS (academic), CAE, CPE.".format(user_kb['diplomas']))
@@ -231,7 +210,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
     # add english test - INITIALISE LOOP
     if 'english level' in visited and 'english tests' not in user_kb.keys():
-        # print("\nSaving English Test")
         visited.remove('english level')
 
         user_kb['english tests'] = ''  # initialise english test
@@ -252,7 +230,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
     # grades of english test 
     if 'english tests' in visited:
-        # print("\nInitialising English Test - Grades")
 
         # if grade of section above max grade, add different question
         if english_sections[0] != 'overall':
@@ -267,8 +244,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
                  QuestionType.TEXT_FIELD, None])  # next question
             return
 
-        # else:
-        # print("valid grade")
         # save grade
         english_grade = answer
         user_kb['english grades'].append(english_grade)
@@ -277,7 +252,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     
         # last question in queries.list
         if len(english_sections) == 0:
-            # print("adding cities question")
             visited.remove('english tests')  # reset visited
             queries.add_question([
                 "Which cities do you prefer?\nYou may select multiple cities.",
@@ -293,7 +267,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     # Checking City 
     if ('check english grades' in visited or 'check city' in visited) and 'city' not in user_kb.keys():
 
-        # print("\nSaving City Preference")
         visited.pop(0)  # reset visited
 
         if "no preference" in answer:  # pass on city elimination
@@ -312,7 +285,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     # Multidisciplinary 
     if ('city' in visited or 'pass city' in visited) and 'multidisciplinary' not in user_kb.keys():
 
-        # print("\nSaving Multidisciplinary Preference")
         visited.pop(0)  # reset visited
 
         if answer == 'yes':  # those that are not will be eliminated
@@ -329,7 +301,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     if (
             'multidisciplinary' in visited or 'pass multidisciplinary' in visited) and 'entrance exam' not in user_kb.keys():
 
-        # print("\nSaving Entrance Exam Preference")
         visited.pop(0)  # reset visited
 
         if answer == 'no':  # no, the user doesn't want the studies with entrance exam, those that have will be eliminated
@@ -346,7 +317,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     # Study Choice Check
     if ('entrance exam' in visited or 'pass entrance exam' in visited) and 'study choice check' not in user_kb.keys():
 
-        # print("\nSaving Study Choice Check Preference")
         visited.pop(0)  # reset visited
 
         if answer == 'yes':  # studies not offering study choice check will be eliminated
@@ -362,7 +332,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     # Research
     if ('study choice check' in visited or 'pass study choice check' in visited) and 'research' not in user_kb.keys():
 
-        # print("\nSaving Research Preference")
         visited.pop(0)  # reset visited
 
         if answer == 'yes':  # studies not offering research will be eliminated
@@ -379,7 +348,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     # Practical-oriented
     if ('research' in visited or 'pass research' in visited) and 'practical oriented' not in user_kb.keys():
 
-        # print("\nSaving Practical-Oriented Preference")
         visited.pop(0)  # reset visited
 
         if answer == 'yes':  # studies not offering practical-oriented approach will be eliminated
@@ -396,7 +364,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     if (
             'practical oriented' in visited or 'pass practical oriented' in visited) and 'project oriented' not in user_kb.keys():
 
-        # print("\nSaving Project-Oriented Preference")
         visited.pop(0)  # reset visited
 
         if answer == 'yes':  # studies not offering project oriented approach will be eliminated
@@ -413,7 +380,6 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
     # Numerus Fixus
     if ('project oriented' in visited or 'pass project oriented' in visited) and 'numerus fixus' not in user_kb.keys():
 
-        # print("\nSaving Numerus Fixus Preference")
         visited.pop(0)  # reset visited
 
         if answer == 'no':  # studies that are numerus fixus will be eliminated

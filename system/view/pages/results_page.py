@@ -1,7 +1,6 @@
 from tkinter import messagebox
 from view.theme import Theme
 from tkinter import *
-# from tkinter.font import Font
 import os
 
 
@@ -59,8 +58,6 @@ class ResultsPage:
         self.disclaimer_field = None
         self.disclaimer_header = None
 
-        #self.frame = Frame(self.master, bg=Theme.BG_COLOUR, width=750, height=600)
-        # self.frame.pack()
         self.frame = Frame(self.master, bg=Theme.BG_COLOUR, width=750, height=600)
         self.scrollbar = Scrollbar(self.frame, orient="vertical", bg=Theme.BG_COLOUR)
         self.scrollbar.pack(fill='y', side='right', pady=10)
@@ -77,7 +74,6 @@ class ResultsPage:
         """
         results = load_results()
         #print('results:\n', results)
-
         self.results_field = Text(self.frame, yscrollcommand=self.scrollbar.set, font=('Arial', 16), fg=Theme.TEXT_COLOUR,
                                   bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0)
 

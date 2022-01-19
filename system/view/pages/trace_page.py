@@ -1,7 +1,6 @@
 from tkinter import messagebox
 from view.theme import Theme
 from tkinter import *
-# from tkinter.font import Font
 import os
 import re
 

@@ -1,5 +1,4 @@
 from tkinter import *
-
 from view.pages.results_page import ResultsPage
 from view.theme import Theme
 from view.pages.information_page import InformationPage
