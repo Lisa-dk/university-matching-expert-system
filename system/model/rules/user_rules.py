@@ -108,7 +108,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
             if 'None of the above' in answer:
                 notes.addDisclaimer(
-                    "You have not met the subject requirements of any study programme in the field of engineering for a Dutch university. ")
+                    "Engineering studies require you to have taken at least one of the subject previously listed. As you did not take any, you have not met the subject requirements of any study programme in the field of engineering for a Dutch university. ")
                 visited.append('None')  # mark as/done with no AP
                 return
 
