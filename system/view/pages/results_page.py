@@ -59,10 +59,17 @@ class ResultsPage:
         self.disclaimer_field = None
         self.disclaimer_header = None
 
-        self.frame = Frame(self.master, bg=Theme.BG_COLOUR, width=750, height=600)
+        #self.frame = Frame(self.master, bg=Theme.BG_COLOUR, width=750, height=600)
         # self.frame.pack()
+        self.frame = Frame(self.master, bg=Theme.BG_COLOUR, width=750, height=600)
+        self.scrollbar = Scrollbar(self.frame, orient="vertical", bg=Theme.BG_COLOUR)
+        self.scrollbar.pack(fill='y', side='right', pady=10)
 
         self.display_results()
+
+        self.scrollbar.config(command=self.results_field.yview)
+        self.frame.pack(anchor='center', ipady=10, ipadx=10)
+
 
     def display_results(self):
         """
@@ -76,7 +83,7 @@ class ResultsPage:
         #                            fg=Theme.RESULT_TEXT, bg=Theme.BG_COLOUR, bd=0)
         # self.results_field.pack(side=TOP, ipadx=10, ipady=10)
 
-        self.results_field = Text(self.frame, font=('Arial', 16), fg=Theme.TEXT_COLOUR,
+        self.results_field = Text(self.frame, yscrollcommand=self.scrollbar.set, font=('Arial', 16), fg=Theme.TEXT_COLOUR,
                                   bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0)
 
         self.results_field.insert("1.0", results, CENTER)
@@ -95,3 +102,4 @@ class ResultsPage:
             self.disclaimer_field.destroy()
         self.results_field.destroy()
         self.frame.destroy()
+        self.scrollbar.destroy()
