@@ -1,0 +1,10 @@
+question: Do you know what you want to study?
+response: no
+eliminated studies: None
+question: What is your high school diploma?
+response: IB
+eliminated studies: None
+question: Did you take any of the following subjects from IB?
+(HL: Higher Level, SL: Standard Level)
+response: None of the above
+eliminated studies: Chemical Engineering and Chemistry at Technical University of Eindhoven;Electrical Engineering at Technical University of Eindhoven;Architecture, Urbanism and Building at Technical University of Eindhoven;Automative Technology at Technical University of Eindhoven;Mechanical Engineering at Technical University of Eindhoven;Sustainable Innovation at Technical University of Eindhoven;Industrial Engineering at Technical University of Eindhoven;Computer Science and Engineering at Technical University of Eindhoven;Psychology & Technology at Technical University of Eindhoven;Chemical Engineering at University of Groningen;Industrial Engineering & Management at University of Groningen;Biomedical Engineering at University of Groningen;Circular Engineering at Maastricht University;Business Engineering at Maastricht University;Aerospace Engineering at Delft University of Technology (TU Delft);Computer Science and Engineering at Delft University of Technology (TU Delft);Chemical Science & Engineering at University of Twente;Civil Engineering at University of Twente;Electrical Engineering at University of Twente;Industrial Design Engineering at University of Twente;Industrial Engineering & Management Science at University of Twente;Mechanical Engineering at University of Twente;Mechanical Engineering (joint degree with University of Twente (Enschede)) at Vrije Universiteit Amsterdam

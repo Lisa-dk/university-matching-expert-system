@@ -17,9 +17,9 @@ class InformationPage:
         self.text_field = Text(self.frame, font=('Arial', 14), fg=Theme.TEXT_COLOUR, bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0)
 
         title = "University Matching Program"
-        welcome = "Welcome to the study programme test for universities in The Netherlands!"
-        info = "This test aims to recommend/match Turkish students with engineering study programmes at Dutch universities. " \
-               "Be aware, however, that this test only serves as a guide and does not take into consideration all specification. " \
+        welcome = "Welcome to the study programme survey for universities in The Netherlands!"
+        info = "This survey aims to recommend/match Turkish students with engineering study programmes at Dutch universities. " \
+               "Be aware, however, that this survey only serves as a guide and does not take into consideration all specifications. " \
                "Because of this, you should check the requirements of the recommended study programmes as well."
 
         self.title_field.insert("1.0", title, CENTER)
@@ -55,7 +55,7 @@ class InformationPage:
         """
         Adds button to start the test
         """
-        self.button = Button(self.frame, text="Start Test", 
+        self.button = Button(self.frame, text="Start Survey", 
                              font=('Arial', 15, 'bold'), 
                              padx=7, pady=5,
                              relief=RAISED,
@@ -71,7 +71,7 @@ class InformationPage:
         """
         Adds button to retake the test
         """
-        self.button = Button(self.frame, text="Retake Test", 
+        self.button = Button(self.frame, text="Retake Survey", 
                              font=('Arial', 15, 'bold'), 
                              padx=7, pady=5,
                              relief=RAISED,

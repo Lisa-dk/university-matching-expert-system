@@ -1,5 +1,4 @@
 from tkinter import *
-# from view.scroll_frame import ScrollFrame
 from view.theme import Theme
 
 
@@ -16,7 +15,6 @@ class CheckButtonField:
             self.container.pack(side=TOP, expand=YES)
 
             self.canvas = Canvas(self.container, bg=Theme.BG_COLOUR, height=360, width=300, highlightthickness=0)
-            # self.canvas.bind_all("<MouseWheel>", self._on_mousewheel)
 
             self.scrollbar = Scrollbar(self.container, orient="vertical", command=self.canvas.yview, bg=Theme.BG_COLOUR)
 
@@ -39,9 +37,6 @@ class CheckButtonField:
             self.frame.pack(side="top")
 
             self.add_check_button(self.frame)
-
-    # def _on_mousewheel(self, event):
-    #     self.canvas.yview_scroll(int(-1*(event.delta / 120)), "units")
 
     def add_check_button(self, frame):
         """

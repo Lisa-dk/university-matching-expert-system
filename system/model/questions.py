@@ -20,7 +20,6 @@ class Question:
 
     def create_options_dict(self):
         self.question_options = {
-            # TODO: entrance exam question needs 'no' - 'no preference'
             'yes-no question': ['yes', 'no'],
             'yes-no_preference question': ['yes', 'no preference'],
             'no-no_preference question': ['no', 'no preference'],
@@ -35,7 +34,6 @@ class Question:
                             'Circular Engineering', 'Aerospace', 'Data Processing', 'Civil Engineering',
                             'Graphic Design', 'Marketing', 'Business Engineering', 'Technical'],
             'diploma': ['IB', 'Turkish Lise Diploma', 'Abitur', 'Label France Education'],
-            # 'courses': ['Analysis and Approaches SL', 'Analysis and Approaches HL', 'Mathematics SL', 'Mathematics HL', 'Calculus', 'Physics SL', 'Physics HL', 'Chemistry SL', 'Chemistry HL'],  # TODO: This one is not used
             'subjects IB': ['Analysis and Approaches HL', 'Analysis and Approaches SL', 'Mathematics HL', 'Mathematics SL', 'Physics HL', 'Physics SL',
                             'Chemistry HL', 'Chemistry SL', 'Biology HL', 'Biology SL', 'English HL', 'English SL',
                             'None of the above'],
@@ -60,7 +58,6 @@ class Question:
 
     def remove_question(self, question):
         self.questions.remove(question)
-        # self.questions.pop(0)
 
     def clear_question(self):
         self.questions.clear()
