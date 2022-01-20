@@ -120,17 +120,6 @@ class QuestionField:
             self.main_app.add_trace_page_button()
             self.main_app.initialise_results()
 
-    # prints the studies for which the requirements are met.
-    def give_results(self):
-        results = "Requirements met for the following studies:\n"
-        if len(self.kb_class.kb) > 0:
-            for study in self.kb_class.kb:
-                results += study['label'] + " at " + study['university'] + "\n"
-            self.question_field.configure(height=5 + len(results), anchor=N)
-        else:
-            results = "No requirements are met. No appropriate study programmes available."
-        self.add_text(results)
-
     @staticmethod
     def make_file(path):
         """

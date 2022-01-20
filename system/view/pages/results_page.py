@@ -26,11 +26,6 @@ def load_disclaimers():
         messagebox.showerror("Error", "Something went wrong, please restart the program.")
 
 
-# Define a callback function
-def open_browser(url):
-    webbrowser.open_new_tab(url)
-
-
 class ResultsPage:
     def __init__(self, master):
         self.master = master

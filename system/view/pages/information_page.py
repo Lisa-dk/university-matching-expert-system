@@ -53,7 +53,7 @@ class InformationPage:
         
     def make_start_button(self):
         """
-        Adds button to start the test
+        Adds button to start the survey
         """
         self.button = Button(self.frame, text="Start Survey", 
                              font=('Arial', 15, 'bold'), 
@@ -64,12 +64,12 @@ class InformationPage:
                              activebackground=Theme.BUTTON_CLICK,
                              activeforeground='white',
                              bd=1, 
-                             command=self.start_test)
+                             command=self.start_survey)
         self.button.pack(side=BOTTOM, pady=10)
 
     def make_retake_button(self):
         """
-        Adds button to retake the test
+        Adds button to retake the survey
         """
         self.button = Button(self.frame, text="Retake Survey", 
                              font=('Arial', 15, 'bold'), 
@@ -80,25 +80,25 @@ class InformationPage:
                              activebackground=Theme.BUTTON_CLICK,
                              activeforeground='white',
                              bd=1,
-                             command=self.retake_test)
+                             command=self.retake_survey)
         self.button.pack(side=BOTTOM, pady=10)
 
-    def retake_test(self):
+    def retake_survey(self):
         """
-        Initialises the test if retaking it
+        Initialises the survey if retaking it
         """
         os.remove(self.path)
         self.main_app.remove_results_button()
         self.main_app.remove_trace_button()
         self.main_app.initialise_kb()
-        self.start_test()
+        self.start_survey()
 
-    def start_test(self):
+    def start_survey(self):
         """
-        Starts the test
+        Starts the survey
         """
         self.destroy()
-        self.main_app.start_test()
+        self.main_app.start_survey()
 
     def destroy(self):
         """

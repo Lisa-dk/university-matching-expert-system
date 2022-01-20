@@ -240,7 +240,7 @@ class KnowledgeBase:
             {
                 'label': 'Industrial Engineering',
                 'university': 'Technical University of Eindhoven',
-                'link': 'https://www.tue.nl/en/education/bachelor-college/bachelor-electrical-engineering/',
+                'link': 'https://www.tue.nl/en/education/bachelor-college/bachelor-industrial-engineering/',
                 'city': 'Eindhoven',
                 'degree': 'Bachelor of Science',
                 'duration': '3',

@@ -25,7 +25,7 @@ class MainApp:
     def initialise_home(self):
         self.current_frame = InformationPage(self, self.master)
 
-    def start_test(self):
+    def start_survey(self):
         self.current_frame = QuestionField(self.master, self.kb, self)
         self.make_file()
     
