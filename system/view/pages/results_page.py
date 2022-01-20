@@ -3,7 +3,7 @@ from tkinter import messagebox
 import os
 import webbrowser
 
-from view.pages.tkHyperlinkManager import HyperlinkManager
+from control.tkHyperlinkManager import HyperlinkManager
 from view.theme import Theme
 
 
