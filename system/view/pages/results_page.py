@@ -4,7 +4,7 @@ import os
 import webbrowser
 
 from control.tkHyperlinkManager import HyperlinkManager
-from view.theme import Theme
+from view.design.theme import Theme
 
 
 def load_disclaimers():

@@ -2,7 +2,7 @@ from tkinter import *
 import os
 
 from view.main_application import MainApp
-from view.theme import Theme
+from view.design.theme import Theme
 
 
 # smaller things to-do:

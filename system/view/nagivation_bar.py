@@ -1,7 +1,7 @@
 from tkinter import *
 
 from view.pages.results_page import ResultsPage
-from view.theme import Theme
+from view.design.theme import Theme
 from view.pages.information_page import InformationPage
 from view.pages.trace_page import TracePage
 

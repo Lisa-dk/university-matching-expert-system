@@ -1,6 +1,6 @@
 from tkinter import *
 
-from view.theme import Theme
+from view.design.theme import Theme
 
 
 class CheckButtonField:

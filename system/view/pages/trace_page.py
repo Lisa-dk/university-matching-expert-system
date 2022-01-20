@@ -3,7 +3,7 @@ from tkinter import messagebox
 import os
 import re
 
-from view.theme import Theme
+from view.design.theme import Theme
 
 
 class TracePage:

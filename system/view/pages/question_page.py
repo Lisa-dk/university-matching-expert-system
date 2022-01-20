@@ -6,7 +6,7 @@ from model.questions import Question, QuestionType
 from view.inputs.single_option import RadioButtonField
 from view.inputs.multiple_options import CheckButtonField
 from view.inputs.text_input import TextFields
-from view.theme import Theme
+from view.design.theme import Theme
 from model.disclaimer import Disclaimer
 
 
