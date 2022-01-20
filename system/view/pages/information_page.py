@@ -33,7 +33,7 @@ class InformationPage:
         self.canvas = Canvas(self.master, bg="white", width=350)
         self.canvas.pack(side=LEFT, fill=BOTH)
 
-        img = Image.open("view/pages/photo_information_page.jpg")
+        img = Image.open("view/design/photo_information_page.jpg")
         zoom = 0.09
         pixels_x, pixels_y = tuple([int(zoom * x) for x in img.size])
 
