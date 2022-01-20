@@ -1,5 +1,5 @@
-import webbrowser
 from tkinter import *
+import webbrowser
 
 
 def open_browser(url):

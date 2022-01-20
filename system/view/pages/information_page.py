@@ -1,8 +1,8 @@
 from tkinter import *
-from view.theme import Theme
 from PIL import ImageTk, Image
-
 import os
+
+from view.theme import Theme
 
 
 class InformationPage:

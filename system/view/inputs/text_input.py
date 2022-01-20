@@ -1,10 +1,11 @@
 from tkinter import *
+
 from view.theme import Theme
 
 
 class TextFields:
     def __init__(self, master):
-        self.input_text = StringVar()  # the text in  your entry
+        self.input_text = StringVar()
         self.input_widget = None
         self.master = master
         self.frame = Frame(self.master, bg=Theme.BG_COLOUR)

@@ -26,33 +26,6 @@ def load_disclaimers():
         messagebox.showerror("Error", "Something went wrong, please restart the program.")
 
 
-# def load_results():
-#     """
-#     Loads results from text file
-#     :return: string with recommended study programmes
-#     """
-#     path = './model/results.txt'
-#     if os.path.exists(path):
-#         if os.stat(path).st_size == 0:
-#             if os.path.exists('./model/disclaimers.txt'):
-#                 return load_disclaimers()
-#             else:
-#                 return "No requirements are met.\nNo appropriate study programmes available."
-#         else:
-#             with open('./model/results.txt', 'r') as file:
-#                 results = "Requirements met for the following studies:\n\n"
-#                 for line in file:
-#                     result = line.split(', ')
-#                     if len(result) == 3:
-#                         results += "- " + result[0] + " at " + result[1] + "\n" + result[2] + "\n"
-#                     else:
-#                         results += "- " + result[0] + " at " + result[1] + "\n" + result[2] + "\n"
-#                 file.close()
-#                 return results
-#     else:
-#         messagebox.showerror("Error", "Something went wrong, please restart the program.")
-
-
 # Define a callback function
 def open_browser(url):
     webbrowser.open_new_tab(url)
@@ -124,16 +97,12 @@ class ResultsPage:
         """
         Shows the results in the frame
         """
-        # results = load_results()
-
         self.results_field = Text(self.frame, yscrollcommand=self.scrollbar.set, font=('Arial', 16),
                                   fg=Theme.TEXT_COLOUR,
                                   bg=Theme.BG_COLOUR, bd=0, wrap='word', relief=FLAT, border=0, cursor="arrow")
         self.hyperlink = HyperlinkManager(self.results_field)
 
         self.load_results()
-
-        # self.results_field.insert("1.0", results, CENTER)
 
         self.results_field.configure(state='disabled', width=200, height=25)
         self.results_field.pack(anchor='e', fill=X)

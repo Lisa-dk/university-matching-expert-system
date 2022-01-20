@@ -16,13 +16,12 @@ english_test_max_grade = {
 english_sections = ["overall", "reading", "listening", "speaking", "writing"]
 
 
-def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
+def edit_user_kb(answer, queries, notes, user_kb, visited):
     """
     Processes the user input and provides the next questions through if-then rules.
     :param answer: user input to a question
     :param queries: class of questions
     :param notes: class of disclaimers
-    :param studies_kb: kb containing the study programmes
     :param user_kb: kb containing user info
     :param visited: list of passed questions
     :return: Nothing
@@ -73,8 +72,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
             queries.subscript = "(HL: Higher Level, SL: Standard Level)"
 
         # no IB diploma
-        elif re.search('Turkish Lise Diploma', answer) or re.search('Label France Education', answer) or re.search('Abitur',
-                                                                                                           answer):
+        elif re.search('Turkish Lise Diploma', answer) or re.search('Label France Education', answer) or re.search(
+                'Abitur', answer):
             user_kb['diplomas'] = answer  # save answer-diploma
             # next question - AP courses?
             queries.add_question(["Have you also taken any AP courses?", QuestionType.SELECT,
@@ -171,11 +170,10 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
                     "Which cities do you prefer?\nYou may select multiple cities.",
                     QuestionType.MULTI_SELECT,
                     queries.get_question_options('cities')])  # move onto general preferences
-              
+
                 visited.pop(1)
                 visited.remove('subject grades')  # reset visited
                 visited.append('check city')
-              
 
             else:  # rest of the diplomas require English tests
                 queries.add_question(["Have you taken an English test?",
@@ -197,7 +195,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if answer == 'no':  # no english test
             notes.addDisclaimer(
-                "Students applying with the {} diploma need to take one of the following English tests: TOEFL iBT, IELTS (academic), CAE, CPE.".format(user_kb['diplomas']))
+                "Students applying with the {} diploma need to take one of the following English tests: TOEFL iBT, IELTS (academic), CAE, CPE.".format(
+                    user_kb['diplomas']))
             visited.append('None')  # mark as/done with no AP
 
         elif answer == 'yes':  # move onto 'english tests' checking
@@ -225,7 +224,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
 
         if re.search('[Nn]one of the above', answer):
             notes.addDisclaimer(
-                "Students applying with the {} diploma need to take one of the following English tests: TOEFL iBT, IELTS (academic), CAE, CPE.".format(user_kb['diplomas']))
+                "Students applying with the {} diploma need to take one of the following English tests: TOEFL iBT, IELTS (academic), CAE, CPE.".format(
+                    user_kb['diplomas']))
             visited.append('None')  # mark as/done with no AP
 
         return
@@ -251,7 +251,7 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
         user_kb['english grades'].append(english_grade)
 
         english_sections.pop(0)  # next section
-    
+
         # last question in queries.list
         if len(english_sections) == 0:
             visited.remove('english tests')  # reset visited

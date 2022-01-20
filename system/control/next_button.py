@@ -1,7 +1,8 @@
-from model.rules.elimination_rules import elimination_update
-from model.rules.user_rules import edit_user_kb
 from tkinter import messagebox
 import os
+
+from model.rules.elimination_rules import elimination_update
+from model.rules.user_rules import edit_user_kb
 
 
 def load_new_question(question_field, kb_class, question_class, question, input_field):
@@ -21,7 +22,7 @@ def load_new_question(question_field, kb_class, question_class, question, input_
         messagebox.showwarning("Warning", "Please select an option to continue")
     else:
         # Checking with the rules and removing the question
-        edit_user_kb(answer, question_class, question_field.disclaimer, kb_class.kb, kb_class.user_kb,
+        edit_user_kb(answer, question_class, question_field.disclaimer, kb_class.user_kb,
                      question_field.visited)
         question_class.remove_question(question)
         elim_studies = eliminate_studies(kb_class, question_field.visited)

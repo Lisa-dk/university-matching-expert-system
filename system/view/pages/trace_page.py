@@ -1,8 +1,9 @@
-from tkinter import messagebox
-from view.theme import Theme
 from tkinter import *
+from tkinter import messagebox
 import os
 import re
+
+from view.theme import Theme
 
 
 class TracePage:
