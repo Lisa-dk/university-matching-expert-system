@@ -16,6 +16,7 @@ class Question:
         # self.questions = ["Do you know what you want to study? (yes/no)"]
         self.questions = [
             ["Do you know what you want to study?", QuestionType.SELECT, self.question_options.get('yes-no question')]]
+        self.subscript = None
         # self.questions = ["----> What is your high school diploma?"]
 
     def create_options_dict(self):

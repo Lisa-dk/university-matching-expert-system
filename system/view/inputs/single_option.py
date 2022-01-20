@@ -26,7 +26,6 @@ class RadioButtonField:
         Gets checked button
         :return: checked button contents (as str)
         """
-        print(self.chosen.get())
         return self.chosen.get()
     
     def destroy(self):

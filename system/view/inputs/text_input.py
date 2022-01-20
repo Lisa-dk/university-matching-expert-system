@@ -25,7 +25,6 @@ class TextFields:
         Gets contents text field
         :return: contents text field (as str)
         """
-        print(self.input_widget.get())
         return self.input_widget.get()
     
     def destroy(self):

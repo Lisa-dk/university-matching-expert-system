@@ -70,6 +70,8 @@ def edit_user_kb(answer, queries, notes, studies_kb, user_kb, visited):
                 QuestionType.MULTI_SELECT,
                 queries.get_question_options('subjects IB')])  # next question - subjects?
 
+            queries.subscript = "(HL: Higher Level, SL: Standard Level)"
+
         # no IB diploma
         elif re.search('Turkish Lise Diploma', answer) or re.search('Label France Education', answer) or re.search('Abitur',
                                                                                                            answer):

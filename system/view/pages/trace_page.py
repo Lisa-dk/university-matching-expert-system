@@ -44,7 +44,6 @@ class TracePage:
                                     else:
                                         self.trace += 'The following studies were eliminated:\n'
                                 answers = ln[1][1:].split(';')
-                                print(ln)
                                 for item in answers:
                                     if item:
                                         self.trace += item + '\n'
