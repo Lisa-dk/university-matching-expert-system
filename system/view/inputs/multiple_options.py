@@ -15,7 +15,7 @@ class CheckButtonField:
             self.container = Frame(master, bg=Theme.BG_COLOUR)
             self.container.pack(side=TOP, expand=YES)
 
-            self.canvas = Canvas(self.container, bg=Theme.BG_COLOUR, height=360, width=300, highlightthickness=0)
+            self.canvas = Canvas(self.container, bg=Theme.BG_COLOUR, height=320, width=300, highlightthickness=0)
 
             self.scrollbar = Scrollbar(self.container, orient="vertical", command=self.canvas.yview, bg=Theme.BG_COLOUR)
 
