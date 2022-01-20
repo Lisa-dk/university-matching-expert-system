@@ -86,21 +86,7 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
 
             return study
-
-    # matching entrance exam
-    if 'entrance exam' in visited:
-        # remove studies that have entrance exam
-        if study['entrance exam'] == 'yes':
-            studies_kb.remove(study)
-            return study
-
-    # matching study choice check
-    if 'study choice check' in visited:
-        # remove if the study does not offer study choice check
-        if study['study choice check'] != 'yes':
-            studies_kb.remove(study)
-            return study
-
+    
     # matching research
     if 'research' in visited:
         # remove if the study does not offer research
@@ -122,6 +108,20 @@ def elimination_update(study, studies_kb, user_kb, visited):
             studies_kb.remove(study)
             return study
 
+    # matching entrance exam
+    if 'entrance exam' in visited:
+        # remove studies that have entrance exam
+        if study['entrance exam'] == 'yes':
+            studies_kb.remove(study)
+            return study
+
+    # matching study choice check
+    if 'study choice check' in visited:
+        # remove if the study does not offer study choice check
+        if study['study choice check'] != 'yes':
+            studies_kb.remove(study)
+            return study
+    
     # matching numerus fixus
     if 'numerus fixus' in visited:
         # remove studies that are numerus fixus

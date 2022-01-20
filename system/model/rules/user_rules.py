@@ -295,13 +295,58 @@ def edit_user_kb(answer, queries, notes, user_kb, visited):
             visited.append('pass multidisciplinary')
             # no elimination, do nothing
 
+        queries.add_question(["Would you like to do research in university?", QuestionType.SELECT,
+                              queries.get_question_options('yes-no_preference question')])
+        return
+    
+    # Research
+    if ('multidisciplinary' in visited or 'pass multidisciplinary' in visited) and 'research' not in user_kb.keys():
+
+        visited.pop(0)  # reset visited
+
+        if answer == 'yes':  # studies not offering research will be eliminated
+            visited.append('research')
+        elif answer == "no preference":  # pass
+            visited.append('pass research')
+            # no elimination, do nothing
+
+        queries.add_question([
+            "Do you prefer a study with practical/tutorial-oriented approach, perhaps with hands-on/lab experience?",
+            QuestionType.SELECT, queries.get_question_options('yes-no_preference question')])
+        return
+
+    # Practical-oriented
+    if ('research' in visited or 'pass research' in visited) and 'practical oriented' not in user_kb.keys():
+
+        visited.pop(0)  # reset visited
+
+        if answer == 'yes':  # studies not offering practical-oriented approach will be eliminated
+            visited.append('practical oriented')
+        elif answer == "no preference":  # pass
+            visited.append('pass practical oriented')
+            # no elimination, do nothing
+
+        queries.add_question(["Do you prefer project-oriented study?", QuestionType.SELECT,
+                              queries.get_question_options('yes-no_preference question')])
+        return
+
+    # Project-oriented
+    if ('practical oriented' in visited or 'pass practical oriented' in visited) and 'project oriented' not in user_kb.keys():
+
+        visited.pop(0)  # reset visited
+
+        if answer == 'yes':  # studies not offering project oriented approach will be eliminated
+            visited.append('project oriented')
+        elif answer == "no preference":  # pass
+            visited.append('pass project oriented')
+            # no elimination, do nothing
+
         queries.add_question(["Would you like to take an entrance test?", QuestionType.SELECT,
                               queries.get_question_options('no-no_preference question')])
         return
 
     # Entrance Exam
-    if (
-            'multidisciplinary' in visited or 'pass multidisciplinary' in visited) and 'entrance exam' not in user_kb.keys():
+    if ('project oriented' in visited or 'pass project oriented' in visited) and 'entrance exam' not in user_kb.keys():
 
         visited.pop(0)  # reset visited
 
@@ -327,67 +372,20 @@ def edit_user_kb(answer, queries, notes, user_kb, visited):
             visited.append('pass study choice check')
             # no elimination, do nothing
 
-        queries.add_question(["Would you like to do research in university?", QuestionType.SELECT,
-                              queries.get_question_options('yes-no_preference question')])
-        return
-
-    # Research
-    if ('study choice check' in visited or 'pass study choice check' in visited) and 'research' not in user_kb.keys():
-
-        visited.pop(0)  # reset visited
-
-        if answer == 'yes':  # studies not offering research will be eliminated
-            visited.append('research')
-        elif answer == "no preference":  # pass
-            visited.append('pass research')
-            # no elimination, do nothing
-
-        queries.add_question([
-            "Do you prefer a study with practical/tutorial oriented approach, perhaps with hands-on/lab experience?",
-            QuestionType.SELECT, queries.get_question_options('yes-no_preference question')])
-        return
-
-    # Practical-oriented
-    if ('research' in visited or 'pass research' in visited) and 'practical oriented' not in user_kb.keys():
-
-        visited.pop(0)  # reset visited
-
-        if answer == 'yes':  # studies not offering practical-oriented approach will be eliminated
-            visited.append('practical oriented')
-        elif answer == "no preference":  # pass
-            visited.append('pass practical oriented')
-            # no elimination, do nothing
-
-        queries.add_question(["Do you prefer project-oriented study?", QuestionType.SELECT,
-                              queries.get_question_options('yes-no_preference question')])
-        return
-
-    # Project-oriented
-    if (
-            'practical oriented' in visited or 'pass practical oriented' in visited) and 'project oriented' not in user_kb.keys():
-
-        visited.pop(0)  # reset visited
-
-        if answer == 'yes':  # studies not offering project oriented approach will be eliminated
-            visited.append('project oriented')
-        elif answer == "no preference":  # pass
-            visited.append('pass project oriented')
-            # no elimination, do nothing
-
         queries.add_question([
             "Do you mind applying to a numerus fixus study?\nNote that, numerus fixus study programs have a limited capacity and therefore, may have further requirements such as entrance exam, or portfolio.",
             QuestionType.SELECT, queries.get_question_options('no-no_preference question')])
         return
 
     # Numerus Fixus
-    if ('project oriented' in visited or 'pass project oriented' in visited) and 'numerus fixus' not in user_kb.keys():
+    if ('study choice check' in visited or 'pass study choice check' in visited) and 'numerus fixus' not in user_kb.keys():
 
         visited.pop(0)  # reset visited
 
         if answer == 'no':  # studies that are numerus fixus will be eliminated
-            visited.append('project oriented')
+            visited.append('numerus fixus')
         elif answer == "no preference":  # pass
-            visited.append('pass project oriented')
+            visited.append('pass numerus fixus')
             # no elimination, do nothing
 
         # notes.addDisclaimer("You have reached the end of questionnaire.")
