@@ -10,11 +10,16 @@ The admission requirements change for each study programme and university. There
 
 In order to run the program, you need to install python and the tkinter package. The tkinter package can be installed using pip. 
 
+### Module version
+
+We used python version `3.10.0` and pip version `21.3.1`.
+
+We used the following module versions in our program:
+tkinter version `8.6`
+
 ### Installing
 
-First make sure, python and pip are installed and up-to-date. For the program, we used python version `3.10.0` and the tkinter package version `8.6`. For installing the tkinter package, we used pip version `21.3.1` of pip. 
-
-When you have the correct versions of python and pip installed, you can install the tkinter package by typing one of the following commands in your terminal:
+First make sure, python and pip are installed and up-to-date. When you have the correct versions of python and pip installed, you can install the tkinter package by typing one of the following commands in your terminal:
 
 For windows:
 
