@@ -1,6 +1,7 @@
 from tkinter import *
 import webbrowser
 
+### The code in this file is obtained from https://stackoverflow.com/questions/50327234/adding-link-to-text-in-text-widget-in-tkinter/50328110#50328110 ###
 
 def open_browser(url):
     webbrowser.open_new_tab(url)
