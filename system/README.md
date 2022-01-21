@@ -40,6 +40,14 @@ import tkinter
 tkinter.TkVersion
 ```
 
+If tkinter is not already installed, you can use the following command:
+
+``` pip install tk ```
+
+or 
+
+``` pip3 install tk ```
+
 When you have the correct versions of python and pip installed, you can install the Pillow package by typing one of the following commands in your terminal:
 
 ```  python -m pip install --upgrade Pillow ```

@@ -1,4 +1,5 @@
 import re
+from tkinter import messagebox
 
 from model.questions import QuestionType
 
@@ -138,25 +139,29 @@ def edit_user_kb(answer, queries, notes, user_kb, visited):
             0])  # note current subject in loop to visited for elimination as second el in visited[]
 
         # save response-grade
-        grade = int(answer)
+        if not answer.isdigit():
+            messagebox.showwarning("Warning", "Please enter an integer to continue")
 
-        # invalid grade input above fixed max limit
-        if 'AP courses' in user_kb.keys() and grade > 5:
-            # queries.add_question("The max grade is 5 for AP courses. Enter grade for {}: ".format(user_kb['subjects'][0]))
-            queries.add_question(
-                ["The max grade is 5 for AP courses.\nEnter grade for {}. ".format(user_kb['subjects'][0]),
-                 QuestionType.TEXT_FIELD, None])
-            return
-        elif user_kb['diplomas'] == 'IB' and grade > 7:
-            # queries.add_question("The max grade is 7 for IB subjects. Enter grade for {}: ".format(user_kb['subjects'][0]))
-            queries.add_question(
-                ["The max grade is 7 for IB subjects.\nEnter grade for {}. ".format(user_kb['subjects'][0]),
-                 QuestionType.TEXT_FIELD, None])
-            return
+        else:
+            grade = int(answer)
 
-        # valid grade input
-        user_kb['subject grades'].append(grade)  # save response-grade
-        user_kb['subjects'].pop(0)  # remove the current subject from loop/done with the current subject
+            # invalid grade input above fixed max limit
+            if 'AP courses' in user_kb.keys() and grade > 5:
+                # queries.add_question("The max grade is 5 for AP courses. Enter grade for {}: ".format(user_kb['subjects'][0]))
+                queries.add_question(
+                    ["The max grade is 5 for AP courses.\nEnter grade for {}. ".format(user_kb['subjects'][0]),
+                     QuestionType.TEXT_FIELD, None])
+                return
+            elif user_kb['diplomas'] == 'IB' and grade > 7:
+                # queries.add_question("The max grade is 7 for IB subjects. Enter grade for {}: ".format(user_kb['subjects'][0]))
+                queries.add_question(
+                    ["The max grade is 7 for IB subjects.\nEnter grade for {}. ".format(user_kb['subjects'][0]),
+                     QuestionType.TEXT_FIELD, None])
+                return
+
+            # valid grade input
+            user_kb['subject grades'].append(grade)  # save response-grade
+            user_kb['subjects'].pop(0)  # remove the current subject from loop/done with the current subject
 
         # is this the last subject to check in user_kb? Then make next question about English tests.
         if len(user_kb['subjects']) == 0:
