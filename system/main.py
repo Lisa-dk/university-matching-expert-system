@@ -7,7 +7,6 @@ from view.design.theme import Theme
 
 # smaller things to-do:
 # TODO: clean up code from comments etc + apply same conventions everywhere (standard python convention)
-# TODO: Previous Button
 # TODO: check disclaimer texts? -> NOTE: I corrected the one for English
 
 

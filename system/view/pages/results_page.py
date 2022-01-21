@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
 import os
-import webbrowser
 
 from control.tkHyperlinkManager import HyperlinkManager
 from view.design.theme import Theme

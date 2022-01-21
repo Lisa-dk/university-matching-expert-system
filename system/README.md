@@ -10,34 +10,59 @@ The admission requirements change for each study programme and university. There
 
 In order to run the program, you need to install python and the tkinter package. The tkinter package can be installed using pip. 
 
-### Module version
+### Module versions
 
-We used python version `3.10.0` and pip version `21.3.1`.
+We used python version `3.10.0`. Furthermore, we used some modules from the standard library like webbrowser, os, re and enum.
 
 We used the following module versions in our program:
-tkinter version `8.6`
+
+| Module | Version |
+| ----------- | ----------- |
+| pip | `21.3.1` |
+| Pillow | `8.4.0` or `9.0.0`|
+| tkinter | `8.6` |
 
 ### Installing
 
-First make sure, python and pip are installed and up-to-date. When you have the correct versions of python and pip installed, you can install the tkinter package by typing one of the following commands in your terminal:
+First make sure, python and pip are installed and up-to-date. 
+You can update pip with the following commands:
 
-For windows:
+``` python -m pip install --upgrade pip ```
 
-``` pip install tk ```
+or 
 
-For MACOS:
+``` python3 -m pip install --upgrade pip ```
 
-``` pip3 install tk ```
+The tkinter package should be included in your python version, but to be sure you can check this (and the tkinter version) by opening python in your terminal and running the following commands:
+
+``` 
+import tkinter
+tkinter.TkVersion
+```
+
+When you have the correct versions of python and pip installed, you can install the Pillow package by typing one of the following commands in your terminal:
+
+```  python -m pip install --upgrade Pillow ```
+
+or 
+
+```  python3 -m pip install --upgrade Pillow ```
+
+[comment]: <> (For windows:)
+
+[comment]: <> (``` pip install tk ```)
+
+[comment]: <> (For MACOS:)
+
+[comment]: <> (``` pip3 install tk ```)
 
 ### Running
 
 To run the program, first make sure you are in the correct directory (the directory this README file is in).
 Then type one of the following commands in your terminal:
 
-For windows:
-
 ``` python main.py ```
 
-For MACOS:
+or
 
 ``` python3 main.py ```
